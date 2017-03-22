@@ -1,15 +1,66 @@
 <!doctype html>
 <html class="no-js" lang="zh">
 <head>
-  <meta charset="utf-8">
-  <title>智慧家庭</title>
-  <meta name="description" content="">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="cleartype" content="on">
+    <meta charset="utf-8">
+    <title>智慧家庭</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
 </head>
 <body>
-  <div id="root" style="min-height: 100%; display:flex; flex-direction: column;"></div>
+    <script>
+
+        window.JSBRIAGE = (function () {
+
+            var funcSet = {};
+
+            function push(key, func) {
+                if(funcSet[key]){
+                    console.error("JSBRIAGE: same name '"+ key +"' exist in funcset.");
+                }else{
+                    funcSet[key] = func;
+                }
+            }
+
+            function rmItem(key) {
+                if(funcSet[key]){
+                    delete funcSet[key];
+                }else{
+                    console.error("JSBRIAGE: no name '"+ key +"' in funcset.");
+                }
+            }
+
+            function getItem(key) {
+                if(funcSet[key]){
+                    return funcSet[key];
+                }else{
+                    console.error("JSBRIAGE: no name '"+ key +"' in funcset.");
+                }
+            }
+
+            return {
+                push: push,
+                getItem: getItem,
+                rmItem: rmItem,
+                funcSet: funcSet
+           }
+        }());
+
+        function JsCall(funcName, data) {
+            console.log("[JS Bridge invoke]----->");
+            console.log(funcName);
+            console.log(data);
+
+            if(window.JSBRIAGE.getItem(funcName)){
+                window.JSBRIAGE.getItem(funcName)(data);
+            }else{
+                console.log("[JS Bridge invoke]: no function "+ funcName);
+            }
+        }
+
+    </script>
+    <div id="root" style="min-height: 100%; display:flex; flex-direction: column;"></div>
 </body>
 </html>

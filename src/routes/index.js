@@ -11,7 +11,7 @@ import ColorfulLightWhiteCtrlRoute from './ColorfulLightWhiteCtrl';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-    path        : '/',
+    path        : '/' + __PROJECTDIR__,
     component   : CoreLayout,
     indexRoute  : Home,
     childRoutes : [
