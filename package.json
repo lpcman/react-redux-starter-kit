@@ -50,7 +50,7 @@
       }
     },
     "deploy:prod": {
-      "command": "npm run deploy",
+      "command": "npm run lint && npm run test && npm run deploy",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
