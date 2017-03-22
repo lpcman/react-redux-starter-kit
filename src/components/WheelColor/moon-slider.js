@@ -1,3 +1,4 @@
+/* eslint-disable */
 // the polyfill fix for requestAnimationFrame, so it works on Android
 // by: https://gist.github.com/paulirish/1579671
 (function() {

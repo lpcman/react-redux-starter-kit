@@ -1,9 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
+import SmartSlider, {SliderType} from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
+import './WhiteCtrl.scss';
 
 export default class WhiteCtrl extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            defaultLight: this.props.light
+        }
+        this.runOnMount = false;
+    }
     componentWillMount() {
         let enterType = this.props.params.enterType;
         this.transitionStyle;
@@ -56,6 +66,15 @@ export default class WhiteCtrl extends React.Component {
                         disabled={true}
                         onMove={(data) => this.props.handlerMove(data)}
                     ></WheelColor>
+                    <div className="brightness">
+                        <p>亮度</p>
+                        <p>{this.props.light}</p>
+                        <SmartSlider
+                            type={SliderType.LIGHT}
+                            defaultValue={this.state.defaultLight}
+                            onChange={this.props.changeLight}
+                        />
+                    </div>
                 </RouteTransition>
             </div>
         );
@@ -65,6 +84,8 @@ export default class WhiteCtrl extends React.Component {
 WhiteCtrl.propTypes = {
     color: React.PropTypes.string.isRequired,
     moonSliderOpt: React.PropTypes.object,
+    light: React.PropTypes.number.isRequired,
     handlerMove: React.PropTypes.func.isRequired,
-    uploadData: React.PropTypes.func.isRequired,
+    changeLight: React.PropTypes.func.isRequired,
+    uploadData: React.PropTypes.func.isRequired
 };
