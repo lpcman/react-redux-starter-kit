@@ -14,27 +14,27 @@
  * @date 2017-03-21
  * @version
  */
-import controlImg  from './assets/control@2x.png';
-import discontrolImg  from './assets/discontrol@2x.png';
-import chartImg  from './assets/chart@2x.png';
-import timerImg  from './assets/timer@2x.png';
+import controlImg from './assets/control@2x.png';
+import discontrolImg from './assets/discontrol@2x.png';
+import chartImg from './assets/chart@2x.png';
+import timerImg from './assets/timer@2x.png';
 const Enum = {
-  control: {
-    type: "control",
-    bgImage: controlImg,
-  },
-  discontrol: {
-    type: "discontrol",
-    bgImage: discontrolImg,
-  },
-  chart: {
-    type: "chart",
-    bgImage: chartImg,
-  },
-  timer: {
-    type: "timer",
-    bgImage: timerImg,
-  }
+    control: {
+        type: 'control',
+        bgImage: controlImg
+    },
+    discontrol: {
+        type: 'discontrol',
+        bgImage: discontrolImg
+    },
+    chart: {
+        type: 'chart',
+        bgImage: chartImg
+    },
+    timer: {
+        type: 'timer',
+        bgImage: timerImg
+    }
 
 };
 exports.default = Enum;

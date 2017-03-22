@@ -13,7 +13,7 @@ const mapDispatchToProps = {
 function mapStateToProps (state) {
     return {
         color: state.whiteCtrl.color,
-        moonSliderOpt: state.whiteCtrl.moonSliderOpt,
+        moonSliderOpt: state.whiteCtrl.moonSliderOpt
     };
 }
 

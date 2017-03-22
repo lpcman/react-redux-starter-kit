@@ -13,7 +13,7 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-function upload(data) {
+function upload (data) {
 
 }
 
@@ -23,7 +23,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { status:"ON"};
+const initialState = { status:'ON' };
 export default function colorfulLightPanelReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 

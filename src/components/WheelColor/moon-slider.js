@@ -1,36 +1,39 @@
+/* eslint-disable */
 // the polyfill fix for requestAnimationFrame, so it works on Android
 // by: https://gist.github.com/paulirish/1579671
-(function() {
+(function () {
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
-            || window[vendors[x]+'CancelRequestAnimationFrame'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame']
+            || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
 
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (callback, element) {
             var currTime = new Date().getTime();
             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+            var id = window.setTimeout(function () { callback(currTime + timeToCall); },
                 timeToCall);
             lastTime = currTime + timeToCall;
             return id;
         };
+    }
 
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function (id) {
             clearTimeout(id);
         };
+    }
 }());
 
 let MoonSlider = (() => {
-    var generateMoonSlider = function(id, opts, event_handlers) {
-
+    var generateMoonSlider = function (id, opts, event_handlers) {
         // if no id is submited, abort
-        if (id === undefined)
+        if (id === undefined) {
             return {};
+        }
 
         event_handlers = (event_handlers !== undefined ? event_handlers : {});
         opts = (opts !== undefined ? opts : {});
@@ -42,27 +45,24 @@ let MoonSlider = (() => {
             start_value: 0,
             step: 1,
             radius: 50,
-            color: "#5f3b70",
-            slider_classname: "moon-slider",
-            button_classname: "moon-slider-button",
-            base_line_color: "#d8d8d8",
-            sliderRadius: 8 //zbj: 小圆半径
+            color: '#5f3b70',
+            slider_classname: 'moon-slider',
+            button_classname: 'moon-slider-button',
+            base_line_color: '#d8d8d8',
+            sliderRadius: 8 // zbj: 小圆半径
         };
 
         for (var def in defaults) {
             // if option is not set, set it up with the default value
-            if (opts[def] === undefined)
+            if (opts[def] === undefined) {
                 opts[def] = defaults[def];
+            }
         }
 
-        if (opts.start_value < opts.min_value)
-            opts.start_value = opts.min_value;
-
-
+        if (opts.start_value < opts.min_value) { opts.start_value = opts.min_value; }
 
         // the slider function/object
-        var MoonSlider = function(id, opts, event_handlers) {
-
+        var MoonSlider = function (id, opts, event_handlers) {
             // private properties
             var element = document.getElementById(id), // the div holding the slider
                 button,
@@ -82,14 +82,13 @@ let MoonSlider = (() => {
                 pi_1_5 = 1.5 * Math.PI,
                 pi_2 = 2 * Math.PI;
 
-            var onMoveHandler = function(event) {};
+            var onMoveHandler = function (event) {};
 
             // constructor
-            (function() {
-
+            (function () {
                 // find out if android, for certain canvas bug fixes
                 var agent = navigator.userAgent.toLowerCase();
-                is_android = agent.indexOf("android") > -1;
+                is_android = agent.indexOf('android') > -1;
 
                 // create the canvas, button, etc.
                 initGraphics();
@@ -101,83 +100,76 @@ let MoonSlider = (() => {
                 }
 
                 // draw the empty lines (first render)
-                else
+                else {
                     drawLines();
+                }
 
                 // add listeners
-                button.addEventListener("mousedown", function() {
-                    document.addEventListener("mousemove", moveListener);
+                button.addEventListener('mousedown', function () {
+                    document.addEventListener('mousemove', moveListener);
                 });
 
                 // remove mousemove listener
-                document.addEventListener("mouseup", function() {
-                    document.removeEventListener("mousemove", moveListener);
+                document.addEventListener('mouseup', function () {
+                    document.removeEventListener('mousemove', moveListener);
                 });
 
-                button.addEventListener("touchstart", function() {
-                    document.addEventListener("touchmove", moveListener);
+                button.addEventListener('touchstart', function () {
+                    document.addEventListener('touchmove', moveListener);
                 });
 
                 // remove mousemove listener
-                document.addEventListener("touchend", function() {
-                    document.removeEventListener("touchmove", moveListener);
+                document.addEventListener('touchend', function () {
+                    document.removeEventListener('touchmove', moveListener);
                 });
 
                 // if the caller specified an event handler, save a reference to it
-                if (event_handlers.onMoveHandler !== undefined)
-                    onMoveHandler = event_handlers.onMoveHandler;
-
+                if (event_handlers.onMoveHandler !== undefined) { onMoveHandler = event_handlers.onMoveHandler; }
             })();
-
 
             // private methods
 
-            function initGraphics() {
-
+            function initGraphics () {
                 // add our classname to the element
-                element.className += " "+opts.slider_classname;
+                element.className += ' ' + opts.slider_classname;
 
                 // create the holder div
-                var holder = document.createElement("div");
+                var holder = document.createElement('div');
                 element.appendChild(holder);
 
                 // create the button
-                button = document.createElement("div");
-                button.id = id+"-moon-button";
+                button = document.createElement('div');
+                button.id = id + '-moon-button';
                 button.className = opts.button_classname;
                 // button.style.left = (opts.radius - 3)+"px";      //zbj comment
-                button.style.left = (opts.radius-opts.sliderRadius)+"px";   //zbj added
+                button.style.left = (opts.radius - opts.sliderRadius) + 'px';   // zbj added
                 holder.appendChild(button);
 
                 // create canvas
-                canvas = document.createElement("canvas");
-                canvas.id = id+"-moon-canvas";
+                canvas = document.createElement('canvas');
+                canvas.id = id + '-moon-canvas';
                 canvas.width = opts.radius * 2 + stroke_width;
                 canvas.height = opts.radius * 2 + stroke_width;
                 holder.appendChild(canvas);
 
                 // create hidden input
-                input = document.createElement("input");
-                input.setAttribute("type", "hidden");
-                input.setAttribute("name", id+"-input");
-                input.id = id+"-moon-input";
-                input.setAttribute("value", opts.min_value);
+                input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', id + '-input');
+                input.id = id + '-moon-input';
+                input.setAttribute('value', opts.min_value);
 
                 holder.appendChild(input);
-
             }
 
-
             // this function draws 2 lines on the canvas
-            function drawLines(rad) {
-
+            function drawLines (rad) {
                 // draw when the browser is ready via requestAnimationFrame
-                requestAnimationFrame(function() {
-
+                requestAnimationFrame(function () {
                     // if rad is undefined, start at the top
                     rad = (rad !== undefined ? rad : pi_1_5);
 
-                    var ctx = canvas.getContext("2d");
+                    var ctx = canvas.getContext('2d');
 
                     // clear the canvas
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -185,9 +177,9 @@ let MoonSlider = (() => {
                     // android fix for clearing the rect
                     // https://medium.com/@dhashvir/ffcb939af758
                     if (is_android) {
-                        canvas.style.display = "none";// detach from DOM
+                        canvas.style.display = 'none';// detach from DOM
                         canvas.offsetHeight; // force the detach
-                        canvas.style.display = "inherit"; // Reattach to DOM
+                        canvas.style.display = 'inherit'; // Reattach to DOM
                     }
 
                     ctx.beginPath();
@@ -203,18 +195,14 @@ let MoonSlider = (() => {
                     ctx.strokeStyle = 'transparent';
                     ctx.lineWidth = stroke_width;
                     ctx.stroke();
-
                 });
-
             }
 
-
             // catches mouse move events after click on button
-            function moveListener(event) {
-
+            function moveListener (event) {
                 event.preventDefault();
 
-                if (event.type == "touchmove") {
+                if (event.type == 'touchmove') {
                     event.clientX = event.targetTouches[0].clientX;
                     event.clientY = event.targetTouches[0].clientY;
                 }
@@ -224,11 +212,8 @@ let MoonSlider = (() => {
                 return false;
             }
 
-
-
             // the main function for calculations - this is where the magic happens
-            function coorToGraphics(coor_left, coor_top, deg, skip_step_check) {
-
+            function coorToGraphics (coor_left, coor_top, deg, skip_step_check) {
                 var canvas_offset = canvas.getBoundingClientRect();
 
                 var left = coor_left - canvas_offset.left;
@@ -239,12 +224,14 @@ let MoonSlider = (() => {
                 // if deg are not yet set, calculate them
                 // thx to this fiddle for the math help:
                 // http://jsfiddle.net/phdphil/Zv4K7/#base
-                if (!deg)
-                    deg = -atan / (Math.PI / 180) + 180; // final (0 - 360 positive) degrees from mouse position
+                if (!deg) {
+                    deg = -atan / (Math.PI / 180) + 180;
+                } // final (0 - 360 positive) degrees from mouse position
 
                 // deg was passed to the function programmatically - set the quarter
-                else
+                else {
                     setQuarters(deg);
+                }
 
                 var stopDrawing = false;
                 var stopProcessing = false;
@@ -267,12 +254,10 @@ let MoonSlider = (() => {
 
                 // should we check the step sequence?
                 if (skip_step_check === undefined && opts.step > 1) {
-
                     var step_mod = current_value % opts.step;
 
                     // if the new value is closer to a higher value, help the user
-                    if (step_mod > (opts.step/2)) {
-
+                    if (step_mod > (opts.step / 2)) {
                         current_value = current_value - step_mod + opts.step;
 
                         // get new data
@@ -281,76 +266,62 @@ let MoonSlider = (() => {
                         // restart the process, but skip the step check
                         coorToGraphics(val.pos.left, val.pos.top, val.deg, true);
                         return;
-
                     }
 
                     // if value is too small, don't do anything in this frame
-                    else if (step_mod != 0)
-                        stopProcessing = true;
+                    else if (step_mod != 0) { stopProcessing = true; }
                 }
-
 
                 // stop everything if step validation fails
                 if (!stopProcessing) {
-
-                    input.setAttribute("value", current_value);
+                    input.setAttribute('value', current_value);
 
                     var pos = calculatePosition(deg, canvas_offset.left, canvas_offset.top);
 
-                    button.style.left = (pos.left - canvas_offset.left - opts.sliderRadius + 2) + "px"; //zbj added “- opts.sliderRadius + 2”2为补偿值
-                    button.style.top = (pos.top - canvas_offset.top - opts.sliderRadius + 2) + "px"; //zbj added 2为补偿值
+                    button.style.left = (pos.left - canvas_offset.left - opts.sliderRadius + 2) + 'px'; // zbj added “- opts.sliderRadius + 2”2为补偿值
+                    button.style.top = (pos.top - canvas_offset.top - opts.sliderRadius + 2) + 'px'; // zbj added 2为补偿值
 
                     // draw the lines
-                    if (deg > 0 && !stopDrawing)
-                        drawLines((atan - (Math.PI/2)) * (-1));
+                    if (deg > 0 && !stopDrawing) {
+                        drawLines((atan - (Math.PI / 2)) * (-1));
+                    }
 
                     // clear the lines
-                    else if (deg == 0)
+                    else if (deg == 0) {
                         drawLines();
+                    }
 
                     onMoveHandler({
                         id: id,
                         deg: current_deg,
                         value: current_value
                     });
-
                 }
-
             }
-
 
             // simple function which keeps track which quarter we have just passed
             // (first or last quarter)
             // is used to determine when to stop the rotation - on end and at the beginning,
             // depending on the direction
-            function setQuarters(deg) {
-
-                if (deg < 90)
+            function setQuarters (deg) {
+                if (deg < 90) {
                     first_quart = true;
-
-                else if (deg > 270)
-                    first_quart = false;
-
+                } else if (deg > 270) { first_quart = false; }
             }
 
-
             // function returns X and Y position in the rotation
-            function calculatePosition(deg, container_left, container_top) {
-
+            function calculatePosition (deg, container_left, container_top) {
                 var X = Math.round(opts.radius * Math.sin(deg * Math.PI / 180));
                 var Y = Math.round(opts.radius * -Math.cos(deg * Math.PI / 180));
 
                 return {
                     left: (X + opts.radius + container_left - 2),
                     top: (Y + opts.radius + container_top - 2)
-                }
-
+                };
             }
 
-
             // converts value to pos in space and degrees
-            function valueToPos(value) {
-
+            function valueToPos (value) {
                 var canvas_offset = canvas.getBoundingClientRect();
 
                 var v = value - opts.min_value;
@@ -360,9 +331,8 @@ let MoonSlider = (() => {
                 return {
                     pos: pos,
                     deg: deg
-                }
+                };
             }
-
 
             // public methods
             return {
@@ -371,45 +341,37 @@ let MoonSlider = (() => {
                 // must correspond to that step sequence. otherwise it will start at the beginning.
                 // for example, if you have a step sequence of 10 (110,120,...), then you
                 // can't set a value of 112
-                setValue: function(value) {
-
+                setValue: function (value) {
                     // get pos and degrees from value
                     var val = valueToPos(value);
                     coorToGraphics(val.pos.left, val.pos.top, val.deg);
-
                 },
 
-
                 // set custom degrees
-                setDeg: function(deg) {
-
+                setDeg: function (deg) {
                     var canvas_offset = canvas.getBoundingClientRect();
                     var pos = calculatePosition(deg, canvas_offset.left, canvas_offset.top);
                     coorToGraphics(pos.left, pos.top, deg);
-
                 },
 
-                getValue: function() {
+                getValue: function () {
                     return current_value;
                 },
 
-                getDeg: function() {
+                getDeg: function () {
                     return current_deg;
                 }
 
             };
-
-        }
-
+        };
 
         // finally, generate the new slider and return it
         return new MoonSlider(id, opts, event_handlers);
-
-    }
+    };
 
     return {
         generateMoonSlider: generateMoonSlider
-    }
+    };
 })();
 
 export default MoonSlider;

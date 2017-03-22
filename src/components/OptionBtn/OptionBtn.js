@@ -23,21 +23,21 @@ import React from 'react';
 import Enum from './setting';
 import './index.scss';
 
-var arrayList=["control", "discontrol", "chart", "timer"];
-export  class OptionBtn extends React.Component {
-  constructor (props, context) {
-    super(props, context);
+var arrayList = ['control', 'discontrol', 'chart', 'timer'];
+export class OptionBtn extends React.Component {
+    constructor (props, context) {
+        super(props, context);
     // this.state = {
     //   bgImage: ""
     // }
-  }
-  setBackground=(type)=>{
-    for(let i=0;i<arrayList.length;i++){
-      if(type == Enum.default[arrayList[i]].type){
-          return Enum.default[arrayList[i]].bgImage
-      }
     }
-    return "";
+    setBackground=(type) => {
+        for (let i = 0; i < arrayList.length; i++) {
+            if (type == Enum.default[arrayList[i]].type) {
+                return Enum.default[arrayList[i]].bgImage;
+            }
+        }
+        return '';
     // switch (type){
     //   case Enum.default.control.type:
     //     return Enum.default.control.bgImage;
@@ -54,17 +54,17 @@ export  class OptionBtn extends React.Component {
     //   default:
     //     return "";
     // }
-  };
+    };
 
-  render() {
-    return (
-      <div>
-        <img className="icon"
-             src={this.setBackground(this.props.type)}
-             onClick={this.props.onClick}/>
-      </div>
-    );
-  }
+    render () {
+        return (
+          <div>
+            <img className='icon'
+              src={this.setBackground(this.props.type)}
+              onClick={this.props.onClick} />
+          </div>
+        );
+    }
 }
 
 export default OptionBtn;
