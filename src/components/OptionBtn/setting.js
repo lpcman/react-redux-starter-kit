@@ -18,6 +18,7 @@ import controlImg from './assets/control@2x.png';
 import discontrolImg from './assets/discontrol@2x.png';
 import chartImg from './assets/chart@2x.png';
 import timerImg from './assets/timer@2x.png';
+import situationImg from './assets/situation@2x.png';
 const Enum = {
     control: {
         type: 'control',
@@ -34,7 +35,10 @@ const Enum = {
     timer: {
         type: 'timer',
         bgImage: timerImg
+    },
+    situation: {
+        type: 'situation',
+        bgImage: situationImg
     }
-
 };
 exports.default = Enum;

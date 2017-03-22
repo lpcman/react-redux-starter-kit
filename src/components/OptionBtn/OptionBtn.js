@@ -16,14 +16,14 @@
  */
 /*
 * <OptionBtn type="chart" onClick={function () {}}/>
-* type指定图标类型"control", "discontrol", "chart", "timer"，
+* type指定图标类型"control", "discontrol", "chart", "timer"，'situation'
 * onClick可以自定义点击事件
 * */
 import React from 'react';
 import Enum from './setting';
 import './index.scss';
 
-var arrayList = ['control', 'discontrol', 'chart', 'timer'];
+var arrayList = ['control', 'discontrol', 'chart', 'timer', 'situation'];
 export class OptionBtn extends React.Component {
     constructor (props, context) {
         super(props, context);
