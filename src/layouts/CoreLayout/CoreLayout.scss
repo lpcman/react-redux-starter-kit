@@ -1,6 +1,9 @@
 .container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.core-layout__viewport {
     height: 100%;
-    .core-layout__viewport {
-      display: flex;
-    }
 }

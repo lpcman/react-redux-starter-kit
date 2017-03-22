@@ -1,4 +1,5 @@
 import React from 'react';
+import Bridge from '../../../components/Bridge';
 
 export default class AddTodo extends React.Component {
     render () {
@@ -19,6 +20,7 @@ export default class AddTodo extends React.Component {
         const text = node.value.trim();
         this.props.onAddClick(text);
         node.value = '';
+        Bridge.bridgeCall("test", "aaa");
     }
 }
 
