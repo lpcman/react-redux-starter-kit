@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
 import OffLineImg from '../assets/离线@2x.png';
@@ -9,9 +10,12 @@ export default class Panel extends React.Component {
     toCtrl () {
         browserHistory.push('/colorfulLightCtrl/slideUp');
     }
+
     render () {
         let url;
-        let lightStyle = null, tips = '', scene = '';
+        let lightStyle = null;
+        let tips = '';
+        let scene = '';
         let offLineTip = (
           <div>
             <p className='offLineText'>设备离线</p>
@@ -21,6 +25,9 @@ export default class Panel extends React.Component {
         let sceneTemplate = (
           <div className='sceneName'>标准场景</div>
         );
+        let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} />;
+        let sceneBtn = <OptionBtn type='situation' />;
+        let timeBtn = <OptionBtn type='timer' />;
 
         switch (this.props.status) {
             case 'ON':
@@ -32,10 +39,14 @@ export default class Panel extends React.Component {
                 lightStyle = {
                     backgroundColor: '#000'
                 };
+                ctrlBtn = <OptionBtn type='discontrol' />;
+                sceneBtn = null;
                 break;
             case 'OFF_LINE':
                 url = OffLineImg;
                 tips = offLineTip;
+                ctrlBtn = <OptionBtn type='discontrol' />;
+                sceneBtn = null;
                 break;
             default:
                 url = '';
@@ -47,12 +58,13 @@ export default class Panel extends React.Component {
             <img
               alt='device icon'
               className='deviceIcon'
-              src={url} />
+              src={url}
+              onClick={() => this.props.changeStatus(this.props.status)} />
             {tips}
-            <div>
-              <img src='' alt='控制' onClick={this.toCtrl} />
-              <img src='' alt='场景' />
-              <img src='' alt='定时' />
+            <div className='btnGroup'>
+              {ctrlBtn}
+              {sceneBtn}
+              {timeBtn}
             </div>
           </div>
         );
@@ -64,5 +76,6 @@ Panel.propTypes = {
         'ON',
         'OFF',
         'OFF_LINE'
-    ])
+    ]),
+    changeStatus: React.PropTypes.func.isRequired
 };

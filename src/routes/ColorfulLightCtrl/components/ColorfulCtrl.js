@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
@@ -13,9 +13,14 @@ export default class ColorfulCtrl extends React.Component {
             defaultLight: this.props.light
         };
         this.runOnMount = false;
+        this.degree = 0;
+        this.moonSliderOpt = {};
     }
+
     componentWillMount () {
+        /* eslint-disable */
         let enterType = this.props.params.enterType;
+        /* eslint-enable */
         this.transitionStyle;
 
         switch (enterType) {
@@ -44,43 +49,73 @@ export default class ColorfulCtrl extends React.Component {
                 };
                 break;
         }
+
+        this.initStatus();
     }
+
+    initStatus () {
+        let degree = sessionStorage.getItem('degree') || 0;
+        let startValue = (parseFloat(degree) / 360) * 100;
+        let light = sessionStorage.getItem('light') || 0;
+
+        light = parseInt(light, 10);
+        this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, { start_value: startValue });
+
+        this.setState({
+            defaultLight: light
+        });
+        this.props.changeLight(light);
+    }
+
+    change () {
+        sessionStorage.setItem('degree', this.degree);
+        sessionStorage.setItem('light', this.props.light);
+        browserHistory.push('/whiteLightCtrl/rotateY');
+    }
+
+    onMove (data) {
+        this.degree = data.event.deg;
+        this.props.handlerMove(data);
+    }
+
     onClose (event) {
         if (this.props.uploadData()) {
-            this.props.unmountMe();
             browserHistory.push('/colorfulLightPanel');
         }
     }
+
     render () {
         return (
           <div>
-            <RouteTransition
-              pathname={this.props.location.pathname}
-              {...this.transitionStyle}
-                >
-              <div>
-                <p onClick={() => this.onClose()}>X</p>
-                <p>彩光</p>
-                <p>忽得五色光，换了人间彩</p>
-                <Link to='/whiteLightCtrl/rotateY'>
-                  <p>白光</p>
-                </Link>
-              </div>
-              <WheelColor
-                color={this.props.color}
-                moonSliderOpt={this.props.moonSliderOpt}
-                onMove={(data) => this.props.handlerMove(data)}
-                     />
-              <div className='brightness'>
-                <p>亮度</p>
-                <p>{this.props.light}</p>
-                <SmartSlider
-                  type={SliderType.LIGHT}
-                  defaultValue={this.state.defaultLight}
-                  onChange={this.props.changeLight}
+            <div ref='wrapper'>
+              <RouteTransition
+                        /* eslint-disable */
+                        pathname={this.props.location.pathname}
+                        /* eslint-enable */
+                {...this.transitionStyle}
+                    >
+                <div>
+                  <p onClick={() => this.onClose()}>X</p>
+                  <p>彩光</p>
+                  <p>忽得五色光，换了人间彩</p>
+                  <p onClick={() => this.change()}>白光</p>
+                </div>
+                <WheelColor
+                  color={this.props.color}
+                  moonSliderOpt={this.moonSliderOpt}
+                  onMove={(data) => this.onMove(data)}
                         />
-              </div>
-            </RouteTransition>
+                <div className='brightness'>
+                  <p>亮度</p>
+                  <p>{this.props.light}</p>
+                  <SmartSlider
+                    type={SliderType.LIGHT}
+                    defaultValue={this.state.defaultLight}
+                    onChange={this.props.changeLight}
+                            />
+                </div>
+              </RouteTransition>
+            </div>
           </div>
         );
     }
@@ -88,7 +123,6 @@ export default class ColorfulCtrl extends React.Component {
 
 ColorfulCtrl.propTypes = {
     color: React.PropTypes.string.isRequired,
-    moonSliderOpt: React.PropTypes.object,
     light: React.PropTypes.number.isRequired,
     handlerMove: React.PropTypes.func.isRequired,
     changeLight: React.PropTypes.func.isRequired,

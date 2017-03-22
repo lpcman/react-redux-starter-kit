@@ -1,21 +1,19 @@
 import { connect } from 'react-redux';
-import { changeLight, uploadData } from '../modules/whiteLightCtrl';
+import { statusChange } from '../modules/socketPanel';
 
-import WhiteCtrl from '../components/WhiteCtrl';
+import Panel from '../components/Panel';
 
 const mapDispatchToProps = {
-    changeLight,
-    uploadData
+    statusChange
 };
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
 function mapStateToProps (state) {
     return {
-        color: state.whiteCtrl.color,
-        light: state.whiteCtrl.light
+        status: state.socketPanel.status
     };
 }
 
 // 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
-export default connect(mapStateToProps, mapDispatchToProps)(WhiteCtrl);
+export default connect(mapStateToProps, mapDispatchToProps)(Panel);

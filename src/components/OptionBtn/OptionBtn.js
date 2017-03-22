@@ -25,15 +25,15 @@ import './index.scss';
 
 var arrayList = ['control', 'discontrol', 'chart', 'timer', 'situation'];
 export class OptionBtn extends React.Component {
-    constructor (props, context) {
-        super(props, context);
-    // this.state = {
-    //   bgImage: ""
+    // constructor (props, context) {
+    //     super(props, context);
+    // // this.state = {
+    // //   bgImage: ""
+    // // }
     // }
-    }
     setBackground=(type) => {
         for (let i = 0; i < arrayList.length; i++) {
-            if (type == Enum.default[arrayList[i]].type) {
+            if (type === Enum.default[arrayList[i]].type) {
                 return Enum.default[arrayList[i]].bgImage;
             }
         }

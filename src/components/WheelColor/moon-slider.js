@@ -104,24 +104,26 @@ let MoonSlider = (() => {
                     drawLines();
                 }
 
-                // add listeners
-                button.addEventListener('mousedown', function () {
-                    document.addEventListener('mousemove', moveListener);
-                });
+                if (!opts.disabled) {       //zbj added
+                    // add listeners
+                    button.addEventListener('mousedown', function () {
+                        document.addEventListener('mousemove', moveListener);
+                    });
 
-                // remove mousemove listener
-                document.addEventListener('mouseup', function () {
-                    document.removeEventListener('mousemove', moveListener);
-                });
+                    // remove mousemove listener
+                    document.addEventListener('mouseup', function () {
+                        document.removeEventListener('mousemove', moveListener);
+                    });
 
-                button.addEventListener('touchstart', function () {
-                    document.addEventListener('touchmove', moveListener);
-                });
+                    button.addEventListener('touchstart', function () {
+                        document.addEventListener('touchmove', moveListener);
+                    });
 
-                // remove mousemove listener
-                document.addEventListener('touchend', function () {
-                    document.removeEventListener('touchmove', moveListener);
-                });
+                    // remove mousemove listener
+                    document.addEventListener('touchend', function () {
+                        document.removeEventListener('touchmove', moveListener);
+                    });
+                }
 
                 // if the caller specified an event handler, save a reference to it
                 if (event_handlers.onMoveHandler !== undefined) { onMoveHandler = event_handlers.onMoveHandler; }

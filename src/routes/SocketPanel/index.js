@@ -1,7 +1,7 @@
 import { injectReducer } from '../../store/reducers';
 
 export default (store) => ({
-    path: 'colorfulLightPanel',
+    path : 'socketPanel',
     /*  Async getComponent is only invoked when route matches   */
     getComponent (nextState, cb) {
         /*  Webpack - use 'require.ensure' to create a split point
@@ -9,15 +9,15 @@ export default (store) => ({
         require.ensure([], (require) => {
             /*  Webpack - use require callback to define
              dependencies for bundling   */
-            const ColorfulLightPanel = require('./containers/ColorfulLightPanelContainer').default;
-            const reducer = require('./modules/colorfulLightPanel').default;
+            const SocketPanel = require('./containers/SocketPanelContainer').default;
+            const reducer = require('./modules/socketPanel').default;
 
-            injectReducer(store, { key: 'colorfulLightPanel', reducer });
+            injectReducer(store, { key: 'socketPanel', reducer });
 
             /*  Return getComponent   */
-            cb(null, ColorfulLightPanel);
+            cb(null, SocketPanel);
 
             /* Webpack named bundle   */
-        }, 'colorfulLightPanel');
+        }, 'socketPanel');
     }
 });
