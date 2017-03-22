@@ -36,7 +36,7 @@ export default class WheelColor extends React.Component {
         let delta = Math.round((deg % 60) / 60 * 255);
         //  变化规律奇数区域00-FF，偶数区域FF-00
         delta = area % 2 === 0 ? delta : 255 - delta;
-        let deltaCode = delta.toString(16);
+        let deltaCode = delta === 0 ? '00' : delta.toString(16);
         let color = '#';
         let cb = this.props.onMove || (() => '');
 
@@ -75,30 +75,30 @@ export default class WheelColor extends React.Component {
         };
 
         return (
-          <div className='wheelWrapper' ref='wheelWrapper'>
-            <div className='wheel'>
-              <ul className={'umbrella ' + (this.props.disabled ? 'disabled' : '')}>
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-                <li className='color' />
-              </ul>
+            <div className='wheelWrapper' ref='wheelWrapper'>
+                <div className='wheel'>
+                    <ul className={'umbrella ' + (this.props.disabled ? 'disabled' : '')}>
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                        <li className='color' />
+                    </ul>
+                </div>
+                <div id='slider-transportation' className='slider'>
+                    <div className='cover'>
+                        <div className='selectedColor'
+                            style={selectedColorStyle} />
+                    </div>
+                </div>
             </div>
-            <div id='slider-transportation' className='slider'>
-              <div className='cover'>
-                <div className='selectedColor'
-                  style={selectedColorStyle} />
-              </div>
-            </div>
-          </div>
         );
     }
 }
@@ -107,5 +107,5 @@ WheelColor.propTypes = {
     color: React.PropTypes.string.isRequired,
     moonSliderOpt: React.PropTypes.object,
     disabled: React.PropTypes.bool,
-    onMove: React.PropTypes.func.isRequired
+    onMove: React.PropTypes.func
 };

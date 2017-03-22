@@ -42,21 +42,21 @@ class HomeView extends React.Component {
 
     render () {
         return (
-          <div>
-            <h4>Welcome! {this.state.sliderValue}</h4>
-            <img
-              alt='This is a duck, because Redux!'
-              className='duck'
-              src={DuckImage}
-              onClick={(e) => this.handleClick(e)} />
-            <SmartSlider
-              type={SliderType.LIGHT}
-              min={0}
-              max={100}
-              defaultValue={this.state.sliderValue}
-              onChange={this.handleSlider}
+            <div>
+                <h4>Welcome! {this.state.sliderValue}</h4>
+                <img
+                    alt='This is a duck, because Redux!'
+                    className='duck'
+                    src={DuckImage}
+                    onClick={(e) => this.handleClick(e)} />
+                <SmartSlider
+                    type={SliderType.LIGHT}
+                    min={0}
+                    max={100}
+                    defaultValue={this.state.sliderValue}
+                    onChange={this.handleSlider}
         />
-          </div>
+            </div>
         );
     }
 }

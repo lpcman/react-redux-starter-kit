@@ -17,13 +17,13 @@ export default class Panel extends React.Component {
         let tips = '';
         let scene = '';
         let offLineTip = (
-          <div>
-            <p className='offLineText'>设备离线</p>
-            <p className='offLineTip'>请检查网络和设备</p>
-          </div>
+            <div>
+                <p className='offLineText'>设备离线</p>
+                <p className='offLineTip'>请检查网络和设备</p>
+            </div>
         );
         let sceneTemplate = (
-          <div className='sceneName'>标准场景</div>
+            <div className='sceneName'>标准场景</div>
         );
         let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} />;
         let sceneBtn = <OptionBtn type='situation' />;
@@ -44,6 +44,9 @@ export default class Panel extends React.Component {
                 break;
             case 'OFF_LINE':
                 url = OffLineImg;
+                lightStyle = {
+                    backgroundColor: '#F4F4F4'
+                };
                 tips = offLineTip;
                 ctrlBtn = <OptionBtn type='discontrol' />;
                 sceneBtn = null;
@@ -53,20 +56,20 @@ export default class Panel extends React.Component {
                 break;
         }
         return (
-          <div style={lightStyle} className='wrapper'>
-            {scene}
-            <img
-              alt='device icon'
-              className='deviceIcon'
-              src={url}
-              onClick={() => this.props.changeStatus(this.props.status)} />
-            {tips}
-            <div className='btnGroup'>
-              {ctrlBtn}
-              {sceneBtn}
-              {timeBtn}
+            <div style={lightStyle} className='wrapper'>
+                {scene}
+                <img
+                    alt='device icon'
+                    className='deviceIcon'
+                    src={url}
+                    onClick={() => this.props.changeStatus(this.props.status)} />
+                {tips}
+                <div className='btnGroup'>
+                    {ctrlBtn}
+                    {sceneBtn}
+                    {timeBtn}
+                </div>
             </div>
-          </div>
         );
     }
 };

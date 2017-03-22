@@ -1,3 +1,57 @@
-.brightness {
-    text-align: center;
+.wrapper {
+    height: 100%;
+    background-color: #333;
+    .textWrapper {
+        padding: 0 15px;
+        .close {
+            width: 18px;
+            height: 18px;
+            margin: 32px 0 30px;
+            color: #fff;
+        }
+        .text {
+            color: #fff;
+            font-size: 12px;
+            margin-bottom: 93px;
+        }
+        .titleChangeWrapper {
+            position: relative;
+            .title {
+                display: inline-block;
+                margin: 0;
+                color: #fff;
+                font-size: 21px;
+            }
+            .change {
+                float: right;
+                top: 0;
+                margin: 0;
+                color: #23C1B1;
+                font-size: 16px;
+            }
+        }
+    }
+    .brightness {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        .number {
+            margin: 12px 0;
+            color: #fff;
+            font-size: 50px;
+        }
+        .lightText {
+            margin: 0;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+    .lightSlider {
+        margin: 30px 42px 46px;
+    }
+}
+
+.slider .cover {
+    background-color: #333;
 }

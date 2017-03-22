@@ -17,13 +17,23 @@
 
 import React from 'react';
 import Slider from 'rc-slider/lib/Slider';
+import dark from './assets/暗度@2x.png';
+import bright from './assets/明度@2x.png';
 import 'rc-slider/assets/index.css';
 import './LightSlider.scss';
 
 export const LightSlider = (props) => (
-  <div className='smart-slider'>
-    <Slider {...props} className='light-slider' />
-  </div>
+    <div className='smart-slider'>
+        <img
+            alt='dark icon'
+            className='sliderIcon left'
+            src={dark} />
+        <Slider {...props} className='light-slider' />
+        <img
+            alt='bright icon'
+            className='sliderIcon right'
+            src={bright} />
+    </div>
 );
 
 export default LightSlider;

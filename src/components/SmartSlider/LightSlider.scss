@@ -3,3 +3,44 @@
 .light-slider {
   margin: 0 auto;
 }
+
+.rc-slider-step {
+    height: 6px;
+    background: -webkit-linear-gradient(left, #000,#fff);
+    border-radius: 6px;
+}
+
+.rc-slider-handle {
+    margin-left: -7.5px;
+    margin-top: -9.5px;
+    width: 15px;
+    height: 25px;
+    border-radius: 40%;
+    border: 2px solid #fff;
+}
+
+.rc-slider-handle:hover {
+    border-color: #fff;
+}
+
+.rc-slider-rail,
+.rc-slider-track {
+    height: 0;
+}
+
+.sliderIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.left {
+    position: absolute;
+    left: -30px;
+    top: -4px;
+}
+
+.right {
+    position: absolute;
+    right: -30px;
+    top: -4px;
+}

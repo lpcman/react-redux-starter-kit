@@ -4,16 +4,16 @@ import TodoList from './TodoList';
 import Footer from './Footer';
 
 export const TodoApp = (props) => (
-  <div>
-    <AddTodo
-      onAddClick={text => props.addTodo(text)} />
-    <TodoList
-      todos={props.visibleTodos}
-      onTodoClick={index => props.completeTodo(index)} />
-    <Footer
-      filter={props.visibilityFilter}
-      onFilterChange={nextFilter => props.setVisibilityFilter(nextFilter)} />
-  </div>
+    <div>
+        <AddTodo
+            onAddClick={text => props.addTodo(text)} />
+        <TodoList
+            todos={props.visibleTodos}
+            onTodoClick={index => props.completeTodo(index)} />
+        <Footer
+            filter={props.visibilityFilter}
+            onFilterChange={nextFilter => props.setVisibilityFilter(nextFilter)} />
+    </div>
 );
 
 TodoApp.propTypes = {
