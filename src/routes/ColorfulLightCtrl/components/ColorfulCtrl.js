@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
-import SmartSlider, {SliderType} from '../../../components/SmartSlider';
+import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
 import './ColorfulCtrl.scss';
 
 export default class ColorfulCtrl extends React.Component {
-    constructor(props, context) {
+    constructor (props, context) {
         super(props, context);
 
         this.state = {
             defaultLight: this.props.light
-        }
+        };
         this.runOnMount = false;
     }
-    componentWillMount() {
+    componentWillMount () {
         let enterType = this.props.params.enterType;
         this.transitionStyle;
 
@@ -25,7 +25,7 @@ export default class ColorfulCtrl extends React.Component {
                     atLeave: { translateY: -100 },
                     atActive: { translateY: 0 },
                     mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
-                }
+                };
                 break;
             case 'rotateY':
                 this.transitionStyle = {
@@ -33,7 +33,7 @@ export default class ColorfulCtrl extends React.Component {
                     atLeave: { rotateY: 180 },
                     atActive: { rotateY: 0 },
                     mapStyles: styles => ({ transform: `rotateY(${styles.rotateY}deg)` })
-                }
+                };
                 break;
             default:
                 this.transitionStyle = {
@@ -41,48 +41,48 @@ export default class ColorfulCtrl extends React.Component {
                     atLeave: { translateY: 0 },
                     atActive: { translateY: 0 },
                     mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
-                }
+                };
                 break;
         }
     }
-    onClose(event) {
+    onClose (event) {
         if (this.props.uploadData()) {
             this.props.unmountMe();
             browserHistory.push('/colorfulLightPanel');
         }
     }
-    render() {
+    render () {
         return (
-            <div>
-                <RouteTransition
-                    pathname={this.props.location.pathname}
-                    {...this.transitionStyle}
+          <div>
+            <RouteTransition
+              pathname={this.props.location.pathname}
+              {...this.transitionStyle}
                 >
-                    <div>
-                        <p onClick={() => this.onClose()}>X</p>
-                        <p>彩光</p>
-                        <p>忽得五色光，换了人间彩</p>
-                        <Link to="/whiteLightCtrl/rotateY">
-                            <p>白光</p>
-                        </Link>
-                    </div>
-                    <WheelColor
-                        color={this.props.color}
-                        moonSliderOpt={this.props.moonSliderOpt}
-                        onMove={(data) => this.props.handlerMove(data)}
-                    ></WheelColor>
-                    <div className="brightness">
-                        <p>亮度</p>
-                        <p>{this.props.light}</p>
-                        <SmartSlider
-                            type={SliderType.LIGHT}
-                            defaultValue={this.state.defaultLight}
-                            onChange={this.props.changeLight}
+              <div>
+                <p onClick={() => this.onClose()}>X</p>
+                <p>彩光</p>
+                <p>忽得五色光，换了人间彩</p>
+                <Link to='/whiteLightCtrl/rotateY'>
+                  <p>白光</p>
+                </Link>
+              </div>
+              <WheelColor
+                color={this.props.color}
+                moonSliderOpt={this.props.moonSliderOpt}
+                onMove={(data) => this.props.handlerMove(data)}
+                     />
+              <div className='brightness'>
+                <p>亮度</p>
+                <p>{this.props.light}</p>
+                <SmartSlider
+                  type={SliderType.LIGHT}
+                  defaultValue={this.state.defaultLight}
+                  onChange={this.props.changeLight}
                         />
-                    </div>
-                </RouteTransition>
-            </div>
-        )   ;
+              </div>
+            </RouteTransition>
+          </div>
+        );
     }
 };
 

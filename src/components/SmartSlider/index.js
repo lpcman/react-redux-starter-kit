@@ -6,25 +6,24 @@ export const LIGHT = 'LIGHT_SLIDER';
 export const VOICE = 'VOICE_SLIDER';
 
 export const SliderType = {
-  LIGHT, VOICE
+    LIGHT, VOICE
 };
 
-function SmartSlider(props) {
+function SmartSlider (props) {
+    if (props.type === LIGHT) {
+        return <LightSlider {...props} />;
+    }
 
-  if (props.type === LIGHT) {
-    return <LightSlider {...props} />;
-  }
-
-  if(props.type === VOICE){
-    return <VoiceSlider {...props}/>;
-  }
+    if (props.type === VOICE) {
+        return <VoiceSlider {...props} />;
+    }
 }
 
 SmartSlider.propTypes = {
-  type: React.PropTypes.oneOf([
-    LIGHT,
-    VOICE
-  ]).isRequired
+    type: React.PropTypes.oneOf([
+        LIGHT,
+        VOICE
+    ]).isRequired
 };
 
 export default SmartSlider;

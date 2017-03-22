@@ -6,63 +6,63 @@ import OffLineImg from '../assets/离线@2x.png';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
-    toCtrl() {
+    toCtrl () {
         browserHistory.push('/colorfulLightCtrl/slideUp');
     }
-    render() {
+    render () {
         let url;
-        let lightStyle = null, tips = "", scene = "";
+        let lightStyle = null, tips = '', scene = '';
         let offLineTip = (
-            <div>
-                <p className="offLineText">设备离线</p>
-                <p className="offLineTip">请检查网络和设备</p>
-            </div>
+          <div>
+            <p className='offLineText'>设备离线</p>
+            <p className='offLineTip'>请检查网络和设备</p>
+          </div>
         );
         let sceneTemplate = (
-            <div className="sceneName">标准场景</div>
+          <div className='sceneName'>标准场景</div>
         );
 
         switch (this.props.status) {
-            case "ON":
+            case 'ON':
                 url = OnImg;
                 scene = sceneTemplate;
                 break;
-            case "OFF":
+            case 'OFF':
                 url = OffImg;
                 lightStyle = {
                     backgroundColor: '#000'
                 };
                 break;
-            case "OFF_LINE":
+            case 'OFF_LINE':
                 url = OffLineImg;
                 tips = offLineTip;
                 break;
             default:
-                url = "";
+                url = '';
                 break;
         }
         return (
-            <div style={lightStyle} className="wrapper">
-                {scene}
-                <img
-                    alt='device icon'
-                    className="deviceIcon"
-                    src={url} />
-                {tips}
-                <div>
-                    <img src="" alt="控制" onClick={this.toCtrl}/>
-                    <img src="" alt="场景"/>
-                    <img src="" alt="定时"/>
-                </div>
+          <div style={lightStyle} className='wrapper'>
+            {scene}
+            <img
+              alt='device icon'
+              className='deviceIcon'
+              src={url} />
+            {tips}
+            <div>
+              <img src='' alt='控制' onClick={this.toCtrl} />
+              <img src='' alt='场景' />
+              <img src='' alt='定时' />
             </div>
+          </div>
         );
     }
 };
 
 Panel.propTypes = {
     status: React.PropTypes.oneOf([
-        "ON",
-        "OFF",
-        "OFF_LINE"
+        'ON',
+        'OFF',
+        'OFF_LINE'
     ])
 };

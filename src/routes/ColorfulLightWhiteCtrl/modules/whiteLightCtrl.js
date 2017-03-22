@@ -32,7 +32,7 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-function upload(data) {
+function upload (data) {
     console.log(data);
     return true;
 }
@@ -49,7 +49,7 @@ const ACTION_HANDLERS = {
             ...state,
             light: action.light
         };
-    },    
+    },
     [UPLOAD_DATA] : function (state, action) {
         upload(action);
         return {
@@ -61,7 +61,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { color:"", moonSliderOpt:{} };
+const initialState = { color:'', moonSliderOpt:{} };
 export default function colorfulLightWhiteCtrlReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 

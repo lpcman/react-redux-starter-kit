@@ -21,8 +21,8 @@ import 'rc-slider/assets/index.css';
 import './LightSlider.scss';
 
 export const LightSlider = (props) => (
-  <div className="smart-slider">
-    <Slider  {...props} className='light-slider'/>
+  <div className='smart-slider'>
+    <Slider {...props} className='light-slider' />
   </div>
 );
 

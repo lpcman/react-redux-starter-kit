@@ -15,7 +15,7 @@ function mapStateToProps (state) {
     return {
         color: state.whiteCtrl.color,
         moonSliderOpt: state.whiteCtrl.moonSliderOpt,
-        light: state.whiteCtrl.light,
+        light: state.whiteCtrl.light
     };
 }
 

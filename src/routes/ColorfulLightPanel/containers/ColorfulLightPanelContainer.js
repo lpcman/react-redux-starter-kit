@@ -9,7 +9,7 @@ const mapDispatchToProps = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function mapStateToProps (state) {
     return {
-        status: state.colorfulLightPanel.status,
+        status: state.colorfulLightPanel.status
     };
 }
 
