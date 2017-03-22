@@ -11,10 +11,10 @@ export default class Panel extends React.Component {
         let url;
         let lightStyle = null, tips = '', status = '';
         let offLineTip = (
-          <div>
-            <p className='text'>设备离线</p>
-            <p className='tip'>请检查网络和设备</p>
-          </div>
+            <div>
+                <p className='text'>设备离线</p>
+                <p className='tip'>请检查网络和设备</p>
+            </div>
         );
         let onTip = (
             <div>
@@ -29,12 +29,12 @@ export default class Panel extends React.Component {
         );
         switch (this.props.status) {
             case 'ON':
-                console.log('状态：'+this.props.status);
+                console.log('状态：' + this.props.status);
                 url = OnImg;
                 tips = onTip;
                 status = this.props.status;
                 lightStyle = {
-                    backgroundImage: 'url('+ bgImg +')'
+                    backgroundImage: 'url(' + bgImg + ')'
                 };
                 break;
             case 'OFF':
@@ -42,7 +42,7 @@ export default class Panel extends React.Component {
                 tips = offTip;
                 status = this.props.status;
                 lightStyle = {
-                    backgroundImage: 'url('+ bgImg +')'
+                    backgroundImage: 'url(' + bgImg + ')'
                 };
                 break;
             case 'OFF_LINE':
@@ -55,23 +55,23 @@ export default class Panel extends React.Component {
                 break;
         }
         return (
-          <div className='wrapper' style={lightStyle}>
-            <img
-              alt='device icon'
-              className='deviceIcon'
-              src={url}
-              type={status}
-              onClick={() => this.props.statusChange(status)}/>
-            {tips}
-            <div className='control'>
-                <div className='fix-panel-left'>
-                    <OptionBtn type='chart'/>
-                </div>
-                <div className='fix-panel-right'>
-                    <OptionBtn type='timer'/>
+            <div className='wrapper' style={lightStyle}>
+                <img
+                    alt='device icon'
+                    className='deviceIcon'
+                    src={url}
+                    type={status}
+                    onClick={() => this.props.statusChange(status)} />
+                {tips}
+                <div className='control'>
+                    <div className='fix-panel-left'>
+                        <OptionBtn type='chart' />
+                    </div>
+                    <div className='fix-panel-right'>
+                        <OptionBtn type='timer' />
+                    </div>
                 </div>
             </div>
-          </div>
         );
     }
 };

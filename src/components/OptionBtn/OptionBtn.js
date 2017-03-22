@@ -58,11 +58,11 @@ export class OptionBtn extends React.Component {
 
     render () {
         return (
-          <div>
-            <img className='icon'
-              src={this.setBackground(this.props.type)}
-              onClick={this.props.onClick} />
-          </div>
+            <div>
+                <img className='icon'
+                    src={this.setBackground(this.props.type)}
+                    onClick={this.props.onClick} />
+            </div>
         );
     }
 }

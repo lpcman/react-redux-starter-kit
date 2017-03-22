@@ -6,7 +6,7 @@ export const PANEL_ON = 'PANEL_ON';
  * action 创建函数
  */
 export function statusChange (type) {
-    console.log('输出previous status:'+type);
+    console.log('输出previous status:' + type);
     let nextStatus = '';
     switch (type) {
         case 'ON':
@@ -40,7 +40,7 @@ const ACTION_HANDLERS = {
             ...state,
             status: action.nextStatus
         };
-    },
+    }
 };
 
 // ------------------------------------

@@ -107,6 +107,6 @@ $colors: (#F00, #F80, #FF0, #8F0, #0F0, #0F8, #0FF, #08F, #00F, #80F, #F0F, #F08
         }
     }
     .disabled>.color:nth-child(#{1+$i}):after {
-        background-color: #000;
+        background-color: #464646;
     }
 }

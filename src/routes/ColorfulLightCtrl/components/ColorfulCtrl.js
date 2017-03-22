@@ -29,7 +29,7 @@ export default class ColorfulCtrl extends React.Component {
                     atEnter: { translateY: 100 },
                     atLeave: { translateY: -100 },
                     atActive: { translateY: 0 },
-                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
+                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)`, height:'100%' })
                 };
                 break;
             case 'rotateY':
@@ -37,7 +37,7 @@ export default class ColorfulCtrl extends React.Component {
                     atEnter: { rotateY: -180 },
                     atLeave: { rotateY: 180 },
                     atActive: { rotateY: 0 },
-                    mapStyles: styles => ({ transform: `rotateY(${styles.rotateY}deg)` })
+                    mapStyles: styles => ({ transform: `rotateY(${styles.rotateY}deg)`, height:'100%' })
                 };
                 break;
             default:
@@ -45,7 +45,7 @@ export default class ColorfulCtrl extends React.Component {
                     atEnter: { translateY: 0 },
                     atLeave: { translateY: 0 },
                     atActive: { translateY: 0 },
-                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
+                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)`, height:'100%' })
                 };
                 break;
         }
@@ -80,43 +80,50 @@ export default class ColorfulCtrl extends React.Component {
 
     onClose (event) {
         if (this.props.uploadData()) {
-            browserHistory.push('/colorfulLightPanel');
+            sessionStorage.setItem('degree', this.degree);
+            sessionStorage.setItem('light', this.props.light);
+            this.refs.wrapper.style.transform = 'translateY(100%)';
+            this.refs.wrapper.style.transition = '.4s ease-in-out';
+            setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
         }
     }
 
     render () {
         return (
-          <div>
-            <div ref='wrapper'>
-              <RouteTransition
-                        /* eslint-disable */
-                        pathname={this.props.location.pathname}
-                        /* eslint-enable */
-                {...this.transitionStyle}
-                    >
-                <div>
-                  <p onClick={() => this.onClose()}>X</p>
-                  <p>彩光</p>
-                  <p>忽得五色光，换了人间彩</p>
-                  <p onClick={() => this.change()}>白光</p>
-                </div>
-                <WheelColor
-                  color={this.props.color}
-                  moonSliderOpt={this.moonSliderOpt}
-                  onMove={(data) => this.onMove(data)}
-                        />
-                <div className='brightness'>
-                  <p>亮度</p>
-                  <p>{this.props.light}</p>
-                  <SmartSlider
-                    type={SliderType.LIGHT}
-                    defaultValue={this.state.defaultLight}
-                    onChange={this.props.changeLight}
-                            />
-                </div>
-              </RouteTransition>
+            <div ref='wrapper' className='wrapper'>
+                <RouteTransition
+                  /* eslint-disable */
+                  pathname={this.props.location.pathname}
+                  /* eslint-enable */
+                    {...this.transitionStyle}
+                    style={{ height:'100%' }}
+              >
+                    <div className='textWrapper'>
+                        <p className='close' onClick={() => this.onClose()}>X</p>
+                        <div className='titleChangeWrapper'>
+                            <p className='title'>彩光</p>
+                            <p className='change' onClick={() => this.change()}>切换白光</p>
+                        </div>
+                        <p className='text'>忽得五色光，换了人间彩</p>
+                    </div>
+                    <WheelColor
+                        color={this.props.color}
+                        moonSliderOpt={this.moonSliderOpt}
+                        onMove={(data) => this.onMove(data)}
+                  />
+                    <div className='brightness'>
+                        <p className='number'>{this.props.light}</p>
+                        <p className='lightText'>亮度</p>
+                        <div className='lightSlider'>
+                            <SmartSlider
+                                type={SliderType.LIGHT}
+                                defaultValue={this.state.defaultLight}
+                                onChange={this.props.changeLight}
+                          />
+                        </div>
+                    </div>
+                </RouteTransition>
             </div>
-          </div>
         );
     }
 };

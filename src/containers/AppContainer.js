@@ -16,11 +16,11 @@ class AppContainer extends Component {
         const { routes, store } = this.props;
 
         return (
-          <Provider store={store}>
-            <div style={{ flex: 1, display: 'flex' }}>
-              <Router history={browserHistory} children={routes} />
-            </div>
-          </Provider>
+            <Provider store={store}>
+                <div style={{ flex: 1, display: 'flex' }}>
+                    <Router history={browserHistory} children={routes} />
+                </div>
+            </Provider>
         );
     }
 }

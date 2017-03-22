@@ -7,23 +7,23 @@ export default class Footer extends React.Component {
         }
 
         return (
-          <a href='#'
-            onClick={e => { e.preventDefault(); this.props.onFilterChange(filter); }}>
-            {name}
-          </a>
+            <a href='#'
+                onClick={e => { e.preventDefault(); this.props.onFilterChange(filter); }}>
+                {name}
+            </a>
         );
     }
 
     render () {
         return (
-          <p>
+            <p>
             Show:
             {' '}
-            {this.renderFilter('SHOW_ALL', 'All')}
-            {', '}
-            {this.renderFilter('SHOW_COMPLETED', 'Completed')}
-            {', '}
-            {this.renderFilter('SHOW_ACTIVE', 'Active')}
+                {this.renderFilter('SHOW_ALL', 'All')}
+                {', '}
+                {this.renderFilter('SHOW_COMPLETED', 'Completed')}
+                {', '}
+                {this.renderFilter('SHOW_ACTIVE', 'Active')}
             .
           </p>
         );

@@ -29,7 +29,7 @@ export default class WhiteCtrl extends React.Component {
                     atEnter: { translateY: 100 },
                     atLeave: { translateY: -100 },
                     atActive: { translateY: 0 },
-                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
+                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)`, height:'100%' })
                 };
                 break;
             case 'rotateY':
@@ -37,7 +37,7 @@ export default class WhiteCtrl extends React.Component {
                     atEnter: { rotateY: -180 },
                     atLeave: { rotateY: 180 },
                     atActive: { rotateY: 0 },
-                    mapStyles: styles => ({ transform: `rotateY(${styles.rotateY}deg)` })
+                    mapStyles: styles => ({ transform: `rotateY(${styles.rotateY}deg)`, height:'100%' })
                 };
                 break;
             default:
@@ -45,7 +45,7 @@ export default class WhiteCtrl extends React.Component {
                     atEnter: { translateY: 0 },
                     atLeave: { translateY: 0 },
                     atActive: { translateY: 0 },
-                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)` })
+                    mapStyles: styles => ({ transform: `translateY(${styles.translateY}%)`, height:'100%' })
                 };
                 break;
         }
@@ -74,41 +74,49 @@ export default class WhiteCtrl extends React.Component {
 
     onClose (event) {
         if (this.props.uploadData()) {
-            browserHistory.push('/colorfulLightPanel');
+            sessionStorage.setItem('light', this.props.light);
+            this.refs.wrapper.style.transform = 'translateY(100%)';
+            this.refs.wrapper.style.transition = '.4s ease-in-out';
+            setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
         }
     }
 
     render () {
         return (
-          <div>
-            <RouteTransition
+            <div ref='wrapper' className='wrapper'>
+                <RouteTransition
                     /* eslint-disable */
                     pathname={this.props.location.pathname}
                     /* eslint-enable */
-              {...this.transitionStyle}
+                    {...this.transitionStyle}
+                    style={{ height:'100%' }}
                 >
-              <div>
-                <p onClick={() => this.onClose()}>X</p>
-                <p>白光</p>
-                <p>不是自然，胜似自然</p>
-                <p onClick={() => this.change()}>彩光</p>
-              </div>
-              <WheelColor
-                color={this.props.color}
-                moonSliderOpt={this.moonSliderOpt}
-                disabled
+                    <div className='textWrapper'>
+                        <p className='close' onClick={() => this.onClose()}>X</p>
+                        <div className='titleChangeWrapper'>
+                            <p className='title'>白光</p>
+                            <p className='change' onClick={() => this.change()}>切换彩光</p>
+                        </div>
+                        <p className='text'>不是自然，胜似自然</p>
+                    </div>
+                    <WheelColor
+                        color={this.props.color}
+                        moonSliderOpt={this.moonSliderOpt}
+                        disabled
                     />
-              <div className='brightness'>
-                <p>亮度</p>
-                <p>{this.props.light}</p>
-                <SmartSlider
-                  type={SliderType.LIGHT}
-                  defaultValue={this.state.defaultLight}
-                  onChange={this.props.changeLight}
-                        />
-              </div>
-            </RouteTransition>
-          </div>
+                    <div className='brightness'>
+                        <p className='number'>{this.props.light}</p>
+                        <p className='lightText'>亮度</p>
+                        <div className='lightSlider'>
+                            <SmartSlider
+                                type={SliderType.LIGHT}
+                                defaultValue={this.state.defaultLight}
+                                onChange={this.props.changeLight}
+                            />
+                        </div>
+                    </div>
+                </RouteTransition>
+            </div>
         );
     }
 }

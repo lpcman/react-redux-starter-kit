@@ -21,9 +21,9 @@ import 'rc-slider/assets/index.css';
 import './VoiceSlider.scss';
 
 export const VoiceSlider = (props) => (
-  <div className='smart-slider'>
-    <Slider {...props} className='voice-slider' />
-  </div>
+    <div className='smart-slider'>
+        <Slider {...props} className='voice-slider' />
+    </div>
 );
 
 export default VoiceSlider;
