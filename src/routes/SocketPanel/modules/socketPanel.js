@@ -6,9 +6,9 @@ export const PANEL_ON = 'PANEL_ON';
  * action 创建函数
  */
 export function statusChange (type) {
-    console.log("输出previous status:"+type);
+    console.log('输出previous status:'+type);
     let nextStatus = '';
-    switch (type){
+    switch (type) {
         case 'ON':
             nextStatus = 'OFF';
             break;
@@ -29,9 +29,9 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-function upload (data) {
-
-}
+// function upload (data) {
+//
+// }
 
 const ACTION_HANDLERS = {
     [PANEL_ON] : function (state, action) {

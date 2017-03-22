@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import OnImg from '../assets/on@2x.png';
 import OffImg from '../assets/off@2x.png';
 import OffLineImg from '../assets/offline@2x.png';
@@ -19,18 +18,18 @@ export default class Panel extends React.Component {
         );
         let onTip = (
             <div>
-                <p className="on-text">137kw</p>
-                <p className="tip">电源已开启，当前功率极低</p>
+                <p className='on-text'>137kw</p>
+                <p className='tip'>电源已开启，当前功率极低</p>
             </div>
         );
         let offTip = (
             <div>
-                <p className="tip">电源已关闭</p>
+                <p className='tip'>电源已关闭</p>
             </div>
         );
         switch (this.props.status) {
             case 'ON':
-                console.log("状态："+this.props.status);
+                console.log('状态：'+this.props.status);
                 url = OnImg;
                 tips = onTip;
                 status = this.props.status;
@@ -62,14 +61,14 @@ export default class Panel extends React.Component {
               className='deviceIcon'
               src={url}
               type={status}
-              onClick={() =>this.props.statusChange(status)}/>
+              onClick={() => this.props.statusChange(status)}/>
             {tips}
-            <div className="control">
-                <div className="fix-panel-left">
-                    <OptionBtn type="chart"/>
+            <div className='control'>
+                <div className='fix-panel-left'>
+                    <OptionBtn type='chart'/>
                 </div>
-                <div className="fix-panel-right">
-                    <OptionBtn type="timer"/>
+                <div className='fix-panel-right'>
+                    <OptionBtn type='timer'/>
                 </div>
             </div>
           </div>
