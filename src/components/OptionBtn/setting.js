@@ -22,22 +22,18 @@ const Enum = {
   control: {
     type: "control",
     bgImage: controlImg,
-    redirectTo: '/',
   },
   discontrol: {
     type: "discontrol",
     bgImage: discontrolImg,
-    redirectTo: '/',
   },
   chart: {
     type: "chart",
     bgImage: chartImg,
-    redirectTo: '/',
   },
   timer: {
     type: "timer",
     bgImage: timerImg,
-    redirectTo: '/',
   }
 
 };
