@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../../components/Header';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import DuckImage from '../assets/Duck.jpg';
 import './HomeView.scss';
@@ -35,28 +36,45 @@ class HomeView extends React.Component {
     handleSlider (value) {
         this.setState({ sliderValue: value });
     }
+
     handleClick (e) {
         // js bridge 调用, test为要调用的函数名称，data为传入的参数
         Bridge('test', { a: 'a', b: 'b' });
     }
 
+    handleHeaderLeftClick (e) {
+        console.log(e);
+    }
+
+    handleHeaderRightClick (e) {
+        console.log(e);
+    }
+
+
     render () {
         return (
-          <div>
-            <h4>Welcome! {this.state.sliderValue}</h4>
-            <img
-              alt='This is a duck, because Redux!'
-              className='duck'
-              src={DuckImage}
-              onClick={(e) => this.handleClick(e)} />
-            <SmartSlider
-              type={SliderType.LIGHT}
-              min={0}
-              max={100}
-              defaultValue={this.state.sliderValue}
-              onChange={this.handleSlider}
+            <div>
+                <Header
+                    leftHandler={ e => this.handleHeaderLeftClick(e) }
+                    rightHandler={ e => this.handleHeaderRightClick(e) }
+                    title="主页"
+                    bgColor=""
+                    titleColor=""
+                />
+                <h4>Welcome! {this.state.sliderValue}</h4>
+                <img
+                    alt='This is a duck, because Redux!'
+                    className='duck'
+                    src={DuckImage}
+                    onClick={(e) => this.handleClick(e)} />
+                <SmartSlider
+                    type={SliderType.LIGHT}
+                    min={0}
+                    max={100}
+                    defaultValue={this.state.sliderValue}
+                    onChange={this.handleSlider}
         />
-          </div>
+            </div>
         );
     }
 }

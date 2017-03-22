@@ -1,22 +1,32 @@
 import React from 'react';
-import { IndexLink, Link } from 'react-router';
+import leftImg from './assets/arrow-left.png';
+import moreImg from './assets/dot-three.png';
 import './Header.scss';
 
-export const Header = () => (
-  <div>
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='route--active'>
-      Home
-    </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='route--active'>
-      Counter
-    </Link>
-    {' · '}
-    <Link to='/todo' activeClassName='route--active'>
-      Todo
-    </Link>
-  </div>
-);
+export default class Header extends React.Component {
 
-export default Header;
+    render(){
+        return (
+            <div className="main-header" style={{ backgroundColor: this.props.bgColor || "#23c0b1" }}>
+                <img
+                    src={leftImg} alt="返回" className="img-btn back-btn"
+                    onClick={(e) => this.props.leftHandler(e) }
+                />
+                <div className="header-title"
+                     style={{ color: this.props.titleColor || "#fff" }}>{this.props.title}</div>
+                <img
+                    src={moreImg} alt="返回" className="img-btn more-btn"
+                    onClick={(e) => this.props.rightHandler(e) }
+                />
+            </div>
+        );
+    }
+}
+
+Header.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    bgColor: React.PropTypes.string,
+    titleColor: React.PropTypes.string,
+    leftHandler: React.PropTypes.func.isRequired,
+    rightHandler: React.PropTypes.func.isRequired
+};
