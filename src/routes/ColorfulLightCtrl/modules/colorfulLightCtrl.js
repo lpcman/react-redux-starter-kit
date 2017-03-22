@@ -38,19 +38,19 @@ function upload (data) {
 }
 
 const ACTION_HANDLERS = {
-    [HANDLE_MOVE] : function (state, action) {
+    [HANDLE_MOVE]: function (state, action) {
         return {
             ...state,
             color: action.data.color
         };
     },
-    [CHANGE_LIGHT] : function (state, action) {
+    [CHANGE_LIGHT]: function (state, action) {
         return {
             ...state,
             light: action.light
         };
     },
-    [UPLOAD_DATA] : function (state, action) {
+    [UPLOAD_DATA]: function (state, action) {
         upload(action);
         return {
             ...state
@@ -61,7 +61,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { color:'', moonSliderOpt:{}, light:0 };
+const initialState = { color: '', light: 0 };
 export default function colorfulLightCtrlReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 

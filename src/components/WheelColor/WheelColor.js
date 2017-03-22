@@ -21,6 +21,14 @@ export default class WheelColor extends React.Component {
                 onMoveHandler: (event) => this.sliderMoveHandler(event)
             }
         );
+
+        let deg = opt.start_value / 100 * 360;
+        let initEvent = {
+            deg: deg,
+            id: 'slider-transportation',
+            value: opt.start_value
+        };
+        this.sliderMoveHandler(initEvent);
     }
     sliderMoveHandler (event) {
         let deg = event.deg.toFixed(2);
@@ -96,8 +104,8 @@ export default class WheelColor extends React.Component {
 }
 
 WheelColor.propTypes = {
-    color     : React.PropTypes.string.isRequired,
-    moonSliderOpt     : React.PropTypes.object,
-    disabled     : React.PropTypes.bool,
-    onMove : React.PropTypes.func.isRequired
+    color: React.PropTypes.string.isRequired,
+    moonSliderOpt: React.PropTypes.object,
+    disabled: React.PropTypes.bool,
+    onMove: React.PropTypes.func.isRequired
 };
