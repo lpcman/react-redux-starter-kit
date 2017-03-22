@@ -6,6 +6,7 @@ import TodoRoute from './Todo';
 import colorfulLightPanelRoute from './colorfulLightPanel';
 import ColorfulLightCtrlRoute from './ColorfulLightCtrl';
 import ColorfulLightWhiteCtrlRoute from './ColorfulLightWhiteCtrl';
+import socketPanelRoute from './socketPanel';
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -19,7 +20,8 @@ export const createRoutes = (store) => ({
         TodoRoute(store),
         colorfulLightPanelRoute(store),
         ColorfulLightCtrlRoute(store),
-        ColorfulLightWhiteCtrlRoute(store)
+        ColorfulLightWhiteCtrlRoute(store),
+        socketPanelRoute(store)
     ]
 });
 

@@ -35,7 +35,7 @@ export default class Panel extends React.Component {
                 tips = onTip;
                 status = this.props.status;
                 lightStyle = {
-                    backgroundImage: 'url('+{bgImg}+')'
+                    backgroundImage: 'url('+ bgImg +')'
                 };
                 break;
             case 'OFF':
@@ -43,7 +43,7 @@ export default class Panel extends React.Component {
                 tips = offTip;
                 status = this.props.status;
                 lightStyle = {
-                    backgroundImage: 'url('+{bgImg}+')'
+                    backgroundImage: 'url('+ bgImg +')'
                 };
                 break;
             case 'OFF_LINE':
@@ -56,7 +56,7 @@ export default class Panel extends React.Component {
                 break;
         }
         return (
-          <div style={lightStyle} className='wrapper'>
+          <div className='wrapper' style={lightStyle}>
             <img
               alt='device icon'
               className='deviceIcon'
@@ -65,8 +65,12 @@ export default class Panel extends React.Component {
               onClick={() =>this.props.statusChange(status)}/>
             {tips}
             <div className="control">
-                <OptionBtn type="chart"/>
-                <OptionBtn type="timer"/>
+                <div className="fix-panel-left">
+                    <OptionBtn type="chart"/>
+                </div>
+                <div className="fix-panel-right">
+                    <OptionBtn type="timer"/>
+                </div>
             </div>
           </div>
         );
