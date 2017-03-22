@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { handlerMove, uploadData } from '../modules/whiteLightCtrl';
+import { handlerMove, changeLight, uploadData } from '../modules/whiteLightCtrl';
 
 import WhiteCtrl from '../components/WhiteCtrl';
 
 const mapDispatchToProps = {
     handlerMove,
+    changeLight,
     uploadData
 };
 
@@ -13,7 +14,8 @@ const mapDispatchToProps = {
 function mapStateToProps (state) {
     return {
         color: state.whiteCtrl.color,
-        moonSliderOpt: state.whiteCtrl.moonSliderOpt
+        moonSliderOpt: state.whiteCtrl.moonSliderOpt,
+        light: state.whiteCtrl.light
     };
 }
 

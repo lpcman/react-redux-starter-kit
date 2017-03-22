@@ -3,6 +3,7 @@ import { Link, browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
+import './ColorfulCtrl.scss';
 
 export default class ColorfulCtrl extends React.Component {
     constructor (props, context) {
@@ -70,11 +71,15 @@ export default class ColorfulCtrl extends React.Component {
                 moonSliderOpt={this.props.moonSliderOpt}
                 onMove={(data) => this.props.handlerMove(data)}
                      />
-              <SmartSlider
-                type={SliderType.LIGHT}
-                defaultValue={this.state.defaultLight}
-                onChange={this.props.changeLight}
-                    />
+              <div className='brightness'>
+                <p>亮度</p>
+                <p>{this.props.light}</p>
+                <SmartSlider
+                  type={SliderType.LIGHT}
+                  defaultValue={this.state.defaultLight}
+                  onChange={this.props.changeLight}
+                        />
+              </div>
             </RouteTransition>
           </div>
         );
