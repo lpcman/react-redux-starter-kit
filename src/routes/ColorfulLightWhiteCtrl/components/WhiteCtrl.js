@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
@@ -13,9 +13,14 @@ export default class WhiteCtrl extends React.Component {
             defaultLight: this.props.light
         };
         this.runOnMount = false;
+        this.degree = 0;
+        this.moonSliderOpt = { disabled: true };
     }
+
     componentWillMount () {
+        /* eslint-disable */
         let enterType = this.props.params.enterType;
+        /* eslint-enable */
         this.transitionStyle;
 
         switch (enterType) {
@@ -44,34 +49,55 @@ export default class WhiteCtrl extends React.Component {
                 };
                 break;
         }
+
+        this.initStatus();
     }
+
+    initStatus () {
+        let degree = sessionStorage.getItem('degree') || 0;
+        let startValue = (parseFloat(degree) / 360) * 100;
+        let light = sessionStorage.getItem('light') || 0;
+
+        light = parseInt(light, 10);
+        this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, { start_value: startValue });
+
+        this.setState({
+            defaultLight: light
+        });
+        this.props.changeLight(light);
+    }
+
+    change () {
+        sessionStorage.setItem('light', this.props.light);
+        browserHistory.push('/colorfulLightCtrl/rotateY');
+    }
+
     onClose (event) {
         if (this.props.uploadData()) {
-            this.props.unmountMe();
             browserHistory.push('/colorfulLightPanel');
         }
     }
+
     render () {
         return (
           <div>
             <RouteTransition
-              pathname={this.props.location.pathname}
+                    /* eslint-disable */
+                    pathname={this.props.location.pathname}
+                    /* eslint-enable */
               {...this.transitionStyle}
                 >
               <div>
-                <p onClick={this.props.uploadData}>X</p>
+                <p onClick={() => this.onClose()}>X</p>
                 <p>白光</p>
                 <p>不是自然，胜似自然</p>
-                <Link to='/colorfulLightCtrl/rotateY'>
-                  <p>彩光</p>
-                </Link>
+                <p onClick={() => this.change()}>彩光</p>
               </div>
               <WheelColor
                 color={this.props.color}
-                moonSliderOpt={this.props.moonSliderOpt}
+                moonSliderOpt={this.moonSliderOpt}
                 disabled
-                onMove={(data) => this.props.handlerMove(data)}
-                     />
+                    />
               <div className='brightness'>
                 <p>亮度</p>
                 <p>{this.props.light}</p>
@@ -89,9 +115,7 @@ export default class WhiteCtrl extends React.Component {
 
 WhiteCtrl.propTypes = {
     color: React.PropTypes.string.isRequired,
-    moonSliderOpt: React.PropTypes.object,
     light: React.PropTypes.number.isRequired,
-    handlerMove: React.PropTypes.func.isRequired,
     changeLight: React.PropTypes.func.isRequired,
     uploadData: React.PropTypes.func.isRequired
 };

@@ -32,4 +32,12 @@
         font-size: 16px;
         color: #999;
     }
+    .btnGroup {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        padding: 0 24px;
+        bottom: 20px;
+        justify-content: space-between;
+    }
 }

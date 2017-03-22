@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
+import { changeStatus } from '../modules/colorfulLightPanel';
 
 import Panel from '../components/Panel';
 
 const mapDispatchToProps = {
+    changeStatus
 };
 
 // Which props do we want to inject, given the global state?
