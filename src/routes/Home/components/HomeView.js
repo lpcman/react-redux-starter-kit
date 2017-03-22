@@ -56,9 +56,10 @@ class HomeView extends React.Component {
                 <Header
                     leftHandler={e => this.handleHeaderLeftClick(e)}
                     rightHandler={e => this.handleHeaderRightClick(e)}
-                    title='主页'
-                    bgColor=''
-                    titleColor=''
+                    // title=''
+                    // bgColor=''
+                    // titleColor=''
+                    // reverse={true}
                 />
                 <h4>Welcome! {this.state.sliderValue}</h4>
                 <img
