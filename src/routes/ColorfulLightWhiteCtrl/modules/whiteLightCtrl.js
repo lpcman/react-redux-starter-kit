@@ -27,7 +27,8 @@ export const actions = {
 // ------------------------------------
 
 function upload(data) {
-
+    console.log(data);
+    return true;
 }
 
 const ACTION_HANDLERS = {

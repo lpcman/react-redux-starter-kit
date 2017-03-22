@@ -23,7 +23,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { status:"0"};
+const initialState = { status:"ON"};
 export default function colorfulLightPanelReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 
