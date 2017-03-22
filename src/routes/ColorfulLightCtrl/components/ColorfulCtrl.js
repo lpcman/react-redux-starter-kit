@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
+import Close from '../assets/close.png';
 import './ColorfulCtrl.scss';
 
 export default class ColorfulCtrl extends React.Component {
@@ -90,39 +91,50 @@ export default class ColorfulCtrl extends React.Component {
 
     render () {
         return (
-            <div ref='wrapper' className='wrapper'>
-                <RouteTransition
-                  /* eslint-disable */
-                  pathname={this.props.location.pathname}
-                  /* eslint-enable */
-                    {...this.transitionStyle}
-                    style={{ height:'100%' }}
-              >
-                    <div className='textWrapper'>
-                        <p className='close' onClick={() => this.onClose()}>X</p>
-                        <div className='titleChangeWrapper'>
-                            <p className='title'>彩光</p>
-                            <p className='change' onClick={() => this.change()}>切换白光</p>
+            <div className='wrapper'>
+                <div ref='wrapper' className='wrapper'>
+                    <RouteTransition
+                        /* eslint-disable */
+                        pathname={this.props.location.pathname}
+                        /* eslint-enable */
+                        {...this.transitionStyle}
+                        style={{ height:'100%' }}
+                    >
+                        <div className='textWrapper'>
+                            <img className='close'
+                                onClick={() => this.onClose()}
+                                onTouch={() => this.onClose()}
+                                src={Close}
+                                alt='close'
+                            />
+                            <div className='titleChangeWrapper'>
+                                <p className='title'>彩光</p>
+                                <p
+                                    className='change'
+                                    onClick={() => this.change()}
+                                    onTouch={() => this.change()}
+                                >切换白光</p>
+                            </div>
+                            <p className='text'>忽得五色光，换了人间彩</p>
                         </div>
-                        <p className='text'>忽得五色光，换了人间彩</p>
-                    </div>
-                    <WheelColor
-                        color={this.props.color}
-                        moonSliderOpt={this.moonSliderOpt}
-                        onMove={(data) => this.onMove(data)}
-                  />
-                    <div className='brightness'>
-                        <p className='number'>{this.props.light}</p>
-                        <p className='lightText'>亮度</p>
-                        <div className='lightSlider'>
-                            <SmartSlider
-                                type={SliderType.LIGHT}
-                                defaultValue={this.state.defaultLight}
-                                onChange={this.props.changeLight}
-                          />
+                        <WheelColor
+                            color={this.props.color}
+                            moonSliderOpt={this.moonSliderOpt}
+                            onMove={(data) => this.onMove(data)}
+                        />
+                        <div className='brightness'>
+                            <p className='number'>{this.props.light}</p>
+                            <p className='lightText'>亮度</p>
+                            <div className='lightSlider'>
+                                <SmartSlider
+                                    type={SliderType.LIGHT}
+                                    defaultValue={this.state.defaultLight}
+                                    onChange={this.props.changeLight}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </RouteTransition>
+                    </RouteTransition>
+                </div>
             </div>
         );
     }

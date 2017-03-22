@@ -4,6 +4,7 @@ import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
 import OffLineImg from '../assets/离线@2x.png';
+import Header from '../../../components/Header';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
@@ -25,7 +26,7 @@ export default class Panel extends React.Component {
         let sceneTemplate = (
             <div className='sceneName'>标准场景</div>
         );
-        let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} />;
+        let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} onTouch={this.toCtrl} />;
         let sceneBtn = <OptionBtn type='situation' />;
         let timeBtn = <OptionBtn type='timer' />;
 
@@ -56,13 +57,23 @@ export default class Panel extends React.Component {
                 break;
         }
         return (
-            <div style={lightStyle} className='wrapper'>
+            <div style={lightStyle} className='panelWrapper'>
+                <Header
+                    leftHandler={e => history.back()}
+                    rightHandler={e => console.log(e)}
+                    title='炫彩灯'
+                    bgColor='#fff'
+                    titleColor='#000'
+                    reverse='true'
+                />
                 {scene}
                 <img
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    onClick={() => this.props.changeStatus(this.props.status)} />
+                    onClick={() => this.props.changeStatus(this.props.status)}
+                    onTouch={() => this.props.changeStatus(this.props.status)}
+                />
                 {tips}
                 <div className='btnGroup'>
                     {ctrlBtn}
