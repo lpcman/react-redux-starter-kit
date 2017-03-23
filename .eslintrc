@@ -19,7 +19,8 @@
         "__COVERAGE__": false,
         "__BASENAME__": false,
         "__PROJECTDIR__": false,
-        "BASE_DIR": false
+        "BASE_DIR": false,
+        "GLOBAL_STORE": false
     },
     "rules": {
         "key-spacing": 0,

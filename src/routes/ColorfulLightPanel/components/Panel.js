@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
@@ -9,24 +9,37 @@ import Bridge from '../../../components/Bridge';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
-    toCtrl () {
+
+    toCtrl() {
         browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
     }
 
-    componentDidMount () {
-        window.JSBRIAGE.push('setStatus', this.props.setStatus);
+    componentDidMount() {
+        this.props.setStatus(this.props.location.query.status || 'ON');
+        window.tempData = this.props.location.query || {}; //给从这个页面派生的页面使用
+        window.tempData.light = window.tempData.light && parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
+        window.JSBRIAGE.push('finishLightActivity', this.leave());
     }
 
-    componentWillUnmount () {
-        window.JSBRIAGE.rmItem('setStatus');
+    componentWillUnmount() {
+        window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
-    leave () {
-        Bridge('lightUpdate', { status: this.props.status });
-        history.back();
+    leave() {
+        let currentState = window.GLOBAL_STORE.getState();
+        let param = {status: currentState.colorfulLightPanel.status};
+
+        //  whiteCtrl 和 colorfulCtrl 不会同时存在
+        param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;
+        param.light = currentState.whiteCtrl && currentState.whiteCtrl.light;
+        param.color = currentState.colorfulCtrl && currentState.colorfulCtrl.color;
+        param.light = currentState.colorfulCtrl && currentState.colorfulCtrl.light;
+
+        Bridge('lightUpdate', param);
+        Bridge('finish', 'light');
     }
 
-    render () {
+    render() {
         let url;
         let lightStyle = null;
         let tips = '';
@@ -41,8 +54,8 @@ export default class Panel extends React.Component {
             <div className='sceneName'>标准场景</div>
         );
         let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} onTouchStart={this.toCtrl}/>;
-        let sceneBtn = <OptionBtn type='situation' />;
-        let timeBtn = <OptionBtn type='timer' />;
+        let sceneBtn = <OptionBtn type='situation'/>;
+        let timeBtn = <OptionBtn type='timer'/>;
 
         switch (this.props.status) {
             case 'ON':
@@ -54,7 +67,7 @@ export default class Panel extends React.Component {
                 lightStyle = {
                     backgroundColor: '#000'
                 };
-                ctrlBtn = <OptionBtn type='discontrol' />;
+                ctrlBtn = <OptionBtn type='discontrol'/>;
                 sceneBtn = null;
                 break;
             case 'OFF_LINE':
@@ -63,7 +76,7 @@ export default class Panel extends React.Component {
                     backgroundColor: '#F4F4F4'
                 };
                 tips = offLineTip;
-                ctrlBtn = <OptionBtn type='discontrol' />;
+                ctrlBtn = <OptionBtn type='discontrol'/>;
                 sceneBtn = null;
                 break;
             default:

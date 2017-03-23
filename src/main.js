@@ -10,6 +10,9 @@ window.BASE_DIR = __PROJECTDIR__ ? ('/' + __PROJECTDIR__) : '';
 const initialState = window.___INITIAL_STATE__;
 const store = createStore(initialState);
 
+// expose store for current state read
+window.GLOBAL_STORE = store;
+
 // ========================================================
 // Render Setup
 // ========================================================
