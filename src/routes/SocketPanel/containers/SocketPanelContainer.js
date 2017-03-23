@@ -11,7 +11,8 @@ const mapDispatchToProps = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function mapStateToProps (state) {
     return {
-        status: state.socketPanel.status
+        status: state.socketPanel.status,
+        power: state.socketPanel.power
     };
 }
 
