@@ -2,6 +2,7 @@
  * action 类型
  */
 export const PANEL_ON = 'PANEL_ON';
+export const SET_STATE = 'SET_STATE';
 /*
  * action 创建函数
  */
@@ -21,8 +22,12 @@ export function statusChange (type, power) {
     }
     return { type: PANEL_ON, nextStatus, power };
 }
+export function setState (status, power) {
+    return { type: SET_STATE, status, power };
+}
 export const actions = {
-    statusChange
+    statusChange,
+    setState
 };
 
 // ------------------------------------
@@ -41,7 +46,14 @@ const ACTION_HANDLERS = {
             status: action.nextStatus,
             power: action.power
         };
-    }
+    },
+    [SET_STATE] : function (state, action) {
+    return {
+        ...state,
+        status: action.status,
+        power: action.power
+    };
+}
 };
 
 // ------------------------------------
