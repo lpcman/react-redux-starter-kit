@@ -52,8 +52,14 @@
             console.log("[JS Bridge invoke]----->");
             console.log(funcName);
             console.log(data);
+            alert(data);
 
             if(window.JSBRIAGE.getItem(funcName)){
+                try {
+                    data = JSON.parse(data);
+                }catch (e){
+                    console.log("[JS Bridge invoke]:" + e);
+                }
                 window.JSBRIAGE.getItem(funcName)(data);
             }else{
                 console.log("[JS Bridge invoke]: no function "+ funcName);
