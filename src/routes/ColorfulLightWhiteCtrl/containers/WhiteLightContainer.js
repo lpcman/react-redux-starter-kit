@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { changeLight, uploadData } from '../modules/whiteLightCtrl';
+import { changeLight } from '../modules/whiteLightCtrl';
 
 import WhiteCtrl from '../components/WhiteCtrl';
 
 const mapDispatchToProps = {
-    changeLight,
-    uploadData
+    changeLight
 };
 
 // Which props do we want to inject, given the global state?

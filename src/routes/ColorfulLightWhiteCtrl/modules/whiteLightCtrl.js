@@ -3,7 +3,6 @@
  */
 
 export const CHANGE_LIGHT = 'CHANGE_LIGHT';
-export const UPLOAD_DATA = 'UPLOAD_DATA';
 
 /*
  * action 创建函数
@@ -13,13 +12,8 @@ export function changeLight (light) {
     return { type: CHANGE_LIGHT, light };
 }
 
-export function uploadData (data) {
-    return { type: UPLOAD_DATA, data };
-}
-
 export const actions = {
-    changeLight,
-    uploadData
+    changeLight
 };
 
 // ------------------------------------
@@ -28,6 +22,7 @@ export const actions = {
 
 function upload (data) {
     console.log(data);
+    Bridge('test', { a: 'a', b: 'b' });
     return true;
 }
 
@@ -37,19 +32,13 @@ const ACTION_HANDLERS = {
             ...state,
             light: action.light
         };
-    },
-    [UPLOAD_DATA]: function (state, action) {
-        upload(action);
-        return {
-            ...state
-        };
     }
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { color: '#FFF', light: 0 };
+const initialState = { color: '#FFFFFF', light: 0 };
 export default function colorfulLightWhiteCtrlReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 

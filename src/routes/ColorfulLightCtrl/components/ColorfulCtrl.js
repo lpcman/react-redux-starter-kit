@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
+import Bridge from '../../../components/Bridge';
 import Close from '../assets/close.png';
 import './ColorfulCtrl.scss';
 
@@ -80,13 +81,12 @@ export default class ColorfulCtrl extends React.Component {
     }
 
     onClose (event) {
-        if (this.props.uploadData()) {
-            sessionStorage.setItem('degree', this.degree);
-            sessionStorage.setItem('light', this.props.light);
-            this.refs.wrapper.style.transform = 'translateY(100%)';
-            this.refs.wrapper.style.transition = '.4s ease-in-out';
-            setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
-        }
+        Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
+        sessionStorage.setItem('degree', this.degree);
+        sessionStorage.setItem('light', this.props.light);
+        this.refs.wrapper.style.transform = 'translateY(100%)';
+        this.refs.wrapper.style.transition = '.4s ease-in-out';
+        setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
     }
 
     render () {
@@ -142,6 +142,5 @@ ColorfulCtrl.propTypes = {
     color: React.PropTypes.string.isRequired,
     light: React.PropTypes.number.isRequired,
     handlerMove: React.PropTypes.func.isRequired,
-    changeLight: React.PropTypes.func.isRequired,
-    uploadData: React.PropTypes.func.isRequired
+    changeLight: React.PropTypes.func.isRequired
 };

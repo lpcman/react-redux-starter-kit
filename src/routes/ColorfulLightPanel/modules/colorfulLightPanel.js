@@ -8,7 +8,7 @@ export const CHANGE_STATUS = 'CHANGE_STATUS';
  * action 创建函数
  */
 
-export function changeStatus (status) {
+export function setStatus (status) {
     let newStatus;
     switch (status) {
         case 'ON':
@@ -25,7 +25,7 @@ export function changeStatus (status) {
 }
 
 export const actions = {
-    changeStatus
+    setStatus
 };
 
 // ------------------------------------

@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
+import Bridge from '../../../components/Bridge';
 import Close from '../assets/close.png';
 import './WhiteCtrl.scss';
 
@@ -74,12 +75,11 @@ export default class WhiteCtrl extends React.Component {
     }
 
     onClose (event) {
-        if (this.props.uploadData()) {
-            sessionStorage.setItem('light', this.props.light);
-            this.refs.wrapper.style.transform = 'translateY(100%)';
-            this.refs.wrapper.style.transition = '.4s ease-in-out';
-            setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
-        }
+        Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
+        sessionStorage.setItem('light', this.props.light);
+        this.refs.wrapper.style.transform = 'translateY(100%)';
+        this.refs.wrapper.style.transition = '.4s ease-in-out';
+        setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
     }
 
     render () {
@@ -134,6 +134,5 @@ export default class WhiteCtrl extends React.Component {
 WhiteCtrl.propTypes = {
     color: React.PropTypes.string.isRequired,
     light: React.PropTypes.number.isRequired,
-    changeLight: React.PropTypes.func.isRequired,
-    uploadData: React.PropTypes.func.isRequired
+    changeLight: React.PropTypes.func.isRequired
 };

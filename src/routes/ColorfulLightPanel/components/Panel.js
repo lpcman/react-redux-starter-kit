@@ -5,11 +5,25 @@ import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
 import OffLineImg from '../assets/离线@2x.png';
 import Header from '../../../components/Header';
+import Bridge from '../../../components/Bridge';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
     toCtrl () {
         browserHistory.push('/colorfulLightCtrl/slideUp');
+    }
+
+    componentDidMount() {
+        window.JSBRIAGE.push('setStatus', this.props.setStatus);
+    }
+
+    componentWillUnmount () {
+        window.JSBRIAGE.rmItem('setStatus');
+    }
+
+    leave() {
+        Bridge('lightUpdate', { status: this.props.status });
+        history.back();
     }
 
     render () {
@@ -59,19 +73,19 @@ export default class Panel extends React.Component {
         return (
             <div style={lightStyle} className='panelWrapper'>
                 <Header
-                    leftHandler={e => history.back()}
+                    leftHandler={e => this.leave()}
                     rightHandler={e => console.log(e)}
                     title='炫彩灯'
                     bgColor='#fff'
                     titleColor='#000'
-                    reverse='true'
+                    reverse={true}
                 />
                 {scene}
                 <img
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    onClick={() => this.props.changeStatus(this.props.status)}
+                    onClick={() => this.props.setStatus(this.props.status)}
                 />
                 {tips}
                 <div className='btnGroup'>
@@ -90,5 +104,5 @@ Panel.propTypes = {
         'OFF',
         'OFF_LINE'
     ]),
-    changeStatus: React.PropTypes.func.isRequired
+    setStatus: React.PropTypes.func.isRequired
 };
