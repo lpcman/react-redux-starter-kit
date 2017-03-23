@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { statusChange } from '../modules/socketPanel';
+import { statusChange, setState } from '../modules/socketPanel';
 
 import Panel from '../components/Panel';
 
 const mapDispatchToProps = {
-    statusChange
+    statusChange,
+    setState
 };
 
 // Which props do we want to inject, given the global state?

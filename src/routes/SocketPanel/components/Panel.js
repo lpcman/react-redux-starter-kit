@@ -6,7 +6,7 @@ import OffXImg from '../assets/off@3x.png';
 import OffLineImg from '../assets/offline@2x.png';
 import OffLineXImg from '../assets/offline@3x.png';
 import bgImg from '../assets/bg@2x.png';
-import bgXImg from '../assets/bg@3x.png';
+// import bgXImg from '../assets/bg@3x.png';
 import OptionBtn from '../../../components/OptionBtn';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
@@ -15,8 +15,12 @@ import './Panel.scss';
 export default class Panel extends React.Component {
     componentDidMount () {
         // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
-        window.JSBRIAGE.push('setSocketStatus', this.props.statusChange);
+        window.JSBRIAGE.push('setSocketStatus', this.props.setState);
         window.JSBRIAGE.push('finishSocketActivity', this.leave);
+        if(this.props.location.query.status && this.props.location.query.power){
+            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
+        }
+        console.log(this.props.status);
     }
 
     componentWillUnmount () {
@@ -27,7 +31,7 @@ export default class Panel extends React.Component {
         // js bridge 调用, socketUpdate为要调用的函数名称，data为传入的参数
         Bridge('socketUpdate', { status: this.props.status,
             power: this.props.power });
-        Bridge('finish', { page:'socket' });
+        Bridge('finish', 'socket');
         history.back();
     }
     render () {
@@ -125,5 +129,6 @@ Panel.propTypes = {
         'OFF_LINE'
     ]),
     power: React.PropTypes.number.isRequired,
-    statusChange: React.PropTypes.func.isRequired
+    statusChange: React.PropTypes.func.isRequired,
+    setState: React.PropTypes.func
 };
