@@ -1,6 +1,8 @@
 import React from 'react';
 import './WheelColor.scss';
 import MoonSlider from './moon-slider';
+import ColorCirlce from './assets/色环@2x.png';
+import WhiteCirlce from './assets/调控@2x.png';
 
 export default class WheelColor extends React.Component {
     componentDidMount () {
@@ -33,8 +35,8 @@ export default class WheelColor extends React.Component {
     transformButton (deg) {
         let btn = document.getElementById('slider-transportation-moon-button');
         let rotate = 'rotate(' + deg + 'deg)';
-        btn.style['-webkit-transform'] = rotate;
-        btn.style['transform'] = rotate;
+        btn.style.WebkitTransform = rotate;
+        btn.style.transform = rotate;
     }
     sliderMoveHandler (event) {
         let deg = event.deg.toFixed(2);
@@ -84,20 +86,7 @@ export default class WheelColor extends React.Component {
         return (
             <div className='wheelWrapper' ref='wheelWrapper'>
                 <div className='wheel'>
-                    <ul className={'umbrella ' + (this.props.disabled ? 'disabled' : '')}>
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                        <li className='color' />
-                    </ul>
+                    <img src={this.props.disabled ? WhiteCirlce : ColorCirlce} alt='circle' />
                 </div>
                 <div id='slider-transportation' className='slider'>
                     <div className='cover'>

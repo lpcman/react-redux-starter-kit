@@ -32,8 +32,8 @@ export default class WhiteCtrl extends React.Component {
                     atLeave: { translateY: -100 },
                     atActive: { translateY: 0 },
                     mapStyles: styles => ({
-                        '-webkit-transform': `translateY(${styles.translateY}%)`,
-                        transform : `translateY(${styles.translateY}%)`,
+                        WebkitTransform: `translate3d(0, ${styles.translateY}%, 0)`,
+                        transform : `translate3d(0, ${styles.translateY}%,0 )`,
                         height:'100%'
                     })
                 };
@@ -44,8 +44,8 @@ export default class WhiteCtrl extends React.Component {
                     atLeave: { rotateY: 180 },
                     atActive: { rotateY: 0 },
                     mapStyles: styles => ({
-                        '-webkit-transform' : `rotateY(${styles.rotateY}deg)`,
-                        'transform' : `rotateY(${styles.rotateY}deg)`,
+                        WebkitTransform : `rotateY(${styles.rotateY}deg)`,
+                        transform : `rotateY(${styles.rotateY}deg)`,
                         height:'100%'
                     })
                 };
@@ -56,8 +56,8 @@ export default class WhiteCtrl extends React.Component {
                     atLeave: { translateY: 0 },
                     atActive: { translateY: 0 },
                     mapStyles: styles => ({
-                        '-webkit-transform' : `translateY(${styles.translateY}%)`,
-                        'transform' : `translateY(${styles.translateY}%)`,
+                        WebkitTransform : `translate3d(0, ${styles.translateY}%, 0)`,
+                        transform : `translate3d(0, ${styles.translateY}%, 0)`,
                         height:'100%'
                     })
                 };
@@ -89,8 +89,8 @@ export default class WhiteCtrl extends React.Component {
     onClose (event) {
         Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('light', this.props.light);
-        this.refs.wrapper.style['-webkit-transform'] = 'translateY(100%)';
-        this.refs.wrapper.style['transform'] = 'translateY(100%)';
+        this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
+        this.refs.wrapper.style.transform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transition = '.4s ease-in-out';
         setTimeout(() => browserHistory.push(window.BASE_DIR + '/colorfulLightPanel'), 400);
     }
