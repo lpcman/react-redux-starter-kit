@@ -15,7 +15,7 @@ export default class ColorfulCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = { sliderWidth: 7.5, sliderHeight: 12.5 };
+        this.moonSliderOpt = { sliderWidth: 8.5, sliderHeight: 13.5 };
     }
 
     componentWillMount () {

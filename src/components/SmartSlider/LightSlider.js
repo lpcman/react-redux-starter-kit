@@ -26,12 +26,12 @@ export const LightSlider = (props) => (
     <div className='smart-slider'>
         <img
             alt='dark icon'
-            className='sliderIcon left'
+            className='sliderIcon sliderLeftImg'
             src={dark} />
         <Slider {...props} className='light-slider' />
         <img
             alt='bright icon'
-            className='sliderIcon right'
+            className='sliderIcon sliderRightImg'
             src={bright} />
     </div>
 );

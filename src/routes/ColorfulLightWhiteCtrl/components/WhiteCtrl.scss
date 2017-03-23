@@ -38,6 +38,14 @@
         top: 190px;
         left: 50%;
         margin-left: -7.5em;
+        .moon-slider {
+            .moon-slider-button {
+                width: 17px;
+                height: 27px;
+                top: -13.5px;
+                border-radius: 17px;
+            }
+        }
     }
     .brightness {
         position: absolute;
@@ -57,7 +65,7 @@
         }
     }
     .lightSlider {
-        margin: 30px 42px 46px;
+        margin: 30px 77px 46px;
     }
 }
 
