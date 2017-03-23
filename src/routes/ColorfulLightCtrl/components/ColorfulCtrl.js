@@ -1,14 +1,14 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
-import { RouteTransition } from 'react-router-transition';
-import SmartSlider, { SliderType } from '../../../components/SmartSlider';
+import {browserHistory, Lifecycle} from 'react-router';
+import {RouteTransition} from 'react-router-transition';
+import SmartSlider, {SliderType} from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
-import Bridge from '../../../components/Bridge';
 import Close from '../assets/close.png';
 import './ColorfulCtrl.scss';
 
 export default class ColorfulCtrl extends React.Component {
-    constructor (props, context) {
+
+    constructor(props, context) {
         super(props, context);
 
         this.state = {
@@ -16,10 +16,15 @@ export default class ColorfulCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = { sliderWidth: 8.5, sliderHeight: 13.5 };
+        this.moonSliderOpt = {sliderWidth: 8.5, sliderHeight: 13.5};
+    }
+
+    componentWillUnmount() {
+        window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
     componentWillMount() {
+        window.JSBRIAGE.push('finishLightActivity', this.onClose);
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
@@ -28,37 +33,37 @@ export default class ColorfulCtrl extends React.Component {
         switch (enterType) {
             case 'slideUp':
                 this.transitionStyle = {
-                    atEnter: { translateY: 100 },
-                    atLeave: { translateY: -100 },
-                    atActive: { translateY: 0 },
+                    atEnter: {translateY: 100},
+                    atLeave: {translateY: -100},
+                    atActive: {translateY: 0},
                     mapStyles: styles => ({
-                        WebkitTransform : `translate3d(0, ${styles.translateY}%, 0)`,
-                        transform : `translate3d(0, ${styles.translateY}%, 0)`,
-                        height:'100%'
+                        WebkitTransform: `translate3d(0, ${styles.translateY}%, 0)`,
+                        transform: `translate3d(0, ${styles.translateY}%, 0)`,
+                        height: '100%'
                     })
                 };
                 break;
             case 'rotateY':
                 this.transitionStyle = {
-                    atEnter: { rotateY: -180 },
-                    atLeave: { rotateY: 180 },
-                    atActive: { rotateY: 0 },
+                    atEnter: {rotateY: -180},
+                    atLeave: {rotateY: 180},
+                    atActive: {rotateY: 0},
                     mapStyles: styles => ({
-                        WebkitTransform : `rotateY(${styles.translateY}%)`,
-                        transform : `rotateY(${styles.rotateY}deg)`,
-                        height:'100%'
+                        WebkitTransform: `rotateY(${styles.translateY}%)`,
+                        transform: `rotateY(${styles.rotateY}deg)`,
+                        height: '100%'
                     })
                 };
                 break;
             default:
                 this.transitionStyle = {
-                    atEnter: { translateY: 0 },
-                    atLeave: { translateY: 0 },
-                    atActive: { translateY: 0 },
+                    atEnter: {translateY: 0},
+                    atLeave: {translateY: 0},
+                    atActive: {translateY: 0},
                     mapStyles: styles => ({
-                        WebkitTransform : `translate3d(0, ${styles.translateY}%, 0)`,
-                        transform : `translate3d(0, ${styles.translateY}%, 0)`,
-                        height:'100%'
+                        WebkitTransform: `translate3d(0, ${styles.translateY}%, 0)`,
+                        transform: `translate3d(0, ${styles.translateY}%, 0)`,
+                        height: '100%'
                     })
                 };
                 break;
@@ -67,12 +72,12 @@ export default class ColorfulCtrl extends React.Component {
         this.initStatus();
     }
 
-    initStatus () {
+    initStatus() {
         let degree = sessionStorage.getItem('degree');
         let startColor = window.tempData && window.tempData.color;
         let light = parseInt(sessionStorage.getItem('light'), 10) || (window.tempData && window.tempData.light);
 
-        let opt = startColor ? { start_color: startColor } : { start_value: parseFloat(degree) };
+        let opt = startColor ? {start_color: startColor} : {start_value: parseFloat(degree)};
         this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, opt);
 
         this.setState({
@@ -82,7 +87,7 @@ export default class ColorfulCtrl extends React.Component {
         window.tempData = null;
     }
 
-    change () {
+    change() {
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
         let currentState = window.GLOBAL_STORE.getState();
@@ -90,12 +95,12 @@ export default class ColorfulCtrl extends React.Component {
         browserHistory.push(window.BASE_DIR + '/whiteLightCtrl/rotateY');
     }
 
-    onMove (data) {
+    onMove(data) {
         this.degree = data.event.deg;
         this.props.handlerMove(data);
     }
 
-    onClose (event) {
+    onClose() {
         let currentState = window.GLOBAL_STORE.getState();
         currentState.whiteCtrl = null;
         // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
@@ -107,7 +112,7 @@ export default class ColorfulCtrl extends React.Component {
         setTimeout(() => browserHistory.push(window.BASE_DIR + '/colorfulLightPanel'), 400);
     }
 
-    render () {
+    render() {
         return (
             <div className='lightCtrlWrapper'>
                 <div ref='wrapper' className='lightCtrlWrapper'>
@@ -120,9 +125,9 @@ export default class ColorfulCtrl extends React.Component {
                     >
                         <div className='textWrapper'>
                             <img className='close'
-                                onTouchStart={() => this.onClose()}
-                                src={Close}
-                                alt='close'
+                                 onTouchStart={() => this.onClose()}
+                                 src={Close}
+                                 alt='close'
                             />
                             <div className='titleChangeWrapper'>
                                 <p className='title'>彩光</p>
