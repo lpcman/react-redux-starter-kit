@@ -4,6 +4,7 @@ import OffImg from '../assets/off@2x.png';
 import OffLineImg from '../assets/offline@2x.png';
 import bgImg from '../assets/bg@2x.png';
 import OptionBtn from '../../../components/OptionBtn';
+import Header from '../../../components/Header';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
@@ -56,6 +57,14 @@ export default class Panel extends React.Component {
         }
         return (
             <div className='wrapper' style={lightStyle}>
+                <Header
+                    leftHandler={e => history.back()}
+                    rightHandler={e => console.log(e)}
+                    title='移动计量插座'
+                    bgColor='#fff'
+                    titleColor='#000'
+                    reverse='true'
+                />
                 <img
                     alt='device icon'
                     className='deviceIcon'
@@ -71,6 +80,7 @@ export default class Panel extends React.Component {
                         <OptionBtn type='timer' />
                     </div>
                 </div>
+
             </div>
         );
     }
