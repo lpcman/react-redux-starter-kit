@@ -71,7 +71,7 @@ export default class WhiteCtrl extends React.Component {
 
     change () {
         sessionStorage.setItem('light', this.props.light);
-        browserHistory.push('/colorfulLightCtrl/rotateY');
+        browserHistory.push('/' + __PROJECTDIR__ + '/colorfulLightCtrl/rotateY');
     }
 
     onClose (event) {
@@ -79,7 +79,7 @@ export default class WhiteCtrl extends React.Component {
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.transform = 'translateY(100%)';
         this.refs.wrapper.style.transition = '.4s ease-in-out';
-        setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
+        setTimeout(() => browserHistory.push('/' + __PROJECTDIR__ + '/colorfulLightPanel'), 400);
     }
 
     render () {

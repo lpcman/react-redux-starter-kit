@@ -10,7 +10,7 @@ import './Panel.scss';
 
 export default class Panel extends React.Component {
     toCtrl () {
-        browserHistory.push('/colorfulLightCtrl/slideUp');
+        browserHistory.push('/' + __PROJECTDIR__ + '/colorfulLightCtrl/slideUp');
     }
 
     componentDidMount() {

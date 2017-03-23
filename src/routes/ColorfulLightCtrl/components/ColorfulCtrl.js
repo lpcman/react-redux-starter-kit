@@ -72,7 +72,7 @@ export default class ColorfulCtrl extends React.Component {
     change () {
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
-        browserHistory.push('/whiteLightCtrl/rotateY');
+        browserHistory.push('/' + __PROJECTDIR__ + '/whiteLightCtrl/rotateY');
     }
 
     onMove (data) {
@@ -86,7 +86,7 @@ export default class ColorfulCtrl extends React.Component {
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.transform = 'translateY(100%)';
         this.refs.wrapper.style.transition = '.4s ease-in-out';
-        setTimeout(() => browserHistory.push('/colorfulLightPanel'), 400);
+        setTimeout(() => browserHistory.push('/' + __PROJECTDIR__ + '/colorfulLightPanel'), 400);
     }
 
     render () {
