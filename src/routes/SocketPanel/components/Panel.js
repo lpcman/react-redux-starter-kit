@@ -16,7 +16,7 @@ export default class Panel extends React.Component {
     componentDidMount () {
         // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
         window.JSBRIAGE.push('setSocketStatus', this.props.statusChange);
-        window.JSBRIAGE.push('finishLightActivity', this.leave);
+        window.JSBRIAGE.push('finishSocketActivity', this.leave);
     }
 
     componentWillUnmount () {
