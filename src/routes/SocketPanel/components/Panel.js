@@ -27,7 +27,7 @@ export default class Panel extends React.Component {
         // js bridge 调用, socketUpdate为要调用的函数名称，data为传入的参数
         Bridge('socketUpdate', { status: this.props.status,
             power: this.props.power });
-        Bridge('finish', {page:'socket'});
+        Bridge('finish', { page:'socket' });
         history.back();
     }
     render () {
@@ -91,16 +91,16 @@ export default class Panel extends React.Component {
                 />
                 <picture>
                     <source
-                        media="(min-width: 414px)"
-                        srcSet={urlX}/>
+                        media='(min-width: 414px)'
+                        srcSet={urlX} />
                     <source
-                        media="(min-width: 375px)"
-                        srcSet={url}/>
+                        media='(min-width: 375px)'
+                        srcSet={url} />
                     <img
                         alt='device icon'
                         className='deviceIcon'
                         src={url}
-                        onTouchStart={() => this.props.statusChange(this.props.status, this.props.power)}/>
+                        onTouchStart={() => this.props.statusChange(this.props.status, this.props.power)} />
                 </picture>
 
                 {tips}

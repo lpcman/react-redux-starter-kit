@@ -108,7 +108,6 @@ export default class WhiteCtrl extends React.Component {
                     >
                         <div className='textWrapper'>
                             <img className='close'
-                                onClick={() => this.onClose()}
                                 onTouchStart={() => this.onClose()}
                                 src={Close}
                                 alt='close'
@@ -117,7 +116,6 @@ export default class WhiteCtrl extends React.Component {
                                 <p className='title'>白光</p>
                                 <p
                                     className='change'
-                                    onClick={() => this.change()}
                                     onTouchStart={() => this.change()}
                                 >切换彩光</p>
                             </div>

@@ -40,7 +40,7 @@ export default class Panel extends React.Component {
         let sceneTemplate = (
             <div className='sceneName'>标准场景</div>
         );
-        let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} onTouchStart={this.toCtrl}/>;
+        let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
         let sceneBtn = <OptionBtn type='situation' />;
         let timeBtn = <OptionBtn type='timer' />;
 
@@ -85,7 +85,6 @@ export default class Panel extends React.Component {
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    onClick={() => this.props.setStatus(this.props.status)}
                     onTouchStart={() => this.props.setStatus(this.props.status)}
                 />
                 {tips}

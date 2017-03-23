@@ -115,8 +115,7 @@ export default class ColorfulCtrl extends React.Component {
                     >
                         <div className='textWrapper'>
                             <img className='close'
-                                onClick={() => this.onClose()}
-                                 onTouchStart={() => this.onClose()}
+                                onTouchStart={() => this.onClose()}
                                 src={Close}
                                 alt='close'
                             />
@@ -124,7 +123,6 @@ export default class ColorfulCtrl extends React.Component {
                                 <p className='title'>彩光</p>
                                 <p
                                     className='change'
-                                    onClick={() => this.change()}
                                     onTouchStart={() => this.change()}
                                 >切换白光</p>
                             </div>
