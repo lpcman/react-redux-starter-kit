@@ -10,7 +10,7 @@ import './Panel.scss';
 
 export default class Panel extends React.Component {
     componentDidMount () {
-        // 组件挂载时，添加供native端调用的方法， test为约定的方法名称
+        // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
         window.JSBRIAGE.push('setSocketStatus', this.props.statusChange);
     }
 
@@ -19,10 +19,10 @@ export default class Panel extends React.Component {
         window.JSBRIAGE.rmItem('setSocketStatus');
     }
     leave () {
-        // js bridge 调用, test为要调用的函数名称，data为传入的参数
+        // js bridge 调用, socketUpdate为要调用的函数名称，data为传入的参数
         Bridge('socketUpdate', { status: this.props.status,
             power: this.props.power });
-        history.back()
+        history.back();
     }
     render () {
         let url;
@@ -79,7 +79,7 @@ export default class Panel extends React.Component {
                     title='移动计量插座'
                     bgColor='#fff'
                     titleColor='#000'
-                    reverse={true}
+                    reverse
                 />
                 <img
                     alt='device icon'
