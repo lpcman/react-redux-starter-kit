@@ -30,5 +30,10 @@ module.exports = {
     // integration test
     integration : (config) => ({
         compiler_public_path : `http://218.205.115.242:18888/${config.globals.__BASENAME__}/`
+    }),
+
+    // self test
+    selftest : (config) => ({
+        compiler_public_path : `http://218.205.115.242:18888/${config.globals.__BASENAME__}/`
     })
 };
