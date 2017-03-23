@@ -26,7 +26,8 @@ export default class Panel extends React.Component {
     }
     render () {
         let url;
-        let lightStyle = null, tips = '', status = '';
+        let lightStyle = null;
+        let tips = '';
         let offLineTip = (
             <div>
                 <p className='text'>设备离线</p>
@@ -49,7 +50,6 @@ export default class Panel extends React.Component {
                 console.log('状态：' + this.props.status);
                 url = OnImg;
                 tips = onTip;
-                status = this.props.status;
                 lightStyle = {
                     backgroundImage: 'url(' + bgImg + ')'
                 };
@@ -57,7 +57,6 @@ export default class Panel extends React.Component {
             case 'OFF':
                 url = OffImg;
                 tips = offTip;
-                status = this.props.status;
                 lightStyle = {
                     backgroundImage: 'url(' + bgImg + ')'
                 };
@@ -65,7 +64,6 @@ export default class Panel extends React.Component {
             case 'OFF_LINE':
                 url = OffLineImg;
                 tips = offLineTip;
-                status = this.props.status;
                 break;
             default:
                 url = '';
@@ -85,8 +83,7 @@ export default class Panel extends React.Component {
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    type={status}
-                    onClick={() => this.props.statusChange(status, this.props.power)} />
+                    onClick={() => this.props.statusChange(this.props.status, this.props.power)} />
                 {tips}
                 <div className='control'>
                     <div className='fix-panel-left'>
