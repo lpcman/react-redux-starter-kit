@@ -11,8 +11,8 @@ const mapDispatchToProps = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function mapStateToProps (state) {
     return {
-        color: state.colorfulCtrl.color,
-        light: state.colorfulCtrl.light
+        color: state.whiteCtrl.color,
+        light: state.whiteCtrl.light
     };
 }
 
