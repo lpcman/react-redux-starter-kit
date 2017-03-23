@@ -12,7 +12,7 @@ import socketPanelRoute from './socketPanel';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-    path        : '/' + __PROJECTDIR__,
+    path        : window.BASE_DIR ? window.BASE_DIR : '/',
     component   : CoreLayout,
     indexRoute  : Home,
     childRoutes : [

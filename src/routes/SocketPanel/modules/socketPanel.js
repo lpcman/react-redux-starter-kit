@@ -5,7 +5,7 @@ export const PANEL_ON = 'PANEL_ON';
 /*
  * action 创建函数
  */
-export function statusChange (type) {
+export function statusChange (type, power) {
     console.log('输出previous status:' + type);
     let nextStatus = '';
     switch (type) {
@@ -13,13 +13,13 @@ export function statusChange (type) {
             nextStatus = 'OFF';
             break;
         case 'OFF':
-            nextStatus = 'OFF_LINE';
+            nextStatus = 'ON';
             break;
         case 'OFF_LINE':
             nextStatus = 'ON';
             break;
     }
-    return { type: PANEL_ON, nextStatus };
+    return { type: PANEL_ON, nextStatus, power };
 }
 export const actions = {
     statusChange
@@ -38,7 +38,8 @@ const ACTION_HANDLERS = {
         console.log(action);
         return {
             ...state,
-            status: action.nextStatus
+            status: action.nextStatus,
+            power: action.power
         };
     }
 };
@@ -46,7 +47,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { status:'ON' };
+const initialState = { status:'ON', power: 137 };
 export default function socketPanelReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 

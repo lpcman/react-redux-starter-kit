@@ -18,7 +18,8 @@
         "__PROD__": false,
         "__COVERAGE__": false,
         "__BASENAME__": false,
-        "__PROJECTDIR__": false
+        "__PROJECTDIR__": false,
+        "BASE_DIR": false
     },
     "rules": {
         "key-spacing": 0,
