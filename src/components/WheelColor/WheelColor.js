@@ -9,7 +9,7 @@ export default class WheelColor extends React.Component {
         let remUnit = parseFloat(window.getComputedStyle(this.refs.wheelWrapper, null).getPropertyValue('font-size'));
         let defaultOpt = {
             min_value: 0,
-            max_value: 100,
+            max_value: 360,
             radius: 14.5 * remUnit / 2,
             color: 'transparent',
             start_value: 0
@@ -24,9 +24,8 @@ export default class WheelColor extends React.Component {
             }
         );
 
-        let deg = opt.start_value / 100 * 360;
         let initEvent = {
-            deg: deg,
+            deg: opt.start_value,
             id: 'slider-transportation',
             value: opt.start_value
         };
@@ -38,13 +37,50 @@ export default class WheelColor extends React.Component {
         btn.style.WebkitTransform = rotate;
         btn.style.transform = rotate;
     }
+    calculateDegree (area, deltaCode) {
+        let start = area * 60;
+        let factor = area % 2 === 0 ? 1 : -1;
+        let delta = parseInt(deltaCode, 16) / 256;
+        delta = area % 2 === 0 ? delta : 1 - delta;
+        let deltaDegree = delta * 60;
+
+        return start + deltaDegree;
+    }
+    translateColorToDegree (color) {
+        let first = color.slice(0,2);
+        let second = color.slice(2,4);
+        let third = color.slice(4,6);
+        let degree;
+
+        if (first === 'FF') {
+            if (second === '00') {
+                degree = this.calculateDegree(5, third);
+            } else {
+                degree = this.calculateDegree(0, second);
+            }
+        } else if (first === '00') {
+            if (second === 'FF') {
+                degree = this.calculateDegree(2, third);
+            } else {
+                degree = this.calculateDegree(3, second);
+            }
+        } else {
+            if (second === 'FF') {
+                degree = this.calculateDegree(1, first);
+            } else {
+                degree = this.calculateDegree(4, first);
+            }
+        }
+
+        return degree;
+    }
     sliderMoveHandler (event) {
         let deg = event.deg.toFixed(2);
         let area = Math.floor(deg / 60);
         let delta = Math.round((deg % 60) / 60 * 255);
         //  变化规律奇数区域00-FF，偶数区域FF-00
         delta = area % 2 === 0 ? delta : 255 - delta;
-        let deltaCode = delta === 0 ? '00' : delta.toString(16);
+        let deltaCode = delta < 10 ? '0' + delta : delta.toString(16);
         let color = '#';
         let cb = this.props.onMove || (() => '');
 

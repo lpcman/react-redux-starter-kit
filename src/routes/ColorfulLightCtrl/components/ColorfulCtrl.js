@@ -69,11 +69,10 @@ export default class ColorfulCtrl extends React.Component {
 
     initStatus () {
         let degree = sessionStorage.getItem('degree') || 0;
-        let startValue = (parseFloat(degree) / 360) * 100;
         let light = sessionStorage.getItem('light') || 0;
 
         light = parseInt(light, 10);
-        this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, { start_value: startValue });
+        this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, { start_value: parseFloat(degree) });
 
         this.setState({
             defaultLight: light
