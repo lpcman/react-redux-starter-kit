@@ -61,10 +61,20 @@ export class OptionBtn extends React.Component {
             <div>
                 <img className='icon'
                     src={this.setBackground(this.props.type)}
-                    onClick={this.props.onClick} />
+                    onClick={(e)=>this.props.onClick(e)} />
             </div>
         );
     }
 }
+OptionBtn.propTypes = {
+    type: React.PropTypes.oneOf([
+        'control',
+        'discontrol',
+        'chart',
+        'timer',
+        'situation'
+    ]),
+    onClick: React.PropTypes.func
+};
 
 export default OptionBtn;

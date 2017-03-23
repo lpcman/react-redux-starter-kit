@@ -13,7 +13,7 @@ export default class Panel extends React.Component {
         browserHistory.push('/' + __PROJECTDIR__ + '/colorfulLightCtrl/slideUp');
     }
 
-    componentDidMount() {
+    componentDidMount () {
         window.JSBRIAGE.push('setStatus', this.props.setStatus);
     }
 
@@ -21,7 +21,7 @@ export default class Panel extends React.Component {
         window.JSBRIAGE.rmItem('setStatus');
     }
 
-    leave() {
+    leave () {
         Bridge('lightUpdate', { status: this.props.status });
         history.back();
     }
@@ -78,7 +78,7 @@ export default class Panel extends React.Component {
                     title='炫彩灯'
                     bgColor='#fff'
                     titleColor='#000'
-                    reverse={true}
+                    reverse
                 />
                 {scene}
                 <img

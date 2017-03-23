@@ -19,7 +19,7 @@ export function statusChange (type, power) {
             nextStatus = 'ON';
             break;
     }
-    return { type: PANEL_ON, nextStatus, power};
+    return { type: PANEL_ON, nextStatus, power };
 }
 export const actions = {
     statusChange
@@ -47,7 +47,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { status:'ON', power: 137};
+const initialState = { status:'ON', power: 137 };
 export default function socketPanelReducer (state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 
