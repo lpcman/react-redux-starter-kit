@@ -100,9 +100,11 @@ $colors: (#F00, #F80, #FF0, #8F0, #0F0, #0F8, #0FF, #08F, #00F, #80F, #F0F, #F08
     .color:nth-child(#{1+$i}):after {
         background-color: nth($colors, $i+1);
         @if $i < 6 {
+            -webkit-transform: rotate(#{30*(1+$i)}deg);
             transform: rotate(#{30*(1+$i)}deg);
             z-index: #{length($colors)-$i};
         } @else {
+            -webkit-transform: rotate(#{-30+(30*(1+$i))}deg);
             transform: rotate(#{-30+(30*(1+$i))}deg);
         }
     }
