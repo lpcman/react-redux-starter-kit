@@ -30,6 +30,10 @@ export default class WheelColor extends React.Component {
         };
         this.sliderMoveHandler(initEvent);
     }
+    transformButton (deg) {
+        let btn = document.getElementById('slider-transportation-moon-button');
+        btn.style.transform = 'rotate(' + deg + 'deg)';
+    }
     sliderMoveHandler (event) {
         let deg = event.deg.toFixed(2);
         let area = Math.floor(deg / 60);
@@ -40,6 +44,7 @@ export default class WheelColor extends React.Component {
         let color = '#';
         let cb = this.props.onMove || (() => '');
 
+        this.transformButton(deg);
         switch (area) {
             case 0:
                 color += 'FF' + deltaCode + '00';

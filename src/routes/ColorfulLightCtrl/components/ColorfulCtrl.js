@@ -15,7 +15,7 @@ export default class ColorfulCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = {};
+        this.moonSliderOpt = { sliderWidth: 7.5, sliderHeight: 12.5 };
     }
 
     componentWillMount () {
@@ -91,8 +91,8 @@ export default class ColorfulCtrl extends React.Component {
 
     render () {
         return (
-            <div className='wrapper'>
-                <div ref='wrapper' className='wrapper'>
+            <div className='lightCtrlWrapper'>
+                <div ref='wrapper' className='lightCtrlWrapper'>
                     <RouteTransition
                         /* eslint-disable */
                         pathname={this.props.location.pathname}
@@ -103,7 +103,6 @@ export default class ColorfulCtrl extends React.Component {
                         <div className='textWrapper'>
                             <img className='close'
                                 onClick={() => this.onClose()}
-                                onTouch={() => this.onClose()}
                                 src={Close}
                                 alt='close'
                             />
@@ -112,7 +111,6 @@ export default class ColorfulCtrl extends React.Component {
                                 <p
                                     className='change'
                                     onClick={() => this.change()}
-                                    onTouch={() => this.change()}
                                 >切换白光</p>
                             </div>
                             <p className='text'>忽得五色光，换了人间彩</p>

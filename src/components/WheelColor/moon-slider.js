@@ -49,7 +49,8 @@ let MoonSlider = (() => {
             slider_classname: 'moon-slider',
             button_classname: 'moon-slider-button',
             base_line_color: '#d8d8d8',
-            sliderRadius: 8 // zbj: 小圆半径
+            sliderWidth: 8, // zbj: 小圆半径
+            sliderHeight: 8 // zbj: 小圆半径
         };
 
         for (var def in defaults) {
@@ -144,7 +145,7 @@ let MoonSlider = (() => {
                 button.id = id + '-moon-button';
                 button.className = opts.button_classname;
                 // button.style.left = (opts.radius - 3)+"px";      //zbj comment
-                button.style.left = (opts.radius - opts.sliderRadius) + 'px';   // zbj added
+                button.style.left = (opts.radius - opts.sliderWidth) + 'px';   // zbj added
                 holder.appendChild(button);
 
                 // create canvas
@@ -280,8 +281,8 @@ let MoonSlider = (() => {
 
                     var pos = calculatePosition(deg, canvas_offset.left, canvas_offset.top);
 
-                    button.style.left = (pos.left - canvas_offset.left - opts.sliderRadius + 2) + 'px'; // zbj added “- opts.sliderRadius + 2”2为补偿值
-                    button.style.top = (pos.top - canvas_offset.top - opts.sliderRadius + 2) + 'px'; // zbj added 2为补偿值
+                    button.style.left = (pos.left - canvas_offset.left - opts.sliderWidth + 2) + 'px'; // zbj added “- opts.sliderRadius + 2”2为补偿值
+                    button.style.top = (pos.top - canvas_offset.top - opts.sliderHeight + 2) + 'px'; // zbj added 2为补偿值
 
                     // draw the lines
                     if (deg > 0 && !stopDrawing) {

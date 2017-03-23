@@ -15,7 +15,7 @@ export default class WhiteCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = { disabled: true };
+        this.moonSliderOpt = { sliderWidth: 7.5, sliderHeight: 12.5, disabled: true };
     }
 
     componentWillMount () {
@@ -84,8 +84,8 @@ export default class WhiteCtrl extends React.Component {
 
     render () {
         return (
-            <div className='wrapper'>
-                <div ref='wrapper' className='wrapper'>
+            <div className='lightCtrlWrapper'>
+                <div ref='wrapper' className='lightCtrlWrapper'>
                     <RouteTransition
                         /* eslint-disable */
                         pathname={this.props.location.pathname}
@@ -96,7 +96,6 @@ export default class WhiteCtrl extends React.Component {
                         <div className='textWrapper'>
                             <img className='close'
                                 onClick={() => this.onClose()}
-                                onTouch={() => this.onClose()}
                                 src={Close}
                                 alt='close'
                             />
@@ -105,7 +104,6 @@ export default class WhiteCtrl extends React.Component {
                                 <p
                                     className='change'
                                     onClick={() => this.change()}
-                                    onTouch={() => this.change()}
                                 >切换彩光</p>
                             </div>
                             <p className='text'>不是自然，胜似自然</p>

@@ -1,4 +1,4 @@
-.wrapper {
+.lightCtrlWrapper {
     height: 100%;
     background-color: #333;
     .textWrapper {
@@ -30,6 +30,21 @@
                 margin: 0;
                 color: #23C1B1;
                 font-size: 16px;
+            }
+        }
+    }
+    .wheelWrapper {
+        position: absolute;
+        top: 190px;
+        left: 50%;
+        margin-left: -7.5em;
+        .moon-slider {
+            .moon-slider-button {
+                width: 15px;
+                height: 25px;
+                top: -12.5px;
+                border-radius: 15px;
+                //box-sizing: content-box;
             }
         }
     }

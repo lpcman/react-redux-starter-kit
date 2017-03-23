@@ -1,4 +1,4 @@
-.wrapper {
+.lightCtrlWrapper {
     height: 100%;
     background-color: #333;
     .textWrapper {
@@ -32,6 +32,12 @@
                 font-size: 16px;
             }
         }
+    }
+    .wheelWrapper {
+        position: absolute;
+        top: 190px;
+        left: 50%;
+        margin-left: -7.5em;
     }
     .brightness {
         position: absolute;
