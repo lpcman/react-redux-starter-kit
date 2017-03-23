@@ -33,24 +33,15 @@
             }
         }
     }
-    .wheelWrapper {
-        position: absolute;
-        top: 190px;
-        left: 50%;
-        margin-left: -7.5em;
-        .moon-slider {
-            .moon-slider-button {
-                width: 17px;
-                height: 27px;
-                top: -13.5px;
-                border-radius: 17px;
-            }
+    .moon-slider {
+        .moon-slider-button {
+            width: 17px;
+            height: 27px;
+            top: -13.5px;
+            border-radius: 17px;
         }
     }
     .brightness {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
         text-align: center;
         .number {
             margin: 12px 0;
