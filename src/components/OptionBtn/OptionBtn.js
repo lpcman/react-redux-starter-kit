@@ -17,7 +17,7 @@
 /*
 * <OptionBtn type="chart" onClick={function () {}}/>
 * type指定图标类型"control", "discontrol", "chart", "timer"，'situation'
-* onClick可以自定义点击事件
+* onTouchStart可以自定义点击事件
 * */
 import React from 'react';
 import Enum from './setting';
@@ -61,7 +61,7 @@ export class OptionBtn extends React.Component {
             <div>
                 <img className='icon'
                     src={this.setBackground(this.props.type)}
-                    onClick={(e) => this.props.onClick(e)} />
+                     onTouchStart={(e) => this.props.onTouchStart(e)} />
             </div>
         );
     }

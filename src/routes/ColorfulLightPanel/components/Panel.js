@@ -1,5 +1,5 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
@@ -39,7 +39,23 @@ export default class Panel extends React.Component {
         Bridge('finish', 'light');
     }
 
-    render() {
+    changeStatus (status) {
+        let newStatus;
+        switch (status) {
+            case 'ON':
+                newStatus = 'OFF';
+                break;
+            case 'OFF':
+                newStatus = 'ON';
+                break;
+            default:
+                newStatus = status;
+                break;
+        }
+        this.props.setStatus(newStatus);
+    }
+
+    render () {
         let url;
         let lightStyle = null;
         let tips = '';
@@ -53,9 +69,9 @@ export default class Panel extends React.Component {
         let sceneTemplate = (
             <div className='sceneName'>标准场景</div>
         );
-        let ctrlBtn = <OptionBtn type='control' onClick={this.toCtrl} onTouchStart={this.toCtrl}/>;
-        let sceneBtn = <OptionBtn type='situation'/>;
-        let timeBtn = <OptionBtn type='timer'/>;
+        let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
+        let sceneBtn = <OptionBtn type='situation' />;
+        let timeBtn = <OptionBtn type='timer' />;
 
         switch (this.props.status) {
             case 'ON':
@@ -67,7 +83,7 @@ export default class Panel extends React.Component {
                 lightStyle = {
                     backgroundColor: '#000'
                 };
-                ctrlBtn = <OptionBtn type='discontrol'/>;
+                ctrlBtn = <OptionBtn type='discontrol' />;
                 sceneBtn = null;
                 break;
             case 'OFF_LINE':
@@ -76,7 +92,7 @@ export default class Panel extends React.Component {
                     backgroundColor: '#F4F4F4'
                 };
                 tips = offLineTip;
-                ctrlBtn = <OptionBtn type='discontrol'/>;
+                ctrlBtn = <OptionBtn type='discontrol' />;
                 sceneBtn = null;
                 break;
             default:
@@ -98,8 +114,7 @@ export default class Panel extends React.Component {
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    onClick={() => this.props.setStatus(this.props.status)}
-                    onTouchStart={() => this.props.setStatus(this.props.status)}
+                    onTouchStart={() => this.changeStatus(this.props.status)}
                 />
                 {tips}
                 <div className='btnGroup'>
