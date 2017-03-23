@@ -12,7 +12,7 @@ export default (store) => ({
             const WhiteLightCtrl = require('./containers/WhiteLightContainer').default;
             const reducer = require('./modules/whiteLightCtrl').default;
 
-            injectReducer(store, { key: 'whiteCtrl', reducer });
+            injectReducer(store, { key: 'colorfulCtrl', reducer });
 
             /*  Return getComponent   */
             cb(null, WhiteLightCtrl);
