@@ -26,6 +26,22 @@ export default class Panel extends React.Component {
         history.back();
     }
 
+    changeStatus (status) {
+        let newStatus;
+        switch (status) {
+            case 'ON':
+                newStatus = 'OFF';
+                break;
+            case 'OFF':
+                newStatus = 'ON';
+                break;
+            default:
+                newStatus = status;
+                break;
+        }
+        this.props.setStatus(newStatus);
+    }
+
     render () {
         let url;
         let lightStyle = null;
@@ -85,7 +101,7 @@ export default class Panel extends React.Component {
                     alt='device icon'
                     className='deviceIcon'
                     src={url}
-                    onTouchStart={() => this.props.setStatus(this.props.status)}
+                    onTouchStart={() => this.changeStatus(this.props.status)}
                 />
                 {tips}
                 <div className='btnGroup'>

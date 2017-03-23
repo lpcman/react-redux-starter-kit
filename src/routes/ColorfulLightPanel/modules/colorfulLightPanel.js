@@ -9,19 +9,7 @@ export const CHANGE_STATUS = 'CHANGE_STATUS';
  */
 
 export function setStatus (status) {
-    let newStatus;
-    switch (status) {
-        case 'ON':
-            newStatus = 'OFF';
-            break;
-        case 'OFF':
-            newStatus = 'ON';
-            break;
-        default:
-            newStatus = status;
-            break;
-    }
-    return { type: CHANGE_STATUS, newStatus };
+    return { type: CHANGE_STATUS, status };
 }
 
 export const actions = {
@@ -36,7 +24,7 @@ const ACTION_HANDLERS = {
     [CHANGE_STATUS]: function (state, action) {
         return {
             ...state,
-            status: action.newStatus
+            status: action.status
         };
     }
 };
