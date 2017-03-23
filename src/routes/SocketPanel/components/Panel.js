@@ -6,7 +6,7 @@ import OffXImg from '../assets/off@3x.png';
 import OffLineImg from '../assets/offline@2x.png';
 import OffLineXImg from '../assets/offline@3x.png';
 import bgImg from '../assets/bg@2x.png';
-import bgXImg from '../assets/bg@3x.png';
+// import bgXImg from '../assets/bg@3x.png';
 import OptionBtn from '../../../components/OptionBtn';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
@@ -17,7 +17,9 @@ export default class Panel extends React.Component {
         // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
         window.JSBRIAGE.push('setSocketStatus', this.props.setState);
         window.JSBRIAGE.push('finishSocketActivity', this.leave);
-        this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
+        if(this.props.location.query.status && this.props.location.query.power){
+            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
+        }
         console.log(this.props.status);
     }
 
