@@ -14,6 +14,9 @@ export default class WheelColor extends React.Component {
             color: 'transparent',
             start_value: 0
         };
+        if (this.props.moonSliderOpt.start_color) {
+            this.props.moonSliderOpt.start_value = this.translateColorToDegree(this.props.moonSliderOpt.start_color);
+        }
         let opt = this.props.moonSliderOpt || {};
         opt = Object.assign({}, defaultOpt, opt);
         MoonSlider.generateMoonSlider(
@@ -47,6 +50,7 @@ export default class WheelColor extends React.Component {
         return start + deltaDegree;
     }
     translateColorToDegree (color) {
+        color = color.toUpperCase();
         let first = color.slice(0,2);
         let second = color.slice(2,4);
         let third = color.slice(4,6);

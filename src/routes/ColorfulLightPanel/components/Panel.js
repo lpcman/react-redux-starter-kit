@@ -11,6 +11,12 @@ import './Panel.scss';
 export default class Panel extends React.Component {
 
     toCtrl() {
+        let currentState = window.GLOBAL_STORE.getState();
+        if (window.tempData) {
+            currentState.colorfulCtrl = {color: window.tempData.color, light: window.tempData.light};
+        } else {
+            currentState.colorfulCtrl = {color: '', light: 0};
+        }
         browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
     }
 
@@ -30,6 +36,13 @@ export default class Panel extends React.Component {
         let param = {status: currentState.colorfulLightPanel.status};
 
         //  whiteCtrl 和 colorfulCtrl 不会同时存在
+        // if (currentState.whiteCtrl && currentState.whiteCtrl.color) {
+        //     param.color = currentState.whiteCtrl.color;
+        //     param.light = currentState.whiteCtrl.light;
+        // } else {
+        //     param.color = currentState.colorfulCtrl.color;
+        //     param.light = currentState.colorfulCtrl.light;
+        // }
         param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;
         param.light = currentState.whiteCtrl && currentState.whiteCtrl.light;
         param.color = currentState.colorfulCtrl && currentState.colorfulCtrl.color;
