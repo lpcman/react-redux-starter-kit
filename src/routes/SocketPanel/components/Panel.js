@@ -20,7 +20,6 @@ export default class Panel extends React.Component {
         if(this.props.location.query.status && this.props.location.query.power){
             this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
         }
-        console.log(this.props.status);
     }
 
     componentWillUnmount () {
@@ -86,7 +85,7 @@ export default class Panel extends React.Component {
         return (
             <div className='wrapper' style={lightStyle}>
                 <Header
-                    leftHandler={e => this.leave}
+                    leftHandler={e => this.leave()}
                     rightHandler={e => console.log(e)}
                     title='移动计量插座'
                     bgColor='#fff'
