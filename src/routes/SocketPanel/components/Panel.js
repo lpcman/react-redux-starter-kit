@@ -1,8 +1,12 @@
 import React from 'react';
 import OnImg from '../assets/on@2x.png';
+import OnXImg from '../assets/on@3x.png';
 import OffImg from '../assets/off@2x.png';
+import OffXImg from '../assets/off@3x.png';
 import OffLineImg from '../assets/offline@2x.png';
+import OffLineXImg from '../assets/offline@3x.png';
 import bgImg from '../assets/bg@2x.png';
+import bgXImg from '../assets/bg@3x.png';
 import OptionBtn from '../../../components/OptionBtn';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
@@ -12,6 +16,7 @@ export default class Panel extends React.Component {
     componentDidMount () {
         // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
         window.JSBRIAGE.push('setSocketStatus', this.props.statusChange);
+        window.JSBRIAGE.push('finishLightActivity', this.leave);
     }
 
     componentWillUnmount () {
@@ -22,10 +27,12 @@ export default class Panel extends React.Component {
         // js bridge 调用, socketUpdate为要调用的函数名称，data为传入的参数
         Bridge('socketUpdate', { status: this.props.status,
             power: this.props.power });
+        Bridge('finish', {page:'socket'});
         history.back();
     }
     render () {
         let url;
+        let urlX;
         let lightStyle = null;
         let tips = '';
         let offLineTip = (
@@ -49,6 +56,7 @@ export default class Panel extends React.Component {
             case 'ON':
                 console.log('状态：' + this.props.status);
                 url = OnImg;
+                urlX = OnXImg;
                 tips = onTip;
                 lightStyle = {
                     backgroundImage: 'url(' + bgImg + ')'
@@ -56,6 +64,7 @@ export default class Panel extends React.Component {
                 break;
             case 'OFF':
                 url = OffImg;
+                urlX = OffXImg;
                 tips = offTip;
                 lightStyle = {
                     backgroundImage: 'url(' + bgImg + ')'
@@ -63,6 +72,7 @@ export default class Panel extends React.Component {
                 break;
             case 'OFF_LINE':
                 url = OffLineImg;
+                urlX = OffLineXImg;
                 tips = offLineTip;
                 break;
             default:
@@ -79,11 +89,20 @@ export default class Panel extends React.Component {
                     titleColor='#000'
                     reverse
                 />
-                <img
-                    alt='device icon'
-                    className='deviceIcon'
-                    src={url}
-                    onClick={() => this.props.statusChange(this.props.status, this.props.power)} />
+                <picture>
+                    <source
+                        media="(min-width: 414px)"
+                        srcSet={urlX}/>
+                    <source
+                        media="(min-width: 375px)"
+                        srcSet={url}/>
+                    <img
+                        alt='device icon'
+                        className='deviceIcon'
+                        src={url}
+                        onTouchStart={() => this.props.statusChange(this.props.status, this.props.power)}/>
+                </picture>
+
                 {tips}
                 <div className='control'>
                     <div className='fix-panel-left'>
