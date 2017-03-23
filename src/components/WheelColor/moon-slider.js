@@ -108,21 +108,21 @@ let MoonSlider = (() => {
                 if (!opts.disabled) {       //zbj added
                     // add listeners
                     button.addEventListener('mousedown', function () {
-                        document.addEventListener('mousemove', moveListener);
+                        document.addEventListener('mousemove', moveListener, { passive: false });
                     });
 
                     // remove mousemove listener
                     document.addEventListener('mouseup', function () {
-                        document.removeEventListener('mousemove', moveListener);
+                        document.removeEventListener('mousemove', moveListener, { passive: false });
                     });
 
                     button.addEventListener('touchstart', function () {
-                        document.addEventListener('touchmove', moveListener);
+                        document.addEventListener('touchmove', moveListener, { passive: false });
                     });
 
                     // remove mousemove listener
                     document.addEventListener('touchend', function () {
-                        document.removeEventListener('touchmove', moveListener);
+                        document.removeEventListener('touchmove', moveListener, { passive: false });
                     });
                 }
 

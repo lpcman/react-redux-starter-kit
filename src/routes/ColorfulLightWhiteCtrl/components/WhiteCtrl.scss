@@ -1,4 +1,6 @@
 .lightCtrlWrapper {
+    position: absolute;
+    width: 100%;
     height: 100%;
     background-color: #333;
     .textWrapper {
@@ -11,7 +13,7 @@
             color: #fff;
         }
         .text {
-            margin-bottom: 93px;
+            margin-bottom: 58px;
             color: #fff;
             font-size: 12px;
             opacity: 0.6;
@@ -43,6 +45,10 @@
         }
     }
     .brightness {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
         text-align: center;
         .number {
             margin: 12px 0;
