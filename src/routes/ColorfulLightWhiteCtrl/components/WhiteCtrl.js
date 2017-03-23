@@ -19,7 +19,14 @@ export default class WhiteCtrl extends React.Component {
         this.moonSliderOpt = { sliderWidth: 8.5, sliderHeight: 13.5, disabled: true };
     }
 
-    componentWillMount () {
+    componentDidMount() {
+        this.setState({
+            defaultLight: window.tempData.light
+        });
+        this.props.changeLight( window.tempData.light);
+    }
+
+    componentWillMount() {
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
