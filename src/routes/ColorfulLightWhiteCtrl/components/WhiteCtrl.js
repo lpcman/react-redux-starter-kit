@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
-import Bridge from '../../../components/Bridge';
+// import Bridge from '../../../components/Bridge';
 import Close from '../assets/close.png';
 import './WhiteCtrl.scss';
 
@@ -87,7 +87,7 @@ export default class WhiteCtrl extends React.Component {
     onClose (event) {
         let currentState = window.GLOBAL_STORE.getState();
         currentState.colorfulCtrl = null;
-        Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
+        // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transform = 'translate3d(0, 100%, 0)';

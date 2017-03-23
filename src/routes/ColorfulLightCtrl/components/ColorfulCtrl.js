@@ -98,7 +98,7 @@ export default class ColorfulCtrl extends React.Component {
     onClose (event) {
         let currentState = window.GLOBAL_STORE.getState();
         currentState.whiteCtrl = null;
-        Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
+        // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';

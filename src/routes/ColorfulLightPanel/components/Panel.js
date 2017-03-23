@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
 import OffImg from '../assets/关闭@2x.png';
@@ -10,6 +10,17 @@ import './Panel.scss';
 
 export default class Panel extends React.Component {
 
+    componentDidMount() {
+        this.props.setStatus(this.props.location.query.status || 'ON');
+        window.tempData = this.props.location.query || {}; //给从这个页面派生的页面使用
+        window.tempData.light = window.tempData.light && parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
+        window.JSBRIAGE.push('finishLightActivity', this.leave);
+    }
+
+    componentWillUnmount() {
+        window.JSBRIAGE.rmItem('finishLightActivity');
+    }
+
     toCtrl() {
         let currentState = window.GLOBAL_STORE.getState();
         if (window.tempData) {
@@ -18,17 +29,6 @@ export default class Panel extends React.Component {
             currentState.colorfulCtrl = {color: '', light: 0};
         }
         browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
-    }
-
-    componentDidMount() {
-        this.props.setStatus(this.props.location.query.status || 'ON');
-        window.tempData = this.props.location.query || {}; //给从这个页面派生的页面使用
-        window.tempData.light = window.tempData.light && parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
-        window.JSBRIAGE.push('finishLightActivity', this.leave());
-    }
-
-    componentWillUnmount() {
-        window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
     leave() {
@@ -52,7 +52,7 @@ export default class Panel extends React.Component {
         Bridge('finish', 'light');
     }
 
-    changeStatus (status) {
+    changeStatus(status) {
         let newStatus;
         switch (status) {
             case 'ON':
@@ -68,7 +68,7 @@ export default class Panel extends React.Component {
         this.props.setStatus(newStatus);
     }
 
-    render () {
+    render() {
         let url;
         let lightStyle = null;
         let tips = '';
@@ -82,9 +82,9 @@ export default class Panel extends React.Component {
         let sceneTemplate = (
             <div className='sceneName'>标准场景</div>
         );
-        let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
-        let sceneBtn = <OptionBtn type='situation' />;
-        let timeBtn = <OptionBtn type='timer' />;
+        let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl}/>;
+        let sceneBtn = <OptionBtn type='situation'/>;
+        let timeBtn = <OptionBtn type='timer'/>;
 
         switch (this.props.status) {
             case 'ON':
@@ -96,7 +96,7 @@ export default class Panel extends React.Component {
                 lightStyle = {
                     backgroundColor: '#000'
                 };
-                ctrlBtn = <OptionBtn type='discontrol' />;
+                ctrlBtn = <OptionBtn type='discontrol'/>;
                 sceneBtn = null;
                 break;
             case 'OFF_LINE':
@@ -105,7 +105,7 @@ export default class Panel extends React.Component {
                     backgroundColor: '#F4F4F4'
                 };
                 tips = offLineTip;
-                ctrlBtn = <OptionBtn type='discontrol' />;
+                ctrlBtn = <OptionBtn type='discontrol'/>;
                 sceneBtn = null;
                 break;
             default:
