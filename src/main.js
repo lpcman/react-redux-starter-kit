@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import createStore from './store/createStore';
 import AppContainer from './containers/AppContainer';
 
+window.BASE_DIR = '/' + __PROJECTDIR__;
 // ========================================================
 // Store Instantiation
 // ========================================================
