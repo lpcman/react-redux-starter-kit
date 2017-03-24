@@ -10,7 +10,7 @@ import './Panel.scss';
 
 export default class Panel extends React.Component {
 
-    toCtrl() {
+    toCtrl () {
         let whiteSrc = window.BASE_DIR + '/whiteLightCtrl/slideUp';
         let color = sessionStorage.getItem('color');
         if (window.tempData) {
@@ -28,24 +28,24 @@ export default class Panel extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount () {
         this.props.setStatus(this.props.location.query.status || 'ON');
-        window.tempData = this.props.location.query; //给从这个页面派生的页面使用
+        window.tempData = this.props.location.query; // 给从这个页面派生的页面使用
         if (Object.keys(window.tempData).length !== 0) {
-            window.tempData.light = parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
+            window.tempData.light = parseInt(window.tempData.light, 10) || 0; // 给从这个页面派生的页面使用
         } else {
             window.tempData = null;
         }
         window.JSBRIAGE.push('finishLightActivity', this.leave);
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
         window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
-    leave() {
+    leave () {
         let currentState = window.GLOBAL_STORE.getState();
-        let param = {status: currentState.colorfulLightPanel.status};
+        let param = { status: currentState.colorfulLightPanel.status };
 
         //  whiteCtrl 和 colorfulCtrl 不会同时存在
         // param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;

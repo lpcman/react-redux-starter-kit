@@ -61,7 +61,7 @@ export class OptionBtn extends React.Component {
             <div>
                 <img className='icon'
                     src={this.setBackground(this.props.type)}
-                     onTouchStart={(e) => this.props.onTouchStart(e)} />
+                    onTouchStart={(e) => this.props.onTouchStart(e)} />
             </div>
         );
     }
