@@ -74,7 +74,12 @@ OptionBtn.propTypes = {
         'timer',
         'situation'
     ]),
-    onClick: React.PropTypes.func
+    onTouchStart: React.PropTypes.func
+};
+OptionBtn.defaultProps = {
+    onTouchStart: function () {
+
+    }
 };
 
 export default OptionBtn;
