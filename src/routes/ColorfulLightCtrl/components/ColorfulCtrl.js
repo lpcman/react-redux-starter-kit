@@ -73,9 +73,13 @@ export default class ColorfulCtrl extends React.Component {
     }
 
     initStatus () {
+        if (window.tempData) {
+            sessionStorage.setItem('color', window.tempData.color);
+            sessionStorage.setItem('light', window.tempData.light);
+        }
         let degree = sessionStorage.getItem('degree');
-        let startColor = window.tempData && window.tempData.color;
-        let light = (window.tempData && window.tempData.light) || parseInt(sessionStorage.getItem('light'), 10);
+        let startColor = sessionStorage.getItem('color');
+        let light = parseInt(sessionStorage.getItem('light'), 10) || 0;
 
         let opt = startColor ? { start_color: startColor } : { start_value: parseFloat(degree) };
         this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, opt);
@@ -85,7 +89,7 @@ export default class ColorfulCtrl extends React.Component {
         });
         this.props.changeLight(light);
         if (startColor) {
-            this.props.handlerMove({color: startColor});
+            this.props.handlerMove({color: '#' + startColor});
         }
     }
 

@@ -73,6 +73,9 @@ export default class WhiteCtrl extends React.Component {
     }
 
     initStatus () {
+        if (window.tempData) {
+            sessionStorage.setItem('light', window.tempData.light);
+        }
         let degree = sessionStorage.getItem('degree') || 0;
         let light = parseInt(sessionStorage.getItem('light'), 10) || 0;
 
