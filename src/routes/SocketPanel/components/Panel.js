@@ -17,7 +17,7 @@ export default class Panel extends React.Component {
         if (this.props.location.query.status && this.props.location.query.power) {
             this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
         }
-        window.JSBRIAGE.push('finishSocketActivity', () => this.leave);
+        window.JSBRIAGE.push('finishSocketActivity', () => this.leave());
     }
 
     componentWillUnmount() {
