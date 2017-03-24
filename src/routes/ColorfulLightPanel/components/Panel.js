@@ -11,20 +11,32 @@ import './Panel.scss';
 export default class Panel extends React.Component {
 
     toCtrl() {
-        let currentState = window.GLOBAL_STORE.getState();
+        let whiteSrc = window.BASE_DIR + '/whiteLightCtrl/slideUp';
+        let color = sessionStorage.getItem('color');
         if (window.tempData) {
-            currentState.colorfulCtrl = {color: window.tempData.color, light: window.tempData.light};
+            if (window.tempData.color.toUpperCase() === 'FFFFF') {
+                sessionStorage.setItem('degree', 0);
+                browserHistory.push(whiteSrc);
+            } else {
+                browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
+            }
+        } else if (color.toUpperCase() === '#FFFFFF') {
+            sessionStorage.setItem('degree', 0);
+            browserHistory.push(whiteSrc);
         } else {
-            currentState.colorfulCtrl = {color: '', light: 0};
+            browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
         }
-        browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
     }
 
     componentDidMount() {
         this.props.setStatus(this.props.location.query.status || 'ON');
-        window.tempData = this.props.location.query || {}; //给从这个页面派生的页面使用
-        window.tempData.light = window.tempData.light && parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
-        window.JSBRIAGE.push('finishLightActivity', this.leave());
+        window.tempData = this.props.location.query; //给从这个页面派生的页面使用
+        if (Object.keys(window.tempData).length !== 0) {
+            window.tempData.light = parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
+        } else {
+            window.tempData = null;
+        }
+        window.JSBRIAGE.push('finishLightActivity', this.leave);
     }
 
     componentWillUnmount() {
@@ -36,17 +48,12 @@ export default class Panel extends React.Component {
         let param = {status: currentState.colorfulLightPanel.status};
 
         //  whiteCtrl 和 colorfulCtrl 不会同时存在
-        // if (currentState.whiteCtrl && currentState.whiteCtrl.color) {
-        //     param.color = currentState.whiteCtrl.color;
-        //     param.light = currentState.whiteCtrl.light;
-        // } else {
-        //     param.color = currentState.colorfulCtrl.color;
-        //     param.light = currentState.colorfulCtrl.light;
-        // }
-        param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;
-        param.light = currentState.whiteCtrl && currentState.whiteCtrl.light;
-        param.color = currentState.colorfulCtrl && currentState.colorfulCtrl.color;
-        param.light = currentState.colorfulCtrl && currentState.colorfulCtrl.light;
+        // param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;
+        // param.light = currentState.whiteCtrl && currentState.whiteCtrl.light;
+        // param.color = currentState.colorfulCtrl && currentState.colorfulCtrl.color;
+        // param.light = currentState.colorfulCtrl && currentState.colorfulCtrl.light;
+        param.light = sessionStorage.getItem('light');
+        param.color = sessionStorage.getItem('color');
 
         Bridge('lightUpdate', param);
         Bridge('finish', 'light');

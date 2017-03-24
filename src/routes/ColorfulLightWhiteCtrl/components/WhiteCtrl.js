@@ -74,7 +74,7 @@ export default class WhiteCtrl extends React.Component {
 
     initStatus () {
         let degree = sessionStorage.getItem('degree') || 0;
-        let light = parseInt(sessionStorage.getItem('light'), 10) || (window.tempData && window.tempData.light);
+        let light = parseInt(sessionStorage.getItem('light'), 10) || 0;
 
         this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, { start_value: parseFloat(degree) });
 
@@ -90,10 +90,12 @@ export default class WhiteCtrl extends React.Component {
     }
 
     onClose (event) {
-        let currentState = window.GLOBAL_STORE.getState();
+        // let currentState = window.GLOBAL_STORE.getState();
         // currentState.colorfulCtrl = null;
         // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('light', this.props.light);
+        sessionStorage.setItem('color', this.props.color);
+        window.tempData = null;
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transition = '.4s ease-in-out';

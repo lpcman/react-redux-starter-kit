@@ -24,6 +24,7 @@ export default class ColorfulCtrl extends React.Component {
     }
 
     componentWillMount() {
+        window.JSBRIAGE.push('finishLightActivity', this.onClose);
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
@@ -74,7 +75,7 @@ export default class ColorfulCtrl extends React.Component {
     initStatus () {
         let degree = sessionStorage.getItem('degree');
         let startColor = window.tempData && window.tempData.color;
-        let light = parseInt(sessionStorage.getItem('light'), 10) || (window.tempData && window.tempData.light);
+        let light = (window.tempData && window.tempData.light) || parseInt(sessionStorage.getItem('light'), 10);
 
         let opt = startColor ? { start_color: startColor } : { start_value: parseFloat(degree) };
         this.moonSliderOpt = Object.assign({}, this.moonSliderOpt, opt);
@@ -83,14 +84,16 @@ export default class ColorfulCtrl extends React.Component {
             defaultLight: light
         });
         this.props.changeLight(light);
-        window.tempData = null;
+        if (startColor) {
+            this.props.handlerMove({color: startColor});
+        }
     }
 
     change () {
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
-        let currentState = window.GLOBAL_STORE.getState();
-        currentState.whiteCtrl = {color: '#FFFFFF', light: this.props.light};
+        // let currentState = window.GLOBAL_STORE.getState();
+        // currentState.whiteCtrl = {color: '#FFFFFF', light: this.props.light};
         browserHistory.push(window.BASE_DIR + '/whiteLightCtrl/rotateY');
     }
 
@@ -100,11 +103,13 @@ export default class ColorfulCtrl extends React.Component {
     }
 
     onClose (event) {
-        let currentState = window.GLOBAL_STORE.getState();
+        // let currentState = window.GLOBAL_STORE.getState();
         // currentState.whiteCtrl = null;
         // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
+        sessionStorage.setItem('color', this.props.color);
+        window.tempData = null;
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transition = '.4s ease-in-out';
