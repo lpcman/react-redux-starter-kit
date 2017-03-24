@@ -50,7 +50,7 @@ export default class WheelColor extends React.Component {
         return start + deltaDegree;
     }
     translateColorToDegree (color) {
-        color = color.toUpperCase();
+        color = color.replace('#','').toUpperCase();
         let first = color.slice(0,2);
         let second = color.slice(2,4);
         let third = color.slice(4,6);

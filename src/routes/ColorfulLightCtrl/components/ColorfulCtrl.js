@@ -24,7 +24,7 @@ export default class ColorfulCtrl extends React.Component {
     }
 
     componentWillMount() {
-        window.JSBRIAGE.push('finishLightActivity', this.onClose);
+        window.JSBRIAGE.push('finishLightActivity', () => this.onClose());
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
@@ -74,7 +74,7 @@ export default class ColorfulCtrl extends React.Component {
 
     initStatus () {
         if (window.tempData) {
-            sessionStorage.setItem('color', window.tempData.color);
+            sessionStorage.setItem('color', '#' + window.tempData.color);
             sessionStorage.setItem('light', window.tempData.light);
         }
         let degree = sessionStorage.getItem('degree');
@@ -89,7 +89,7 @@ export default class ColorfulCtrl extends React.Component {
         });
         this.props.changeLight(light);
         if (startColor) {
-            this.props.handlerMove({color: '#' + startColor});
+            this.props.handlerMove({color: startColor});
         }
     }
 

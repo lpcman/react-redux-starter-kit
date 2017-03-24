@@ -24,7 +24,7 @@ export default class WhiteCtrl extends React.Component {
     }
 
     componentWillMount() {
-        window.JSBRIAGE.push('finishLightActivity', this.onClose);
+        window.JSBRIAGE.push('finishLightActivity', () => this.onClose());
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
