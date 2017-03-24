@@ -55,7 +55,7 @@
 
             if(window.JSBRIAGE.getItem(funcName)){
                 try {
-                    data = JSON.parse(data);
+                    data = JSON.parse(data || {});
                 }catch (e){
                     console.log("[JS Bridge invoke]:" + e);
                 }
