@@ -20,7 +20,7 @@ export default class Panel extends React.Component {
             } else {
                 browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
             }
-        } else if (color.toUpperCase() === '#FFFFFF') {
+        } else if (color && color.toUpperCase() === '#FFFFFF') {
             sessionStorage.setItem('degree', 0);
             browserHistory.push(whiteSrc);
         } else {
