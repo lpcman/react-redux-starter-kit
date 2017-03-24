@@ -19,11 +19,11 @@ export default class ColorfulCtrl extends React.Component {
         this.moonSliderOpt = { sliderWidth: 18.5, sliderHeight: 23.5 };
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
         window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
-    componentWillMount() {
+    componentWillMount () {
         window.JSBRIAGE.push('finishLightActivity', () => this.onClose());
         /* eslint-disable */
         let enterType = this.props.params.enterType;
@@ -89,7 +89,7 @@ export default class ColorfulCtrl extends React.Component {
         });
         this.props.changeLight(light);
         if (startColor) {
-            this.props.handlerMove({color: startColor});
+            this.props.handlerMove({ color: startColor });
         }
     }
 

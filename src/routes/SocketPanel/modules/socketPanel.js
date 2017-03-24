@@ -48,12 +48,12 @@ const ACTION_HANDLERS = {
         };
     },
     [SET_STATE] : function (state, action) {
-    return {
-        ...state,
-        status: action.status,
-        power: action.power
-    };
-}
+        return {
+            ...state,
+            status: action.status,
+            power: action.power
+        };
+    }
 };
 
 // ------------------------------------

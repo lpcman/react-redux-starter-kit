@@ -19,11 +19,11 @@ export default class WhiteCtrl extends React.Component {
         this.moonSliderOpt = { sliderWidth: 18.5, sliderHeight: 23.5, disabled: true };
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
         window.JSBRIAGE.rmItem('finishLightActivity');
     }
 
-    componentWillMount() {
+    componentWillMount () {
         window.JSBRIAGE.push('finishLightActivity', () => this.onClose());
         /* eslint-disable */
         let enterType = this.props.params.enterType;

@@ -29,7 +29,7 @@ export function isAndroid () {
 
 export function objectToParam (obj) {
     return Object.keys(obj).map(function (k) {
-        if(obj[k]){
+        if (obj[k]) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]);
         }
     }).join('&');
