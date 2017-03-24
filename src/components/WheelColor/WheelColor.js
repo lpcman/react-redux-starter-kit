@@ -125,8 +125,9 @@ export default class WheelColor extends React.Component {
 
         return (
             <div className='wheelWrapper' ref='wheelWrapper'>
-                <div className='wheel'>
-                    <img src={this.props.disabled ? WhiteCirlce : ColorCirlce} alt='circle' />
+                <div className='wheel' id={this.props.disabled ? 'disabledWheelPanel' : 'wheelPanel'}>
+                    <img src={this.props.disabled ? WhiteCirlce : ColorCirlce}
+                         alt='circle'/>
                 </div>
                 <div id='slider-transportation' className='slider'>
                     <div className='cover'>

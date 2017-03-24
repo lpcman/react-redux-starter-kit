@@ -120,6 +120,12 @@ let MoonSlider = (() => {
                     button.addEventListener('touchstart', function () {
                         document.addEventListener('touchmove', moveListener, { passive: false });
                     });
+                    var wheel = document.getElementById('wheelPanel');
+                    if (wheel) {
+                        wheel.addEventListener('touchstart', function (e) {
+                            moveListener(e);
+                        });
+                    }
 
                     // remove mousemove listener
                     document.addEventListener('touchend', function () {
@@ -208,7 +214,7 @@ let MoonSlider = (() => {
             function moveListener (event) {
                 event.preventDefault();
 
-                if (event.type == 'touchmove') {
+                if (event.type == 'touchmove' || event.type == 'touchstart') {
                     event.clientX = event.targetTouches[0].clientX;
                     event.clientY = event.targetTouches[0].clientY;
                 }
@@ -367,7 +373,6 @@ let MoonSlider = (() => {
                 getDeg: function () {
                     return current_deg;
                 }
-
             };
         };
 
