@@ -35,13 +35,15 @@
         width: 16px;
         height: 16px;
         top: -8px;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border: 1px solid #d2d1d3;
-        background: #f9f9fa;
-        background: -webkit-gradient(linear, left top, left bottom, from(#f9f9fa), to(#e2e4e5)); /* for webkit browsers */
-        background: -moz-linear-gradient(top,  #f9f9fa,  #e2e4e5); /* for firefox 3.6+ */
+
+        padding: 10px;
+        //border-radius: 50%;
+        //-webkit-border-radius: 50%;
+        //-moz-border-radius: 50%;
+        //border: 1px solid #d2d1d3;
+        //background: #f9f9fa;
+        //background: -webkit-gradient(linear, left top, left bottom, from(#f9f9fa), to(#e2e4e5)); /* for webkit browsers */
+        //background: -moz-linear-gradient(top,  #f9f9fa,  #e2e4e5); /* for firefox 3.6+ */
         pointer-events: all; /* capture on click events */
         -webkit-tap-highlight-color: rgba(0,0,0,0); /* prevent tap highlight on phones */
     }
@@ -100,11 +102,11 @@ $colors: (#F00, #F80, #FF0, #8F0, #0F0, #0F8, #0FF, #08F, #00F, #80F, #F0F, #F08
     .color:nth-child(#{1+$i}):after {
         background-color: nth($colors, $i+1);
         @if $i < 6 {
-            -webkit-transform: rotate(#{30*(1+$i)}deg);
             transform: rotate(#{30*(1+$i)}deg);
+            -webkit-transform: rotate(#{30*(1+$i)}deg);
             z-index: #{length($colors)-$i};
         } @else {
-            -webkit-transform: rotate(#{-30+(30*(1+$i))}deg);
+            transform: rotate(#{-30+(30*(1+$i))}deg);
             transform: rotate(#{-30+(30*(1+$i))}deg);
         }
     }

@@ -16,7 +16,7 @@ export default class ColorfulCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = { sliderWidth: 8.5, sliderHeight: 13.5 };
+        this.moonSliderOpt = { sliderWidth: 18.5, sliderHeight: 23.5 };
     }
 
     componentWillMount() {
@@ -86,7 +86,7 @@ export default class ColorfulCtrl extends React.Component {
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);
         let currentState = window.GLOBAL_STORE.getState();
-        currentState.whiteCtrl = {color: '#FFFFFF', light: this.props.light};
+        // currentState.whiteCtrl = {color: '#FFFFFF', light: this.props.light};
         browserHistory.push(window.BASE_DIR + '/whiteLightCtrl/rotateY');
     }
 
@@ -97,7 +97,7 @@ export default class ColorfulCtrl extends React.Component {
 
     onClose (event) {
         let currentState = window.GLOBAL_STORE.getState();
-        currentState.whiteCtrl = null;
+        // currentState.whiteCtrl = null;
         Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('degree', this.degree);
         sessionStorage.setItem('light', this.props.light);

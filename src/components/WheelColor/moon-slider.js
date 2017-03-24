@@ -1,6 +1,7 @@
 /* eslint-disable */
 // the polyfill fix for requestAnimationFrame, so it works on Android
 // by: https://gist.github.com/paulirish/1579671
+import wheelBtn from './assets/调节@2x.png';
 (function () {
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -141,7 +142,9 @@ let MoonSlider = (() => {
                 element.appendChild(holder);
 
                 // create the button
-                button = document.createElement('div');
+                // button = document.createElement('div');
+                button = document.createElement('img');
+                button.src = wheelBtn;
                 button.id = id + '-moon-button';
                 button.className = opts.button_classname;
                 // button.style.left = (opts.radius - 3)+"px";      //zbj comment

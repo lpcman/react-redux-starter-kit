@@ -12,11 +12,11 @@ export default class Panel extends React.Component {
 
     toCtrl() {
         let currentState = window.GLOBAL_STORE.getState();
-        if (window.tempData) {
-            currentState.colorfulCtrl = {color: window.tempData.color, light: window.tempData.light};
-        } else {
-            currentState.colorfulCtrl = {color: '', light: 0};
-        }
+        // if (window.tempData) {
+        //     currentState.colorfulCtrl = {color: window.tempData.color, light: window.tempData.light};
+        // } else {
+        //     currentState.colorfulCtrl = {color: '', light: 0};
+        // }
         browserHistory.push(window.BASE_DIR + '/colorfulLightCtrl/slideUp');
     }
 
@@ -24,7 +24,7 @@ export default class Panel extends React.Component {
         this.props.setStatus(this.props.location.query.status || 'ON');
         window.tempData = this.props.location.query || {}; //给从这个页面派生的页面使用
         window.tempData.light = window.tempData.light && parseInt(window.tempData.light, 10) || 0; //给从这个页面派生的页面使用
-        window.JSBRIAGE.push('finishLightActivity', this.leave());
+        window.JSBRIAGE.push('finishLightActivity', this.leave);
     }
 
     componentWillUnmount() {

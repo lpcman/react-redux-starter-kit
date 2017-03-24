@@ -16,7 +16,7 @@ export default class WhiteCtrl extends React.Component {
         };
         this.runOnMount = false;
         this.degree = 0;
-        this.moonSliderOpt = { sliderWidth: 8.5, sliderHeight: 13.5, disabled: true };
+        this.moonSliderOpt = { sliderWidth: 18.5, sliderHeight: 23.5, disabled: true };
     }
 
     componentWillMount() {
@@ -86,7 +86,7 @@ export default class WhiteCtrl extends React.Component {
 
     onClose (event) {
         let currentState = window.GLOBAL_STORE.getState();
-        currentState.colorfulCtrl = null;
+        // currentState.colorfulCtrl = null;
         Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
