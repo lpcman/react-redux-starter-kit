@@ -19,7 +19,12 @@ export default class WhiteCtrl extends React.Component {
         this.moonSliderOpt = { sliderWidth: 18.5, sliderHeight: 23.5, disabled: true };
     }
 
+    componentWillUnmount() {
+        window.JSBRIAGE.rmItem('finishLightActivity');
+    }
+
     componentWillMount() {
+        window.JSBRIAGE.push('finishLightActivity', this.onClose);
         /* eslint-disable */
         let enterType = this.props.params.enterType;
         /* eslint-enable */
@@ -87,7 +92,7 @@ export default class WhiteCtrl extends React.Component {
     onClose (event) {
         let currentState = window.GLOBAL_STORE.getState();
         // currentState.colorfulCtrl = null;
-        Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
+        // Bridge('lightUpdate', { color: this.props.color, light: this.props.light });
         sessionStorage.setItem('light', this.props.light);
         this.refs.wrapper.style.WebkitTransform = 'translate3d(0, 100%, 0)';
         this.refs.wrapper.style.transform = 'translate3d(0, 100%, 0)';

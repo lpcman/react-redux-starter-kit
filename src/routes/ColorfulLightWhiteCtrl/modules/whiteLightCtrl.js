@@ -22,7 +22,7 @@ export const actions = {
 
 function upload (data) {
     console.log(data);
-    Bridge('test', { a: 'a', b: 'b' });
+    // Bridge('test', { a: 'a', b: 'b' });
     return true;
 }
 

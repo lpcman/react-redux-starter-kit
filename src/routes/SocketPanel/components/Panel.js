@@ -13,27 +13,27 @@ import Bridge from '../../../components/Bridge';
 import './Panel.scss';
 
 export default class Panel extends React.Component {
-    componentDidMount () {
-        // 组件挂载时，添加供native端调用的方法， setSocketStatus为约定的方法名称
-        window.JSBRIAGE.push('setSocketStatus', this.props.setState);
-        window.JSBRIAGE.push('finishSocketActivity', this.leave);
-        if(this.props.location.query.status && this.props.location.query.power){
+    componentDidMount() {
+        if (this.props.location.query.status && this.props.location.query.power) {
             this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
         }
+        window.JSBRIAGE.push('finishSocketActivity', this.leave);
     }
 
-    componentWillUnmount () {
-        // 组件弹出时删除注册的方法以节省内存开销
+    componentWillUnmount() {
         window.JSBRIAGE.rmItem('setSocketStatus');
     }
-    leave () {
+
+    leave() {
         // js bridge 调用, socketUpdate为要调用的函数名称，data为传入的参数
-        Bridge('socketUpdate', { status: this.props.status,
-            power: this.props.power });
+        Bridge('socketUpdate', {
+            status: this.props.status,
+            power: this.props.power
+        });
         Bridge('finish', 'socket');
-        history.back();
     }
-    render () {
+
+    render() {
         let url;
         let urlX;
         let lightStyle = null;
@@ -95,24 +95,24 @@ export default class Panel extends React.Component {
                 <picture>
                     <source
                         media='(min-width: 414px)'
-                        srcSet={urlX} />
+                        srcSet={urlX}/>
                     <source
                         media='(min-width: 375px)'
-                        srcSet={url} />
+                        srcSet={url}/>
                     <img
                         alt='device icon'
                         className='deviceIcon'
                         src={url}
-                        onTouchStart={() => this.props.statusChange(this.props.status, this.props.power)} />
+                        onTouchStart={() => this.props.statusChange(this.props.status, this.props.power)}/>
                 </picture>
 
                 {tips}
                 <div className='control'>
                     <div className='fix-panel-left'>
-                        <OptionBtn type='chart' />
+                        <OptionBtn type='chart'/>
                     </div>
                     <div className='fix-panel-right'>
-                        <OptionBtn type='timer' />
+                        <OptionBtn type='timer'/>
                     </div>
                 </div>
 
