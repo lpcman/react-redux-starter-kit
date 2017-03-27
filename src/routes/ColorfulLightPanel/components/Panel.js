@@ -29,8 +29,10 @@ export default class Panel extends React.Component {
     }
 
     componentDidMount () {
+        /* eslint-disable */
         this.props.setStatus(this.props.location.query.status || 'ON');
         window.tempData = this.props.location.query; // 给从这个页面派生的页面使用
+        /* eslint-enable */
         if (Object.keys(window.tempData).length !== 0) {
             window.tempData.light = parseInt(window.tempData.light, 10) || 0; // 给从这个页面派生的页面使用
         } else {
@@ -152,16 +154,5 @@ Panel.propTypes = {
         'OFF',
         'OFF_LINE'
     ]),
-    setStatus: React.PropTypes.func.isRequired,
-    location:{
-        query:
-        {
-            status: React.PropTypes.oneOf([
-                'ON',
-                'OFF',
-                'OFF_LINE'
-            ])
-        }
-    }
-
+    setStatus: React.PropTypes.func.isRequired
 };
