@@ -6,7 +6,8 @@ import WhiteCirlce from './assets/调控@2x.png';
 
 export default class WheelColor extends React.Component {
     componentDidMount () {
-        let remUnit = parseFloat(window.getComputedStyle(this.refs.wheelWrapper, null).getPropertyValue('font-size'));
+        // let remUnit =
+        // parseFloat(window.getComputedStyle(this.refs.wheelWrapper, null).getPropertyValue('font-size'));
         let defaultOpt = {
             min_value: 0,
             max_value: 360,
@@ -42,7 +43,7 @@ export default class WheelColor extends React.Component {
     }
     calculateDegree (area, deltaCode) {
         let start = area * 60;
-        let factor = area % 2 === 0 ? 1 : -1;
+        // let factor = area % 2 === 0 ? 1 : -1;
         let delta = parseInt(deltaCode, 16) / 256;
         delta = area % 2 === 0 ? delta : 1 - delta;
         let deltaDegree = delta * 60;

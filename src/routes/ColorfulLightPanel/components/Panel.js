@@ -95,7 +95,7 @@ export default class Panel extends React.Component {
                 scene = sceneTemplate;
                 lightStyle = {
                     backgroundColor: backgroundColor
-                }
+                };
                 break;
             case 'OFF':
                 url = OffImg;
@@ -152,5 +152,16 @@ Panel.propTypes = {
         'OFF',
         'OFF_LINE'
     ]),
-    setStatus: React.PropTypes.func.isRequired
+    setStatus: React.PropTypes.func.isRequired,
+    location:{
+        query:
+        {
+            status: React.PropTypes.oneOf([
+                'ON',
+                'OFF',
+                'OFF_LINE'
+            ])
+        }
+    }
+
 };

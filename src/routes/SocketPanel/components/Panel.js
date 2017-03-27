@@ -15,7 +15,7 @@ import './Panel.scss';
 export default class Panel extends React.Component {
     componentDidMount () {
         if (this.props.location.query.status && this.props.location.query.power) {
-            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
+            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power, 10));
         }
         window.JSBRIAGE.push('finishSocketActivity', () => this.leave());
     }
@@ -129,5 +129,16 @@ Panel.propTypes = {
     ]),
     power: React.PropTypes.number.isRequired,
     statusChange: React.PropTypes.func.isRequired,
-    setState: React.PropTypes.func
+    setState: React.PropTypes.func,
+    location:{
+        query:
+        {
+            status: React.PropTypes.oneOf([
+                'ON',
+                'OFF',
+                'OFF_LINE'
+            ]),
+            power: React.PropTypes.number
+        }
+    }
 };
