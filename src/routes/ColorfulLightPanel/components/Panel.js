@@ -47,11 +47,6 @@ export default class Panel extends React.Component {
         let currentState = window.GLOBAL_STORE.getState();
         let param = { status: currentState.colorfulLightPanel.status };
 
-        //  whiteCtrl 和 colorfulCtrl 不会同时存在
-        // param.color = currentState.whiteCtrl && currentState.whiteCtrl.color;
-        // param.light = currentState.whiteCtrl && currentState.whiteCtrl.light;
-        // param.color = currentState.colorfulCtrl && currentState.colorfulCtrl.color;
-        // param.light = currentState.colorfulCtrl && currentState.colorfulCtrl.light;
         param.light = sessionStorage.getItem('light');
         param.color = sessionStorage.getItem('color');
 
@@ -92,11 +87,15 @@ export default class Panel extends React.Component {
         let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
         let sceneBtn = <OptionBtn type='situation' />;
         let timeBtn = <OptionBtn type='timer' />;
+        let backgroundColor = (window.tempData && window.tempData.color) || sessionStorage.getItem('color');
 
         switch (this.props.status) {
             case 'ON':
                 url = OnImg;
                 scene = sceneTemplate;
+                lightStyle = {
+                    backgroundColor: backgroundColor
+                }
                 break;
             case 'OFF':
                 url = OffImg;
