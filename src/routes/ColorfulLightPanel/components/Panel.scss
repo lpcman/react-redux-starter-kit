@@ -6,38 +6,38 @@
     text-align: center;
     .sceneName {
         position: absolute;
-        width: 130px;
-        top: 62px;
+        width: 1.3rem;
+        top: 0.62rem;
         left: 50%;
-        margin-left: -65px;
-        padding: 8px 0;
+        margin-left: -0.65rem;
+        padding: 0.08rem 0;
         color: #fff;
         background-color: #b2b2b2;
         text-align: center;
-        border-radius: 20px;
+        border-radius: 0.2rem;
     }
     .deviceIcon {
         display: block;
-        width: 130px;
-        height: 130px;
-        margin: 154px auto 0;
+        width: 1.3rem;
+        height: 1.3rem;
+        margin: 1.54rem auto 0;
     }
     .offLineText {
-        margin: 24px 0 12px;
-        font-size: 18px;
+        margin: 0.24rem 0 0.12rem;
+        font-size: 0.18rem;
         color: #666;
     }
     .offLineTip {
         margin: 0;
-        font-size: 16px;
+        font-size: 0.16rem;
         color: #999;
     }
     .btnGroup {
         position: absolute;
         display: flex;
         width: 100%;
-        padding: 0 24px;
-        bottom: 20px;
+        padding: 0 0.24rem;
+        bottom: 0.2rem;
         justify-content: space-between;
     }
 }

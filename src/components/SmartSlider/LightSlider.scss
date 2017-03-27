@@ -5,18 +5,18 @@
 }
 
 .rc-slider-step {
-    height: 6px;
+    height: 0.06rem;
     background: -webkit-linear-gradient(left, #000,#fff);
-    border-radius: 6px;
+    border-radius: 0.06rem;
 }
 
 .rc-slider-handle {
-    margin-left: -7.5px;
-    margin-top: -9.5px;
-    width: 15px;
-    height: 25px;
-    border-radius: 15px;
-    border: 2px solid #fff;
+    margin-left: -0.075rem;
+    margin-top: -0.095rem;
+    width: 0.15rem;
+    height: 0.25rem;
+    border-radius: 0.15rem;
+    border: 0.02rem solid #fff;
 }
 
 .rc-slider-handle:hover {
@@ -29,18 +29,18 @@
 }
 
 .sliderIcon {
-    width: 24px;
-    height: 24px;
+    width: 0.24rem;
+    height: 0.24rem;
 }
 
 .sliderLeftImg {
     position: absolute;
-    left: -35px;
-    top: -4px;
+    left: -0.35rem;
+    top: -0.04rem;
 }
 
 .sliderRightImg {
     position: absolute;
-    right: -35px;
-    top: -4px;
+    right: -0.35rem;
+    top: -0.04rem;
 }
