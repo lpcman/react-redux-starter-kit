@@ -7,51 +7,51 @@
     background-size: cover;
     .sceneName {
         position: absolute;
-        width: 130px;
-        top: 20px;
+        width: 1.3rem;
+        top: 0.2rem;
         left: 50%;
-        margin-left: -65px;
+        margin-left: -0.65rem;
         padding: 8px 0;
         color: #fff;
         background-color: #b2b2b2;
         text-align: center;
-        border-radius: 20px;
+        border-radius: 0.2rem;
     }
     .deviceIcon {
         display: block;
-        width: 130px;
-        height: 130px;
-        margin: 154px auto 0;
+        width: 1.3rem;
+        height: 1.3rem;
+        margin: 1.54rem auto 0;
     }
     .text {
-        margin: 24px 0 12px;
-        font-size: 18px;
+        margin: 0.24rem 0 0.12rem;
+        font-size: 0.18rem;
         color: #666;
     }
     .tip {
         margin: 0;
-        font-size: 16px;
+        font-size: 0.16rem;
         color: #999;
     }
     .on-text{
-        font-size: 26px;
+        font-size: 0.26rem;
         font-weight: bold;
-        margin: 24px 0 12px;
+        margin: 0.24rem 0 0.12rem;
         color: #23c0b1;
     }
     .control{
-        margin: 164px 0 12px;
+        margin: 1.64rem 0 0.12rem;
         display: flex;
         justify-content: space-between;
     }
     .fix-panel-left{
         position: fixed;
-        bottom: 20px;
-        left: 24px;
+        bottom: 0.2rem;
+        left: 0.24rem;
     }
     .fix-panel-right{
         position: fixed;
-        bottom: 20px;
-        right: 24px;
+        bottom: 0.2rem;
+        right: 0.24rem;
     }
 }

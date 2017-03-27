@@ -10,7 +10,7 @@ export default class WheelColor extends React.Component {
         let defaultOpt = {
             min_value: 0,
             max_value: 360,
-            radius: 14.5 * remUnit / 2,
+            radius: 116,
             color: 'transparent',
             start_value: 0
         };
@@ -126,7 +126,7 @@ export default class WheelColor extends React.Component {
         return (
             <div className='wheelWrapper' ref='wheelWrapper'>
                 <div className='wheel' id={this.props.disabled ? 'disabledWheelPanel' : 'wheelPanel'}>
-                    <img src={this.props.disabled ? WhiteCirlce : ColorCirlce}
+                    <img className="wheel-img" src={this.props.disabled ? WhiteCirlce : ColorCirlce}
                          alt='circle'/>
                 </div>
                 <div id='slider-transportation' className='slider'>

@@ -154,14 +154,14 @@ let MoonSlider = (() => {
                 button.id = id + '-moon-button';
                 button.className = opts.button_classname;
                 // button.style.left = (opts.radius - 3)+"px";      //zbj comment
-                button.style.left = (opts.radius - opts.sliderWidth) + 'px';   // zbj added
+                button.style.left = (opts.radius - opts.sliderWidth) /100+ 'rem';   // zbj added
                 holder.appendChild(button);
 
                 // create canvas
                 canvas = document.createElement('canvas');
                 canvas.id = id + '-moon-canvas';
-                canvas.width = opts.radius * 2 + stroke_width;
-                canvas.height = opts.radius * 2 + stroke_width;
+                canvas.style.width = (opts.radius * 2 + stroke_width) /100 + 'rem';
+                canvas.style.height = (opts.radius * 2 + stroke_width) /100 + 'rem';
                 holder.appendChild(canvas);
 
                 // create hidden input
@@ -290,8 +290,8 @@ let MoonSlider = (() => {
 
                     var pos = calculatePosition(deg, canvas_offset.left, canvas_offset.top);
 
-                    button.style.left = (pos.left - canvas_offset.left - opts.sliderWidth + 2) + 'px'; // zbj added “- opts.sliderRadius + 2”2为补偿值
-                    button.style.top = (pos.top - canvas_offset.top - opts.sliderHeight + 2) + 'px'; // zbj added 2为补偿值
+                    button.style.left = (pos.left - canvas_offset.left - opts.sliderWidth + 2)/100 + 'rem'; // zbj added “- opts.sliderRadius + 2”2为补偿值
+                    button.style.top = (pos.top - canvas_offset.top - opts.sliderHeight + 2)/100 + 'rem'; // zbj added 2为补偿值
 
                     // draw the lines
                     if (deg > 0 && !stopDrawing) {

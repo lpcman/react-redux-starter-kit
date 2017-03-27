@@ -4,18 +4,21 @@
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 100px;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-
+body{
+    font-size: 0.16rem;
+}
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }

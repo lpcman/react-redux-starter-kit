@@ -1,25 +1,25 @@
 .slider {
     display: flex;
     justify-content: center;
-    padding-top: 0.25em;
+    padding-top: 0.04rem;
     .cover {
         position: absolute;
-        width: 14em;
-        height: 14em;
+        width: 2.24rem;
+        height: 2.24rem;
         left: 50%;
-        top: 0.5em;
-        margin-left: -7em;
-        border-radius: 14em;
+        top: 0.08rem;
+        margin-left: -1.12rem;
+        border-radius: 2.24rem;
         background-color: #fff;
         .selectedColor {
             position: absolute;
-            width: 6em;
-            height: 6em;
+            width: 0.96rem;
+            height: 0.96rem;
             left: 50%;
             top: 50%;
-            margin-left: -3em;
-            margin-top: -3em;
-            border-radius: 6em;
+            margin-left: -0.48rem;
+            margin-top: -0.48rem;
+            border-radius: 0.96rem;
         }
     }
 }
@@ -32,11 +32,11 @@
     pointer-events: none; /* in case of overlapping sliders, ignore on clicks */
     .moon-slider-button {
         position:absolute;
-        width: 16px;
-        height: 16px;
-        top: -8px;
+        width: 0.16rem;
+        height: 0.16rem;
+        top: -0.08rem;
 
-        padding: 10px;
+        padding: 0.1rem;
         //border-radius: 50%;
         //-webkit-border-radius: 50%;
         //-moz-border-radius: 50%;
@@ -72,7 +72,7 @@
     height: $size;
 }
 
-$wheel: 15em;
+$wheel: 2.4rem;
 .wheel, .umbrella, .color {
     @include circle($wheel);
 }
@@ -87,7 +87,7 @@ $wheel: 15em;
 
 .umbrella {
     position: relative;
-    -webkit-filter: blur(1.7em);
+    -webkit-filter: blur(0.272rem);
     -webkit-transform: scale(1.35);
 }
 
@@ -116,4 +116,9 @@ $colors: (#F00, #F80, #FF0, #8F0, #0F0, #0F8, #0FF, #08F, #00F, #80F, #F0F, #F08
     .disabled>.color:nth-child(#{1+$i}):after {
         background-color: #464646;
     }
+
+}
+.wheel-img{
+    width: 2.4rem;
+    height: 2.4rem;
 }
