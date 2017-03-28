@@ -61,7 +61,7 @@ class Toast extends React.Component {
 			display: 'inline',
 			width: 'auto',
 			borderRadius: '8px',
-            backgroundColor: 'rgba(0,0,0,0.8)',
+            backgroundColor: 'rgba(0,0,0,0.75)',
             color: colorWhite,
 			padding: '18px 14px',
             fontSize: '16px',
