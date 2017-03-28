@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
-import Bridge from '../../../components/Bridge';
 import Close from '../assets/close.png';
 import './WhiteCtrl.scss';
 

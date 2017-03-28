@@ -20,11 +20,11 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 
-function upload (data) {
-    console.log(data);
-    // Bridge('test', { a: 'a', b: 'b' });
-    return true;
-}
+// function upload (data) {
+//     console.log(data);
+//     // Bridge('test', { a: 'a', b: 'b' });
+//     return true;
+// }
 
 const ACTION_HANDLERS = {
     [CHANGE_LIGHT]: function (state, action) {

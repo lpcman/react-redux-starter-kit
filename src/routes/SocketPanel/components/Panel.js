@@ -14,9 +14,11 @@ import './Panel.scss';
 
 export default class Panel extends React.Component {
     componentDidMount () {
+        /* eslint-disable */
         if (this.props.location.query.status && this.props.location.query.power) {
-            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power));
+            this.props.setState(this.props.location.query.status, parseInt(this.props.location.query.power, 10));
         }
+        /* eslint-enable */
         window.JSBRIAGE.push('finishSocketActivity', () => this.leave());
     }
 
