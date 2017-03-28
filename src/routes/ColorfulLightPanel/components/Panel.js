@@ -87,15 +87,11 @@ export default class Panel extends React.Component {
         let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
         let sceneBtn = <OptionBtn type='situation' />;
         let timeBtn = <OptionBtn type='timer' />;
-        let backgroundColor = (window.tempData && window.tempData.color) || sessionStorage.getItem('color');
 
         switch (this.props.status) {
             case 'ON':
                 url = OnImg;
                 scene = sceneTemplate;
-                lightStyle = {
-                    backgroundColor: backgroundColor
-                }
                 break;
             case 'OFF':
                 url = OffImg;

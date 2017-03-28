@@ -1,4 +1,5 @@
 import React from 'react';
+import Chroma from 'chroma-js';
 import './WheelColor.scss';
 import MoonSlider from './moon-slider';
 import ColorCirlce from './assets/色环@2x.png';
@@ -50,69 +51,17 @@ export default class WheelColor extends React.Component {
         return start + deltaDegree;
     }
     translateColorToDegree (color) {
-        color = color.replace('#', '').toUpperCase();
-        let first = color.slice(0, 2);
-        let second = color.slice(2, 4);
-        let third = color.slice(4, 6);
-        let degree;
-
-        if (first === 'FF') {
-            if (second === '00') {
-                degree = this.calculateDegree(5, third);
-            } else {
-                degree = this.calculateDegree(0, second);
-            }
-        } else if (first === '00') {
-            if (second === 'FF') {
-                degree = this.calculateDegree(2, third);
-            } else {
-                degree = this.calculateDegree(3, second);
-            }
-        } else {
-            if (second === 'FF') {
-                degree = this.calculateDegree(1, first);
-            } else {
-                degree = this.calculateDegree(4, first);
-            }
-        }
-
+        let degree = Chroma(color).hsl()[0];
+        
         return degree;
     }
     sliderMoveHandler (event) {
-        let deg = event.deg.toFixed(2);
-        let area = Math.floor(deg / 60);
-        let delta = Math.round((deg % 60) / 60 * 255);
-        //  变化规律奇数区域00-FF，偶数区域FF-00
-        delta = area % 2 === 0 ? delta : 255 - delta;
-        let deltaCode = delta < 10 ? '0' + delta : delta.toString(16);
-        let color = '#';
+        let deg = event.deg || 0;
+        deg = deg.toFixed(2);
+        let color = Chroma.hsl(deg, 1, 0.6).toString();
         let cb = this.props.onMove || (() => '');
 
         this.transformButton(deg);
-        switch (area) {
-            case 0:
-                color += 'FF' + deltaCode + '00';
-                break;
-            case 1:
-                color += deltaCode + 'FF00';
-                break;
-            case 2:
-                color += '00FF' + deltaCode;
-                break;
-            case 3:
-                color += '00' + deltaCode + 'FF';
-                break;
-            case 4:
-                color += deltaCode + '00FF';
-                break;
-            case 5:
-                color += 'FF00' + deltaCode;
-                break;
-            default:
-                color = '';
-                break;
-        }
-
         cb({
             event: event,
             color: color
