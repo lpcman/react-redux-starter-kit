@@ -89,7 +89,7 @@ export default class Panel extends React.Component {
                 <Header
                     leftHandler={e => this.leave()}
                     rightHandler={e => console.log(e)}
-                    title='移动计量插座'
+                    title='智能插座'
                     bgColor='#fff'
                     titleColor='#000'
                     reverse
