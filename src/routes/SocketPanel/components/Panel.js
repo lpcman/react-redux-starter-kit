@@ -100,7 +100,7 @@ export default class Panel extends React.Component {
                 <Notifications />
                 <Header
                     leftHandler={e => this.leave()}
-                    rightHandler={e => console.log(e)}
+                    rightHandler={e => this.showTip()}
                     title='智能插座'
                     bgColor='#fff'
                     titleColor='#000'
