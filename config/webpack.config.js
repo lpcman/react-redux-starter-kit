@@ -164,7 +164,7 @@ webpackConfig.postcss = [
         autoprefixer : {
             add      : true,
             remove   : true,
-            browsers : ['last 2 versions']
+            browsers : ['last 4 android versions', 'last 4 iOS versions', 'last 4 chrome versions']
         },
         discardComments : {
             removeAll : true
