@@ -18,21 +18,39 @@
 import React from 'react';
 import Slider from 'rc-slider/lib/Slider';
 import dark from './assets/暗度@2x.png';
+import darkX from './assets/暗度@3x.png';
 import bright from './assets/明度@2x.png';
+import brightX from './assets/明度@3x.png';
 import 'rc-slider/assets/index.css';
 import './LightSlider.scss';
 
 export const LightSlider = (props) => (
     <div className='smart-slider'>
-        <img
-            alt='dark icon'
-            className='sliderIcon sliderLeftImg'
-            src={dark} />
+        <picture>
+            <source
+                media='(min-width: 414px)'
+                srcSet={darkX} />
+            <source
+                media='(min-width: 375px)'
+                srcSet={dark} />
+            <img
+                alt='dark icon'
+                className='sliderIcon sliderLeftImg'
+                src={dark} />
+        </picture>
         <Slider {...props} className='light-slider' />
-        <img
-            alt='bright icon'
-            className='sliderIcon sliderRightImg'
-            src={bright} />
+        <picture>
+            <source
+                media='(min-width: 414px)'
+                srcSet={brightX} />
+            <source
+                media='(min-width: 375px)'
+                srcSet={bright} />
+            <img
+                alt='bright icon'
+                className='sliderIcon sliderRightImg'
+                src={bright} />
+        </picture>
     </div>
 );
 
