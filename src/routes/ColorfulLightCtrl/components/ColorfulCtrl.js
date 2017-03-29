@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import { RouteTransition } from 'react-router-transition';
 import SmartSlider, { SliderType } from '../../../components/SmartSlider';
 import WheelColor from '../../../components/WheelColor';
-import Close from '../assets/close.png';
+import close2x from '../assets/nav_close_w@2x.png';
+import close3x from '../assets/nav_close_w@3x.png';
 import './ColorfulCtrl.scss';
 
 export default class ColorfulCtrl extends React.Component {
@@ -131,11 +132,19 @@ export default class ColorfulCtrl extends React.Component {
                         style={{ height:'100%' }}
                     >
                         <div className='textWrapper'>
-                            <img className='close'
-                                onTouchStart={() => this.onClose()}
-                                src={Close}
-                                alt='close'
-                            />
+                            <picture>
+                                <source
+                                    media='(min-width: 414px)'
+                                    srcSet={close3x} />
+                                <source
+                                    media='(min-width: 375px)'
+                                    srcSet={close2x} />
+                                <img className='close'
+                                    onTouchStart={() => this.onClose()}
+                                    src={close2x}
+                                    alt='close'
+                                />
+                            </picture>
                             <div className='titleChangeWrapper'>
                                 <p className='title'>彩光</p>
                                 <p
