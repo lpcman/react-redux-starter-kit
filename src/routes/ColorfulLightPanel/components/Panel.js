@@ -2,8 +2,11 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import OptionBtn from '../../../components/OptionBtn';
 import OnImg from '../assets/开@2x.png';
+import OnXImg from '../assets/开@3x.png';
 import OffImg from '../assets/关闭@2x.png';
+import OffXImg from '../assets/关闭@3x.png';
 import OffLineImg from '../assets/离线@2x.png';
+import OffLineXImg from '../assets/离线@3x.png';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
 import './Panel.scss';
@@ -81,7 +84,7 @@ export default class Panel extends React.Component {
     }
 
     render () {
-        let url;
+        let url, urlX;
         let lightStyle = null;
         let tips = '';
         let scene = '';
@@ -101,10 +104,12 @@ export default class Panel extends React.Component {
         switch (this.props.status) {
             case 'ON':
                 url = OnImg;
+                urlX = OnXImg;
                 scene = sceneTemplate;
                 break;
             case 'OFF':
                 url = OffImg;
+                urlX = OffXImg;
                 lightStyle = {
                     backgroundColor: '#000'
                 };
@@ -113,6 +118,7 @@ export default class Panel extends React.Component {
                 break;
             case 'OFF_LINE':
                 url = OffLineImg;
+                urlX = OffLineXImg;
                 lightStyle = {
                     backgroundColor: '#F4F4F4'
                 };
@@ -122,6 +128,7 @@ export default class Panel extends React.Component {
                 break;
             default:
                 url = '';
+                urlX = '';
                 break;
         }
         return (
@@ -136,12 +143,19 @@ export default class Panel extends React.Component {
                     reverse
                 />
                 {scene}
-                <img
-                    alt='device icon'
-                    className='deviceIcon'
-                    src={url}
-                    onTouchStart={() => this.changeStatus(this.props.status)}
-                />
+                <picture>
+                    <source
+                        media='(min-width: 414px)'
+                        srcSet={urlX} />
+                    <source
+                        media='(min-width: 375px)'
+                        srcSet={url} />
+                    <img
+                        alt='device icon'
+                        className='deviceIcon'
+                        src={url}
+                        onTouchStart={() => this.changeStatus(this.props.status)} />
+                </picture>
                 {tips}
                 <div className='btnGroup'>
                     {ctrlBtn}
