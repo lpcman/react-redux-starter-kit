@@ -1,8 +1,8 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout';
 import Home from './Home';
-import CounterRoute from './Counter';
-import TodoRoute from './Todo';
+// import CounterRoute from './Counter';
+// import TodoRoute from './Todo';
 import colorfulLightPanelRoute from './colorfulLightPanel';
 import ColorfulLightCtrlRoute from './ColorfulLightCtrl';
 import ColorfulLightWhiteCtrlRoute from './ColorfulLightWhiteCtrl';
@@ -16,8 +16,8 @@ export const createRoutes = (store) => ({
     component   : CoreLayout,
     indexRoute  : Home,
     childRoutes : [
-        CounterRoute(store),
-        TodoRoute(store),
+        // CounterRoute(store),
+        // TodoRoute(store),
         colorfulLightPanelRoute(store),
         ColorfulLightCtrlRoute(store),
         ColorfulLightWhiteCtrlRoute(store),
