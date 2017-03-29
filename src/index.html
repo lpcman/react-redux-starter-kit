@@ -6,19 +6,25 @@
     <meta name="description" content="">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="cleartype" content="on">
     <script>
         (function (doc, win) {
             var docEl = doc.documentElement,
                 resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
                 recalc = function () {
+
                     var clientWidth = docEl.clientWidth;
-                    console.log("屏幕尺寸"+clientWidth);
+                    console.log("屏幕尺寸" + clientWidth);
                     if (!clientWidth) return;
                     if (clientWidth >= 375) {
                         docEl.style.fontSize = '100px';
                     } else {
+                        if (clientWidth <= 320) {
+                            docEl.style.fontSize = '75px';
+                            return;
+                        }
                         docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
                     }
                 };
@@ -30,61 +36,61 @@
     </script>
 </head>
 <body>
-    <script>
-        window.JSBRIAGE = (function () {
-            var funcSet = {};
+<script>
+    window.JSBRIAGE = (function () {
+        var funcSet = {};
 
-            function push(key, func) {
-                if(funcSet[key]){
-                    console.error("JSBRIAGE: same name '"+ key +"' exist in funcset.");
-                }else{
-                    funcSet[key] = func;
-                }
-            }
-
-            function rmItem(key) {
-                if(funcSet[key]){
-                    delete funcSet[key];
-                }else{
-                    console.error("JSBRIAGE: no name '"+ key +"' in funcset.");
-                }
-            }
-
-            function getItem(key) {
-                if(funcSet[key]){
-                    return funcSet[key];
-                }else{
-                    console.error("JSBRIAGE: no name '"+ key +"' in funcset.");
-                }
-            }
-
-            return {
-                push: push,
-                getItem: getItem,
-                rmItem: rmItem,
-                funcSet: funcSet
-           }
-        }());
-
-        function JsCall(funcName, data) {
-            console.log("[JS Bridge invoke]----->");
-            console.log(funcName);
-            console.log(data);
-
-            if(window.JSBRIAGE.getItem(funcName)){
-                try {
-                    data = JSON.parse(data);
-                }catch (e){
-                    console.log("[JS Bridge invoke]:" + e);
-                    data = {};
-                }
-                window.JSBRIAGE.getItem(funcName)(data);
-            }else{
-                console.log("[JS Bridge invoke]: no function "+ funcName);
+        function push(key, func) {
+            if (funcSet[key]) {
+                console.error("JSBRIAGE: same name '" + key + "' exist in funcset.");
+            } else {
+                funcSet[key] = func;
             }
         }
 
-    </script>
-    <div id="root" style="min-height: 100%; display:flex; flex-direction: column;"></div>
+        function rmItem(key) {
+            if (funcSet[key]) {
+                delete funcSet[key];
+            } else {
+                console.error("JSBRIAGE: no name '" + key + "' in funcset.");
+            }
+        }
+
+        function getItem(key) {
+            if (funcSet[key]) {
+                return funcSet[key];
+            } else {
+                console.error("JSBRIAGE: no name '" + key + "' in funcset.");
+            }
+        }
+
+        return {
+            push: push,
+            getItem: getItem,
+            rmItem: rmItem,
+            funcSet: funcSet
+        }
+    }());
+
+    function JsCall(funcName, data) {
+        console.log("[JS Bridge invoke]----->");
+        console.log(funcName);
+        console.log(data);
+
+        if (window.JSBRIAGE.getItem(funcName)) {
+            try {
+                data = JSON.parse(data);
+            } catch (e) {
+                console.log("[JS Bridge invoke]:" + e);
+                data = {};
+            }
+            window.JSBRIAGE.getItem(funcName)(data);
+        } else {
+            console.log("[JS Bridge invoke]: no function " + funcName);
+        }
+    }
+
+</script>
+<div id="root" style="min-height: 100%; display:flex; flex-direction: column;"></div>
 </body>
 </html>
