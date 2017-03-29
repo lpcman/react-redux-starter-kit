@@ -7,8 +7,14 @@ import OffLineImg from '../assets/离线@2x.png';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
 import './Panel.scss';
+import Notifications, {notify} from '../../../components/Toast';
 
 export default class Panel extends React.Component {
+
+    constructor() {
+        super();
+        this.show = notify.createShowQueue();
+    }
 
     toCtrl () {
         let whiteSrc = window.BASE_DIR + '/whiteLightCtrl/slideUp';
@@ -29,10 +35,8 @@ export default class Panel extends React.Component {
     }
 
     componentDidMount () {
-        /* eslint-disable */
         this.props.setStatus(this.props.location.query.status || 'ON');
         window.tempData = this.props.location.query; // 给从这个页面派生的页面使用
-        /* eslint-enable */
         if (Object.keys(window.tempData).length !== 0) {
             window.tempData.light = parseInt(window.tempData.light, 10) || 0; // 给从这个页面派生的页面使用
         } else {
@@ -72,6 +76,10 @@ export default class Panel extends React.Component {
         this.props.setStatus(newStatus);
     }
 
+    showTip () {
+        this.show(notify.defaultTip.demo, '', 2000, {});
+    }
+
     render () {
         let url;
         let lightStyle = null;
@@ -87,17 +95,13 @@ export default class Panel extends React.Component {
             <div className='sceneName'>标准场景</div>
         );
         let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
-        let sceneBtn = <OptionBtn type='situation' />;
-        let timeBtn = <OptionBtn type='timer' />;
-        let backgroundColor = (window.tempData && window.tempData.color) || sessionStorage.getItem('color');
+        let sceneBtn = <OptionBtn type='situation' onTouchStart={this.showTip.bind(this)} />;
+        let timeBtn = <OptionBtn type='timer' onTouchStart={this.showTip.bind(this)} />;
 
         switch (this.props.status) {
             case 'ON':
                 url = OnImg;
                 scene = sceneTemplate;
-                lightStyle = {
-                    backgroundColor: backgroundColor
-                };
                 break;
             case 'OFF':
                 url = OffImg;
@@ -122,6 +126,7 @@ export default class Panel extends React.Component {
         }
         return (
             <div style={lightStyle} className='panelWrapper'>
+                <Notifications />
                 <Header
                     leftHandler={e => this.leave()}
                     rightHandler={e => console.log(e)}

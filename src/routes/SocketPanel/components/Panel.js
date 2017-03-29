@@ -11,8 +11,15 @@ import OptionBtn from '../../../components/OptionBtn';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
 import './Panel.scss';
+import Notifications, {notify} from '../../../components/Toast';
 
 export default class Panel extends React.Component {
+
+    constructor() {
+        super();
+        this.show = notify.createShowQueue();
+    }
+
     componentDidMount () {
         /* eslint-disable */
         if (this.props.location.query.status && this.props.location.query.power) {
@@ -33,6 +40,10 @@ export default class Panel extends React.Component {
             power: this.props.power
         });
         Bridge('finish', 'socket');
+    }
+
+    showTip () {
+        this.show(notify.defaultTip.demo, '', 2000, {});
     }
 
     render () {
@@ -86,6 +97,7 @@ export default class Panel extends React.Component {
         }
         return (
             <div className='wrapper' style={lightStyle}>
+                <Notifications />
                 <Header
                     leftHandler={e => this.leave()}
                     rightHandler={e => console.log(e)}
@@ -111,10 +123,10 @@ export default class Panel extends React.Component {
                 {tips}
                 <div className='control'>
                     <div className='fix-panel-left'>
-                        <OptionBtn type='chart' />
+                        <OptionBtn type='chart' onTouchStart={this.showTip.bind(this)}/>
                     </div>
                     <div className='fix-panel-right'>
-                        <OptionBtn type='timer' />
+                        <OptionBtn type='timer' onTouchStart={this.showTip.bind(this)}/>
                     </div>
                 </div>
 

@@ -38,12 +38,12 @@ export function objectToParam (obj) {
 let lastCallTime = null;
 
 export default function bridgeCall (functionName, data) {
-    if (__DEV__) {
-        console.log('[bridgeCall]----------->');
-        console.log(functionName);
-        console.log(JSON.stringify(data));
+    // if (__DEV__) {
+    console.log('[bridgeCall]----------->');
+    console.log(functionName);
+    console.log(JSON.stringify(data));
         // console.log(callback);
-    }
+    // }
 
   // 解决连续调用问题
     if (lastCallTime && (Date.now() - lastCallTime) < 100) {
