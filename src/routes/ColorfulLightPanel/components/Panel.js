@@ -130,7 +130,7 @@ export default class Panel extends React.Component {
                 <Header
                     leftHandler={e => this.leave()}
                     rightHandler={e => this.showTip()}
-                    title='炫彩灯'
+                    title='智能炫彩灯'
                     bgColor='#fff'
                     titleColor='#000'
                     reverse
