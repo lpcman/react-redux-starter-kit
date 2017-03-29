@@ -53,7 +53,7 @@ export default class WheelColor extends React.Component {
     }
     translateColorToDegree (color) {
         let degree = Chroma(color).hsl()[0];
-        
+
         return degree;
     }
     sliderMoveHandler (event) {

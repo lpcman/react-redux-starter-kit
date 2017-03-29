@@ -11,11 +11,11 @@ import OptionBtn from '../../../components/OptionBtn';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
 import './Panel.scss';
-import Notifications, {notify} from '../../../components/Toast';
+import Notifications, { notify } from '../../../components/Toast';
 
 export default class Panel extends React.Component {
 
-    constructor() {
+    constructor () {
         super();
         this.show = notify.createShowQueue();
     }
@@ -123,10 +123,10 @@ export default class Panel extends React.Component {
                 {tips}
                 <div className='control'>
                     <div className='fix-panel-left'>
-                        <OptionBtn type='chart' onTouchStart={this.showTip.bind(this)}/>
+                        <OptionBtn type='chart' onTouchStart={e => this.showTip(e)} />
                     </div>
                     <div className='fix-panel-right'>
-                        <OptionBtn type='timer' onTouchStart={this.showTip.bind(this)}/>
+                        <OptionBtn type='timer' onTouchStart={e => this.showTip(e)} />
                     </div>
                 </div>
 

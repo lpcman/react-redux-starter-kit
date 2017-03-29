@@ -14,8 +14,7 @@
  * @date 2017/3/28
  * @version
  */
-import Notifications, {notify}  from './Notify';
-
+import Notifications, { notify } from './Notify';
 
 export { notify };
 export default Notifications;

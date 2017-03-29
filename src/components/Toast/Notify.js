@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Lodash from 'lodash';
 
@@ -15,178 +15,178 @@ const textColorWarning = '#333333';
 
 /* React Notification Component */
 class Toast extends React.Component {
-	static propTypes = {
-		text: PropTypes.string,
-		timeout: PropTypes.number,
-		type: PropTypes.string,
-		color: PropTypes.object,
-		style: PropTypes.oneOfType([
-			PropTypes.object,
-			PropTypes.bool
-		])
-	};
+    static propTypes = {
+        text: PropTypes.string,
+        timeout: PropTypes.number,
+        type: PropTypes.string,
+        color: PropTypes.object,
+        style: PropTypes.oneOfType([
+            PropTypes.object,
+            PropTypes.bool
+        ])
+    };
 
-	state = {
-		styleParent: null
-	};
+    state = {
+        styleParent: null
+    };
 
-	getStyles() {
-		let styles = {};
+    getStyles () {
+        let styles = {};
 
-		const containerStyle = {
-			position: 'fixed',
-			right: '0px',
-			top: '50%',
-			left: '0px',
+        const containerStyle = {
+            position: 'fixed',
+            right: '0px',
+            top: '50%',
+            left: '0px',
             marginTop: '-25px', // half of content height
             backgroundColor: 'transparent',
-			textAlign: 'center',
-			zIndex: '999',
-			pointerEvents: 'none',
-			transition: 'all ' + animationDuration + 'ms ease'
-			// transform: 'translateY(0px)',
-			// Vendor Prefixes
-			// msTransition: 'all ' + animationDuration + 'ms ease',
-			// msTransform: 'translateY(0px)',
-			// WebkitTransition: 'all ' + animationDuration + 'ms ease',
-			// WebkitTransform: 'translateY(0px)',
-			// OTransition: 'all ' + animationDuration + 'ms ease',
-			// OTransform: 'translateY(0px)',
-			// MozTransition: 'all ' + animationDuration + 'ms ease',
-			// MozTransform: 'translateY(0px)'
-		};
+            textAlign: 'center',
+            zIndex: '999',
+            pointerEvents: 'none',
+            transition: 'all ' + animationDuration + 'ms ease'
+            // transform: 'translateY(0px)',
+            // Vendor Prefixes
+            // msTransition: 'all ' + animationDuration + 'ms ease',
+            // msTransform: 'translateY(0px)',
+            // WebkitTransition: 'all ' + animationDuration + 'ms ease',
+            // WebkitTransform: 'translateY(0px)',
+            // OTransition: 'all ' + animationDuration + 'ms ease',
+            // OTransform: 'translateY(0px)',
+            // MozTransition: 'all ' + animationDuration + 'ms ease',
+            // MozTransform: 'translateY(0px)'
+        };
 
-		const contentStyle = {
-			cursor: 'pointer',
-			display: 'inline',
-			width: 'auto',
-			borderRadius: '8px',
+        const contentStyle = {
+            cursor: 'pointer',
+            display: 'inline',
+            width: 'auto',
+            borderRadius: '8px',
             backgroundColor: 'rgba(0,0,0,0.75)',
             color: colorWhite,
-			padding: '18px 14px',
+            padding: '18px 14px',
             fontSize: '16px',
             letterSpace: '1px',
-			pointerEvents: 'all'
-		};
+            pointerEvents: 'all'
+        };
 
-		/* If type is set, merge toast action styles with base */
-		switch (this.props.type) {
-			case 'success':
-				const successStyle = {
-					backgroundColor: colorSuccess,
-					color: colorWhite
-				};
-				styles.content = Lodash.assign({}, contentStyle, successStyle);
-				break;
+        /* If type is set, merge toast action styles with base */
+        switch (this.props.type) {
+            case 'success':
+                const successStyle = {
+                    backgroundColor: colorSuccess,
+                    color: colorWhite
+                };
+                styles.content = Lodash.assign({}, contentStyle, successStyle);
+                break;
 
-			case 'error':
-				const errorStyle = {
-					backgroundColor: colorError,
-					color: colorWhite
-				};
-				styles.content = Lodash.assign({}, contentStyle, errorStyle);
-				break;
+            case 'error':
+                const errorStyle = {
+                    backgroundColor: colorError,
+                    color: colorWhite
+                };
+                styles.content = Lodash.assign({}, contentStyle, errorStyle);
+                break;
 
-			case 'warning':
-				const warningStyle = {
-					backgroundColor: colorWarning,
-					color: textColorWarning
-				};
-				styles.content = Lodash.assign({}, contentStyle, warningStyle);
-				break;
+            case 'warning':
+                const warningStyle = {
+                    backgroundColor: colorWarning,
+                    color: textColorWarning
+                };
+                styles.content = Lodash.assign({}, contentStyle, warningStyle);
+                break;
 
-			case 'custom':
-				const customStyle = {
-					backgroundColor: this.props.color.background,
-					color: this.props.color.text
-				};
-				styles.content = Lodash.assign({}, contentStyle, customStyle);
-				break;
+            case 'custom':
+                const customStyle = {
+                    backgroundColor: this.props.color.background,
+                    color: this.props.color.text
+                };
+                styles.content = Lodash.assign({}, contentStyle, customStyle);
+                break;
 
-			default:
-				styles.content = Lodash.assign({}, contentStyle);
-				break;
-		}
+            default:
+                styles.content = Lodash.assign({}, contentStyle);
+                break;
+        }
 
-		styles.container = containerStyle;
+        styles.container = containerStyle;
 
-		return styles;
-	}
+        return styles;
+    }
 
-	getVisibleState(context) {
-		let base = this.getStyles().container;
+    getVisibleState (context) {
+        let base = this.getStyles().container;
 
-		// Show
-		const stylesShow = {
-			// transform: 'translateY(108px)',
-			// msTransform: 'translateY(108px)',
-			// WebkitTransform: 'translateY(108px)',
-			// OTransform: 'translateY(108px)',
-			// MozTransform: 'translateY(108px)'
-		};
+        // Show
+        const stylesShow = {
+            // transform: 'translateY(108px)',
+            // msTransform: 'translateY(108px)',
+            // WebkitTransform: 'translateY(108px)',
+            // OTransform: 'translateY(108px)',
+            // MozTransform: 'translateY(108px)'
+        };
 
-		setTimeout(function() {
-			context.updateStyle(base, stylesShow);
-		}, 100); // wait 100ms after the component is called to animate toast.
+        setTimeout(function () {
+            context.updateStyle(base, stylesShow);
+        }, 100); // wait 100ms after the component is called to animate toast.
 
-		if (this.props.timeout === -1) {
-			return;
-		}
+        if (this.props.timeout === -1) {
+            return;
+        }
 
-		// Hide after timeout
-		const stylesHide = {
-			// transform: 'translateY(-108px)',
-			// msTransform: 'translateY(-108px)',
-			// WebkitTransform: 'translateY(-108px)',
-			// OTransform: 'translateY(-108px)',
-			// MozTransform: 'translateY(-108px)'
-		};
+        // Hide after timeout
+        const stylesHide = {
+            // transform: 'translateY(-108px)',
+            // msTransform: 'translateY(-108px)',
+            // WebkitTransform: 'translateY(-108px)',
+            // OTransform: 'translateY(-108px)',
+            // MozTransform: 'translateY(-108px)'
+        };
 
-		setTimeout(function() {
-			context.updateStyle(base, stylesHide);
-		}, this.props.timeout);
-	}
+        setTimeout(function () {
+            context.updateStyle(base, stylesHide);
+        }, this.props.timeout);
+    }
 
-	updateStyle(base, update) {
-		this.setState({styleParent: Lodash.assign({}, base, update)});
-	}
+    updateStyle (base, update) {
+        this.setState({ styleParent: Lodash.assign({}, base, update) });
+    }
 
-	getBaseStyle() {
-		this.setState({styleParent: this.getStyles().container});
-	}
+    getBaseStyle () {
+        this.setState({ styleParent: this.getStyles().container });
+    }
 
-	componentDidMount() {
-		this.getBaseStyle();
-		this.getVisibleState(this);
-	}
+    componentDidMount () {
+        this.getBaseStyle();
+        this.getVisibleState(this);
+    }
 
-	render() {
-		let {text, type} = this.props;
-		let styles = this.getStyles();
-		let {styleParent} = this.state;
-		return (
-			<div className="toast-notification" style={styleParent}>
-				<span className={type} style={styles.content}>{text}</span>
-			</div>
-		);
-	}
+    render () {
+        let { text, type } = this.props;
+        let styles = this.getStyles();
+        let { styleParent } = this.state;
+        return (
+            <div className='toast-notification' style={styleParent}>
+                <span className={type} style={styles.content}>{text}</span>
+            </div>
+        );
+    }
 }
 
 /* Private Functions */
 
 /* Render React component */
-function renderToast(text, type, timeout, color) {
-	ReactDOM.render(
-		<Toast text={text} timeout={timeout} type={type} color={color}/>,
-		document.getElementById(notificationWrapperId)
-	);
+function renderToast (text, type, timeout, color) {
+    ReactDOM.render(
+        <Toast text={text} timeout={timeout} type={type} color={color} />,
+        document.getElementById(notificationWrapperId)
+    );
 }
 
 /* Unmount React component */
-function hideToast() {
-    try{
-	    ReactDOM.unmountComponentAtNode(document.getElementById(notificationWrapperId));
-    }catch(e) {
+function hideToast () {
+    try {
+        ReactDOM.unmountComponentAtNode(document.getElementById(notificationWrapperId));
+    } catch (e) {
         console.log(e);
     }
 }
@@ -195,30 +195,30 @@ function hideToast() {
 
 /* Show Animated Toast Message */
 /* Returns true if the toast was shown, or false if show failed due to an existing notification */
-function show(text, type, timeout, color) {
+function show (text, type, timeout, color) {
     let wrapper = document.getElementById(notificationWrapperId);
-	if (wrapper && !wrapper.hasChildNodes()) {
-		let renderTimeout = timeout;
+    if (wrapper && !wrapper.hasChildNodes()) {
+        let renderTimeout = timeout;
 
-		// Use default timeout if not set.
-		if (!renderTimeout) {
-			renderTimeout = defaultTimeout;
-		}
+        // Use default timeout if not set.
+        if (!renderTimeout) {
+            renderTimeout = defaultTimeout;
+        }
 
-		// Render Component with Props.
-		renderToast(text, type, renderTimeout, color);
+        // Render Component with Props.
+        renderToast(text, type, renderTimeout, color);
 
-		if (timeout === -1) {
-			return false;
-		}
+        if (timeout === -1) {
+            return false;
+        }
 
-		// Unmount react component after the animation finished.
-		setTimeout(function() {
-			hideToast();
-		}, renderTimeout + animationDuration);
+        // Unmount react component after the animation finished.
+        setTimeout(function () {
+            hideToast();
+        }, renderTimeout + animationDuration);
 
         return true;
-	}
+    }
     return false;
 }
 
@@ -231,7 +231,7 @@ function show(text, type, timeout, color) {
  *                                       will be incremented by this (ms)
  * @return {[type]}                      [description]
  */
-function createShowQueue(initialRecallDelay = 500, recallDelayIncrement = 500) {
+function createShowQueue (initialRecallDelay = 500, recallDelayIncrement = 500) {
     // Array to hold queued messages
     this.msgs = [];
 
@@ -269,7 +269,7 @@ function createShowQueue(initialRecallDelay = 500, recallDelayIncrement = 500) {
     };
 
     return (text, type = '', timeout = defaultTimeout, color = colorWhite) => {
-        this.msgs.push({text, type, timeout, color});
+        this.msgs.push({ text, type, timeout, color });
         if (!this.isNotifying) {
             this.showNotify();
         }
@@ -278,18 +278,18 @@ function createShowQueue(initialRecallDelay = 500, recallDelayIncrement = 500) {
 
 /* Export notification container */
 export default class extends React.Component {
-	render() {
-		return (
-			<div id={notificationWrapperId}></div>
-		);
-	}
+    render () {
+        return (
+            <div id={notificationWrapperId} />
+        );
+    }
 }
 
 /* Export notification functions */
 export let notify = {
-	show,
+    show,
     createShowQueue,
-    defaultTip:{
+    defaultTip: {
         demo: '体验模式不支持该功能'
     }
 };

@@ -10,11 +10,11 @@ import OffLineXImg from '../assets/离线@3x.png';
 import Header from '../../../components/Header';
 import Bridge from '../../../components/Bridge';
 import './Panel.scss';
-import Notifications, {notify} from '../../../components/Toast';
+import Notifications, { notify } from '../../../components/Toast';
 
 export default class Panel extends React.Component {
 
-    constructor() {
+    constructor () {
         super();
         this.show = notify.createShowQueue();
     }
@@ -98,8 +98,8 @@ export default class Panel extends React.Component {
             <div className='sceneName'>标准场景</div>
         );
         let ctrlBtn = <OptionBtn type='control' onTouchStart={this.toCtrl} />;
-        let sceneBtn = <OptionBtn type='situation' onTouchStart={this.showTip.bind(this)} />;
-        let timeBtn = <OptionBtn type='timer' onTouchStart={this.showTip.bind(this)} />;
+        let sceneBtn = <OptionBtn type='situation' onTouchStart={e => this.showTip(e)} />;
+        let timeBtn = <OptionBtn type='timer' onTouchStart={e => this.showTip(e)} />;
 
         switch (this.props.status) {
             case 'ON':
@@ -135,8 +135,8 @@ export default class Panel extends React.Component {
             <div style={lightStyle} className='panelWrapper'>
                 <Notifications />
                 <Header
-                    leftHandler={e => this.leave()}
-                    rightHandler={e => this.showTip()}
+                    leftHandler={e => this.leave(e)}
+                    rightHandler={e => this.showTip(e)}
                     title='智能炫彩灯'
                     bgColor='#fff'
                     titleColor='#000'
@@ -168,6 +168,7 @@ export default class Panel extends React.Component {
 };
 
 Panel.propTypes = {
+    location: React.PropTypes.object,
     status: React.PropTypes.oneOf([
         'ON',
         'OFF',
