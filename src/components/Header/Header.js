@@ -15,7 +15,7 @@ export default class Header extends React.Component {
         let arrowLeftImg2x = this.props.reverse ? leftImgBlack : leftImg;
         let arrowLeftImg3x = this.props.reverse ? leftImgBlack3x : leftImg3x;
         let moreImg2x = this.props.reverse ? moreImgBlack : moreImg;
-        let moreImg3x = this.props.reverse ? moreImgBlack3x : moreImg3x;
+        let more3xImg = this.props.reverse ? moreImgBlack3x : moreImg3x;
         return (
             <div className='main-header' style={{ backgroundColor: this.props.bgColor }}>
                 <div className='img-btn'
@@ -36,11 +36,11 @@ export default class Header extends React.Component {
                     style={{ color: this.props.titleColor }}>{this.props.title}</div>
                 <div
                     className='img-btn'
-                    onTouchStart={(e) => this.props.rightHandler(e) }>
+                    onTouchStart={(e) => this.props.rightHandler(e)}>
                     <picture>
                         <source
                             media='(min-width: 414px)'
-                            srcSet={moreImg3x} />
+                            srcSet={more3xImg} />
                         <source
                             media='(min-width: 375px)'
                             srcSet={moreImg2x} />
