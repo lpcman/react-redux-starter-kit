@@ -1,27 +1,54 @@
 import React from 'react';
-import leftImg from './assets/arrow-left.png';
-import leftImgBlack from './assets/arrow-left-black.png';
-import moreImg from './assets/dot-three.png';
-import moreImgBlack from './assets/dot-three-black.png';
+import leftImg from './assets/arrow-left@2x.png';
+import leftImg3x from './assets/arrow-left@3x.png';
+import leftImgBlack from './assets/arrow-left-black@2x.png';
+import leftImgBlack3x from './assets/arrow-left-black@3x.png';
+import moreImg from './assets/dot-three@2x.png';
+import moreImg3x from './assets/dot-three@3x.png';
+import moreImgBlack from './assets/dot-three-black@2x.png';
+import moreImgBlack3x from './assets/dot-three-black@3x.png';
 import './Header.scss';
 
 export default class Header extends React.Component {
 
     render () {
+        let arrowLeftImg2x = this.props.reverse ? leftImgBlack : leftImg;
+        let arrowLeftImg3x = this.props.reverse ? leftImgBlack3x : leftImg3x;
+        let moreImg2x = this.props.reverse ? moreImgBlack : moreImg;
+        let moreImg3x = this.props.reverse ? moreImgBlack3x : moreImg3x;
         return (
             <div className='main-header' style={{ backgroundColor: this.props.bgColor }}>
-                <img
-                    alt='返回' className='img-btn back-btn'
-                    src={this.props.reverse ? leftImgBlack : leftImg}
-                    onClick={(e) => this.props.leftHandler(e)}
-                />
+                <div className='img-btn'
+                    onTouchStart={(e) => this.props.leftHandler(e)}>
+                    <picture>
+                        <source
+                            media='(min-width: 414px)'
+                            srcSet={arrowLeftImg3x} />
+                        <source
+                            media='(min-width: 375px)'
+                            srcSet={arrowLeftImg2x} />
+                        <img
+                            alt='返回' className='back-btn'
+                            src={arrowLeftImg2x} />
+                    </picture>
+                </div>
                 <div className='header-title'
                     style={{ color: this.props.titleColor }}>{this.props.title}</div>
-                <img
-                    alt='更多' className='img-btn more-btn'
-                    src={this.props.reverse ? moreImgBlack : moreImg}
-                    onClick={(e) => this.props.rightHandler(e)}
-                />
+                <div
+                    className='img-btn'
+                    onTouchStart={(e) => this.props.rightHandler(e) }>
+                    <picture>
+                        <source
+                            media='(min-width: 414px)'
+                            srcSet={moreImg3x} />
+                        <source
+                            media='(min-width: 375px)'
+                            srcSet={moreImg2x} />
+                        <img
+                            alt='更多' className='more-btn'
+                            src={moreImg2x} />
+                    </picture>
+                </div>
             </div>
         );
     }
