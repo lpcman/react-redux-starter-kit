@@ -138,8 +138,6 @@ export default class Panel extends React.Component {
                     leftHandler={e => this.leave(e)}
                     rightHandler={e => this.showTip(e)}
                     title='智能炫彩灯'
-                    bgColor='#fff'
-                    titleColor='#000'
                     reverse
                 />
                 {scene}

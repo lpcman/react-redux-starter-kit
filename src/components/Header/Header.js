@@ -65,7 +65,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
     title: '智慧家庭',
-    bgColor: '#23c0b1',
-    titleColor: '#fff',
+    bgColor: '#ffffff',
+    titleColor: '#242424',
     reverse: false
 };

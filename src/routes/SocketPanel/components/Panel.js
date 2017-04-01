@@ -102,8 +102,6 @@ export default class Panel extends React.Component {
                     leftHandler={e => this.leave()}
                     rightHandler={e => this.showTip()}
                     title='智能插座'
-                    bgColor='#fff'
-                    titleColor='#000'
                     reverse
                 />
                 <picture>
